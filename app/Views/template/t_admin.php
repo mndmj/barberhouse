@@ -151,6 +151,7 @@
             }, 1500);
     </script>
 
+    <?= $this->include('part/notif.php'); ?>
 
 </body>
 

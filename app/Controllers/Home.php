@@ -8,6 +8,9 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('view_home');
+        $data = [
+            'validation' => (session('errors')) ? session('errors') : \Config\Services::validation()
+        ];
+        return view('view_home', $data);
     }
 }

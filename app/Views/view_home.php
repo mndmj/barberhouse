@@ -1,5 +1,3 @@
-<?php $db = db_connect(); ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,20 +15,20 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
 
     <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="assets/css/jquery-ui.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/jquery-ui.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/owl.theme.default.min.css">
 
-    <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/jquery.fancybox.min.css">
 
-    <link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/bootstrap-datepicker.css">
 
-    <link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/fonts/flaticon/font/flaticon.css">
 
-    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/aos.css">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -77,7 +75,7 @@
 
         <div class="intro-section" id="home-section">
 
-            <div class="slide-1" style="background-image: url('assets/images/jumbo.jpg');" data-stellar-background-ratio="0.5">
+            <div class="slide-1" style="background-image: url('<?= base_url() ?>/assets/images/jumbo.jpg');" data-stellar-background-ratio="0.5">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-12">
@@ -90,10 +88,11 @@
 
                                 <div class="col-lg-6 ms-auto mb-lg-5" data-aos="fade-up" data-aos-delay="500">
                                     <div class="form-box border border-success">
-                                        <img src="<?= base_url('assets/images/logo_bhouse_noBg.png') ?>" class="img-fluid pad mb-4">
-
+                                        <div class="text-center">
+                                            <img src="<?= base_url('assets/images/logo_bhouse_noBg.png') ?>" class="img-fluid pad mb-4">
+                                        </div>
                                         <?php
-                                        $errors = session()->getFlashdata('errors');
+                                        // $errors = session()->getFlashdata('errors');
                                         if (!empty($errors)) { ?>
                                             <div class="alert alert-danger peringatan" role="alert">
                                                 <ul>
@@ -111,15 +110,16 @@
                                             echo '</div>';
                                         } ?>
 
+                                        <!-- start -->
                                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                             <div class="row w-100 m-0">
                                                 <div class="col-6 p-0">
-                                                    <li class="nav-item text-center" id="target" onclick="tab_menu('login-tab','register-tab')">
+                                                    <li class="nav-item text-center" id="target" onclick="tab_menu('login-tab','register-tab','register','login')">
                                                         <a class="nav-link btn rounded-0 tab_menu_active" id="register-tab" data-toggle="pill" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
                                                     </li>
                                                 </div>
                                                 <div class="col-6 p-0">
-                                                    <li class="nav-item text-center" id="base" onclick="tab_menu('register-tab','login-tab')">
+                                                    <li class="nav-item text-center" id="base" onclick="tab_menu('register-tab','login-tab','login','register')">
                                                         <a class="nav-link btn rounded-0 tab_menu_non_active" id="login-tab" data-toggle="pill" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
                                                     </li>
                                                 </div>
@@ -132,10 +132,16 @@
                                             <?= form_open('auth/cek_login') ?>
                                             <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="register-tab">
                                                 <div class="form-group mb-3">
-                                                    <input type="text" class="form-control" name="username" placeholder="Username">
+                                                    <input type="text" class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : '' ?>" name="username" id="username" placeholder="Username">
+                                                    <div id="usernameFeedback" class="invalid-feedback">
+                                                        <small><?= $validation->getError('username') ?></small>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group mb-4">
-                                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                                    <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : '' ?>" name="password" id="password" placeholder="Password">
+                                                    <div id="passwordFeedback" class="invalid-feedback">
+                                                        <small><?= $validation->getError('password') ?></small>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group text-end">
                                                     <input type="submit" class="btn text-white px-5" style="background: #3D8361;" value="Login">
@@ -143,32 +149,33 @@
                                             </div>
                                             <?= form_close() ?>
 
-                                            <!-- home screen -->
-                                            <script>
-                                                function tab_menu(target, base) {
-                                                    document.getElementById(base).classList.remove('active');
-                                                    document.getElementById(base).classList.remove('tab_menu_non_active');
-                                                    document.getElementById(target).classList.remove('tab_menu_active');
-                                                    document.getElementById(base).classList.add('tab_menu_active');
-                                                    document.getElementById(target).classList.add('tab_menu_non_active');
-                                                }
-                                            </script>
-
                                             <!-- sign-up -->
                                             <?= form_open('auth/register') ?>
-                                            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="login-tab">
+                                            <div class="tab-pane fade d-none" id="register" role="tabpanel" aria-labelledby="login-tab">
                                                 <div class="form">
                                                     <div class="form-group mb-3">
-                                                        <input type="text" class="form-control" name="nama_user" placeholder="Nama Lengkap">
+                                                        <input type="text" class="form-control <?= ($validation->hasError('nama_user')) ? 'is-invalid' : '' ?>" name="nama_user" id="nama_user" placeholder="Nama Lengkap" value="<?= old('nama_user') ?>">
+                                                        <div id="nama_userFeedback" class="invalid-feedback">
+                                                            <small><?= $validation->getError('nama_user') ?></small>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group mb-3">
-                                                        <input type="text" class="form-control" name="username" placeholder="Username">
+                                                        <input type="text" class="form-control <?= ($validation->hasError('username_reg')) ? 'is-invalid' : '' ?>" name="username_reg" placeholder="Username" value="<?= old('username_reg') ?>">
+                                                        <div id="usernameFeedback" class="invalid-feedback">
+                                                            <small><?= $validation->getError('username_reg') ?></small>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group mb-3">
-                                                        <input type="email" class="form-control" name="email" placeholder="Alamat Email">
+                                                        <input type="email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : '' ?>" name="email" id="email" placeholder="Alamat Email" value="<?= old('email') ?>">
+                                                        <div id="emailFeedback" class="invalid-feedback">
+                                                            <small><?= $validation->getError('email') ?></small>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group mb-4">
-                                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                                        <input type="password" class="form-control <?= ($validation->hasError('password_reg')) ? 'is-invalid' : '' ?>" name="password_reg" placeholder="Password">
+                                                        <div id="passwordFeedback" class="invalid-feedback">
+                                                            <small><?= $validation->getError('password_reg') ?></small>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group text-end">
                                                         <input type="submit" class="btn text-white px-5" style="background: #3D8361;" value="Sign-Up">
@@ -178,6 +185,8 @@
                                             <?= form_close() ?>
 
                                         </div>
+
+                                        <!-- End -->
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +208,7 @@
                 </div>
                 <div class="row mb-5 align-items-center">
                     <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/images/bb1.jpg" alt="Image" class="img-fluid">
+                        <img src="<?= base_url() ?>/assets/images/bb1.jpg" alt="Image" class="img-fluid">
                     </div>
                     <div class="col-lg-4 ms-auto" data-aos="fade-up" data-aos-delay="200">
                         <h2 class="text-black mb-4">We Are Excellent In Education</h2>
@@ -224,7 +233,7 @@
 
                 <div class="row mb-5 align-items-center">
                     <div class="col-lg-7 mb-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/images/bb2.jpg" alt="Image" class="img-fluid">
+                        <img src="<?= base_url() ?>/assets/images/bb2.jpg" alt="Image" class="img-fluid">
                     </div>
                     <div class="col-lg-4 me-auto order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
                         <h2 class="text-black mb-4">Strive for Excellent</h2>
@@ -249,7 +258,7 @@
 
                 <div class="row mb-5 align-items-center">
                     <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/images/bb3.jpg" alt="Image" class="img-fluid">
+                        <img src="<?= base_url() ?>/assets/images/bb3.jpg" alt="Image" class="img-fluid">
                     </div>
                     <div class="col-lg-4 ms-auto" data-aos="fade-up" data-aos-delay="200">
                         <h2 class="text-black mb-4">Education is life</h2>
@@ -289,7 +298,7 @@
 
                     <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="teacher text-center">
-                            <img src="assets/images/person_1.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
+                            <img src="<?= base_url() ?>/assets/images/person_1.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
                             <div class="py-2">
                                 <h3 class="text-black">Benjamin Stone</h3>
                                 <p class="position">Physics Teacher</p>
@@ -300,7 +309,7 @@
 
                     <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="teacher text-center">
-                            <img src="assets/images/person_2.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
+                            <img src="<?= base_url() ?>/assets/images/person_2.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
                             <div class="py-2">
                                 <h3 class="text-black">Katleen Stone</h3>
                                 <p class="position">Physics Teacher</p>
@@ -311,7 +320,7 @@
 
                     <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
                         <div class="teacher text-center">
-                            <img src="assets/images/person_3.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
+                            <img src="<?= base_url() ?>/assets/images/person_3.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
                             <div class="py-2">
                                 <h3 class="text-black">Sadie White</h3>
                                 <p class="position">Physics Teacher</p>
@@ -327,10 +336,10 @@
 
             <div class="future-blobs">
                 <div class="blob_2">
-                    <img src="assets/images/blob_2.svg" alt="Image">
+                    <img src="<?= base_url() ?>/assets/images/blob_2.svg" alt="Image">
                 </div>
                 <div class="blob_1">
-                    <img src="assets/images/blob_1.svg" alt="Image">
+                    <img src="<?= base_url() ?>/assets/images/blob_1.svg" alt="Image">
                 </div>
             </div>
             <div class="container">
@@ -390,7 +399,7 @@
 
                     </div>
                     <div class="col-lg-7 align-self-end" data-aos="fade-left" data-aos-delay="200">
-                        <img src="assets/images/person_transparent.png" alt="Image" class="img-fluid">
+                        <img src="<?= base_url() ?>/assets/images/person_transparent.png" alt="Image" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -425,21 +434,21 @@
 
     </div> <!-- .site-wrap -->
 
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="assets/js/jquery-ui.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/jquery.stellar.min.js"></script>
-    <script src="assets/js/jquery.countdown.min.js"></script>
-    <script src="assets/js/bootstrap-datepicker.min.js"></script>
-    <script src="assets/js/jquery.easing.1.3.js"></script>
-    <script src="assets/js/aos.js"></script>
-    <script src="assets/js/jquery.fancybox.min.js"></script>
-    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="<?= base_url() ?>/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="<?= base_url() ?>/assets/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="<?= base_url() ?>/assets/js/jquery-ui.js"></script>
+    <script src="<?= base_url() ?>/assets/js/popper.min.js"></script>
+    <script src="<?= base_url() ?>/assets/js/bootstrap.min.js"></script>
+    <script src="<?= base_url() ?>/assets/js/owl.carousel.min.js"></script>
+    <script src="<?= base_url() ?>/assets/js/jquery.stellar.min.js"></script>
+    <script src="<?= base_url() ?>/assets/js/jquery.countdown.min.js"></script>
+    <script src="<?= base_url() ?>/assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="<?= base_url() ?>/assets/js/jquery.easing.1.3.js"></script>
+    <script src="<?= base_url() ?>/assets/js/aos.js"></script>
+    <script src="<?= base_url() ?>/assets/js/jquery.fancybox.min.js"></script>
+    <script src="<?= base_url() ?>/assets/js/jquery.sticky.js"></script>
 
-    <script src="assets/js/main.js"></script>
+    <script src="<?= base_url() ?>/assets/js/main.js"></script>
 
 
 
@@ -452,6 +461,32 @@
                 });
             }, 1500);
     </script>
+
+    <!-- home screen -->
+    <script>
+        function tab_menu(target, base, close, show) {
+            document.getElementById(base).classList.remove('active');
+            document.getElementById(base).classList.remove('tab_menu_non_active');
+            document.getElementById(target).classList.remove('tab_menu_active');
+            document.getElementById(base).classList.add('tab_menu_active');
+            document.getElementById(target).classList.add('tab_menu_non_active');
+            document.getElementById(close).classList.add('d-none');
+            document.getElementById(show).classList.remove('d-none');
+            document.getElementById(show).classList.add('show');
+        }
+
+        // data tdk hilang ketika load ulang regis
+        <?php if (session('error_register')) { ?>
+            $(document).ready(
+                function() {
+                    // tab_menu('register-tab', 'login-tab', 'login', 'register');
+                    $('#base').click();
+                }
+            )
+        <?php } ?>
+    </script>
+
+    <?= $this->include('part/notif.php'); ?>
 
 </body>
 
