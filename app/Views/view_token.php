@@ -75,7 +75,7 @@
             }
 
             .bg-glass {
-                background-color: hsla(0, 0%, 100%, 0.9) !important;
+                background-color: rgba(255, 255, 255, 0.7) !important;
                 backdrop-filter: saturate(200%) blur(25px);
             }
         </style>

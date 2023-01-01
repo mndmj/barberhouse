@@ -1400,11 +1400,15 @@ h5,
     box-shadow: 0 5px 50px -10px rgba(0, 0, 0, 0.2);
 }
 
+.custom-icon-inner {
+    color: #3D8361;
+}
+
 .custom-icon-wrap .custom-icon-inner {
     display: inline-block;
     position: relative;
-    width: 35px;
-    height: 35px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     background: #3D8361;
 }
@@ -1532,7 +1536,7 @@ h5,
 }
 
 .future-blobs .blob_2 {
-    bottom: 0;
+    top: 0;
     left: -10rem;
     position: absolute;
 }

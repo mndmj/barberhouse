@@ -1,0 +1,272 @@
+ERROR - 2022-12-31 07:27:16 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:171
+Stack trace:
+#0 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(171): mysqli->real_connect('localhost', 'root', '', 'barberhouse', 3306, '', 0)
+#1 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(382): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(561): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\barberhouse\app\Models\ModelAuth.php(20): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\barberhouse\app\Controllers\Auth.php(100): App\Models\ModelAuth->login('supri', 'qwertyui')
+#6 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(927): App\Controllers\Auth->cek_login()
+#7 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#8 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\barberhouse\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:215
+Stack trace:
+#0 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(382): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(561): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\barberhouse\app\Models\ModelAuth.php(20): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\barberhouse\app\Controllers\Auth.php(100): App\Models\ModelAuth->login('supri', 'qwertyui')
+#5 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(927): App\Controllers\Auth->cek_login()
+#6 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#7 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\barberhouse\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2022-12-31 07:27:16 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 418.
+ 1 SYSTEMPATH\Database\BaseConnection.php(561): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tbl_user`
+WHERE `username` = :username:
+AND `password` = :password:', [...], false)
+ 3 APPPATH\Models\ModelAuth.php(20): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\Auth.php(100): App\Models\ModelAuth->login('supri', 'qwertyui')
+ 5 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Auth->cek_login()
+ 6 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-31 15:58:48 --> Call to undefined method CodeIgniter\View\View::extends()
+in APPPATH\Views\view_bio_pemilik.php on line 1.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1134): CodeIgniter\View\View->render('view_bio_pemilik', [], true)
+ 4 APPPATH\Controllers\Home.php(14): view('view_bio_pemilik', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-31 18:54:37 --> Cannot access offset of type string on string
+in APPPATH\Controllers\Register.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->cancel()
+ 2 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-31 19:34:59 --> syntax error, unexpected token "}"
+in APPPATH\Controllers\Register.php on line 116.
+ 1 SYSTEMPATH\Router\Router.php(499): CodeIgniter\Router\AutoRouter->getRoute('register/biopemilik')
+ 2 SYSTEMPATH\Router\Router.php(205): CodeIgniter\Router\Router->autoRoute('register/biopemilik')
+ 3 SYSTEMPATH\CodeIgniter.php(802): CodeIgniter\Router\Router->handle('register/biopemilik')
+ 4 SYSTEMPATH\CodeIgniter.php(430): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 5 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-31 20:02:35 --> The original file is not a valid file.
+in SYSTEMPATH\HTTP\Files\UploadedFile.php on line 137.
+ 1 SYSTEMPATH\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+ 2 APPPATH\Controllers\Register.php(117): CodeIgniter\HTTP\Files\UploadedFile->move('FCPATH\\assets\\images\\user', '1672538555_27bb0bf10977913c5fe9')
+ 3 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+ 4 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+ 5 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-31 20:03:02 --> The original file is not a valid file.
+in SYSTEMPATH\HTTP\Files\UploadedFile.php on line 137.
+ 1 SYSTEMPATH\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+ 2 APPPATH\Controllers\Register.php(117): CodeIgniter\HTTP\Files\UploadedFile->move('FCPATH\\assets\\images\\user', '1672538582_e31f4fe4104a672b8e9f')
+ 3 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+ 4 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+ 5 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-31 20:03:32 --> Cannot access offset of type string on string
+in APPPATH\Controllers\Register.php on line 121.
+ 1 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+ 2 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-31 20:04:49 --> Undefined property: CodeIgniter\HTTP\IncomingRequest::$getPost
+in APPPATH\Controllers\Register.php on line 121.
+ 1 APPPATH\Controllers\Register.php(121): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\HTTP\\IncomingRequest::$getPost', 'APPPATH\\Controllers\\Register.php', 121)
+ 2 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+ 3 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+ERROR - 2022-12-31 20:05:03 --> mysqli_sql_exception: Column 'jk' cannot be null in C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:292
+Stack trace:
+#0 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\BaseModel.php(749): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(667): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\barberhouse\app\Controllers\Register.php(129): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+#9 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+#10 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\barberhouse\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2022-12-31 20:05:03 --> Column 'jk' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538702_3154875c6ac0850b0b23.jpg\', \'22\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538702_3154875c6ac0850b0b23.jpg\', \'22\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538702_3154875c6ac0850b0b23.jpg\', \'22\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (:nama_lengkap:, :telepon:, :jk:, :alamat:, :foto:, :id_user:)', [...], false)
+ 5 SYSTEMPATH\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(749): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(667): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Register.php(129): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+10 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+ERROR - 2022-12-31 20:06:20 --> mysqli_sql_exception: Column 'jk' cannot be null in C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:292
+Stack trace:
+#0 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\BaseModel.php(749): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(667): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\barberhouse\app\Controllers\Register.php(129): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+#9 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+#10 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\barberhouse\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2022-12-31 20:06:20 --> Column 'jk' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538780_e3b169a661d0bface0cb.jpg\', \'22\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538780_e3b169a661d0bface0cb.jpg\', \'22\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538780_e3b169a661d0bface0cb.jpg\', \'22\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (:nama_lengkap:, :telepon:, :jk:, :alamat:, :foto:, :id_user:)', [...], false)
+ 5 SYSTEMPATH\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(749): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(667): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Register.php(129): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+10 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+ERROR - 2022-12-31 20:06:45 --> mysqli_sql_exception: Column 'jk' cannot be null in C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:292
+Stack trace:
+#0 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\BaseModel.php(749): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(667): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\barberhouse\app\Controllers\Register.php(129): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+#9 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+#10 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\barberhouse\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2022-12-31 20:06:45 --> Column 'jk' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538805_32a4013cd47b957a839a.jpg\', \'22\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538805_32a4013cd47b957a839a.jpg\', \'22\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538805_32a4013cd47b957a839a.jpg\', \'22\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (:nama_lengkap:, :telepon:, :jk:, :alamat:, :foto:, :id_user:)', [...], false)
+ 5 SYSTEMPATH\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(749): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(667): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Register.php(129): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+10 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+ERROR - 2022-12-31 20:09:20 --> mysqli_sql_exception: Column 'jk' cannot be null in C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:292
+Stack trace:
+#0 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\BaseModel.php(749): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(667): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\barberhouse\app\Controllers\Register.php(129): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+#9 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+#10 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\barberhouse\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2022-12-31 20:09:20 --> Column 'jk' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538960_563aecc483eeb412b8ce.jpg\', \'22\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538960_563aecc483eeb412b8ce.jpg\', \'22\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (\'\', \'\', NULL, \'\', \'1672538960_563aecc483eeb412b8ce.jpg\', \'22\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbl_detail_pemilik` (`nama_lengkap`, `telepon`, `jk`, `alamat`, `foto`, `id_user`) VALUES (:nama_lengkap:, :telepon:, :jk:, :alamat:, :foto:, :id_user:)', [...], false)
+ 5 SYSTEMPATH\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(749): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(667): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Register.php(129): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->savepemilik()
+10 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+ERROR - 2022-12-31 20:16:14 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`barberhouse`.`tbl_detail_pemilik`, CONSTRAINT `tbl_detail_pemilik_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`)) in C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:292
+Stack trace:
+#0 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(292): mysqli->query('DELETE FROM `tb...', 0)
+#1 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `tb...')
+#2 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `tb...')
+#3 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(2391): CodeIgniter\Database\BaseConnection->query('DELETE FROM `tb...', Array, false)
+#4 C:\xampp\htdocs\barberhouse\app\Controllers\Register.php(176): CodeIgniter\Database\BaseBuilder->delete('id_user="22"')
+#5 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(927): App\Controllers\Register->cancel()
+#6 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+#7 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\barberhouse\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2022-12-31 20:16:14 --> Cannot delete or update a parent row: a foreign key constraint fails (`barberhouse`.`tbl_detail_pemilik`, CONSTRAINT `tbl_detail_pemilik_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`))
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('DELETE FROM `tbl_user`
+WHERE `id_user` = "22"', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `tbl_user`
+WHERE `id_user` = "22"')
+ 3 SYSTEMPATH\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `tbl_user`
+WHERE `id_user` = "22"')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2391): CodeIgniter\Database\BaseConnection->query('DELETE FROM `tbl_user`
+WHERE `id_user` = "22"', [], false)
+ 5 APPPATH\Controllers\Register.php(176): CodeIgniter\Database\BaseBuilder->delete('id_user="22"')
+ 6 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->cancel()
+ 7 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+ERROR - 2022-12-31 20:18:41 --> mysqli_sql_exception: Duplicate entry 'Supri' for key 'username' in C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:292
+Stack trace:
+#0 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\BaseModel.php(749): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(667): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\barberhouse\app\Controllers\Auth.php(56): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(927): App\Controllers\Auth->register()
+#9 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\barberhouse\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#13 {main}

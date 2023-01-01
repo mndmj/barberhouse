@@ -1,0 +1,16 @@
+CRITICAL - 2022-12-30 10:31:26 --> Undefined property: App\Controllers\Admin::$ModelAdmin
+in APPPATH\Controllers\Admin.php on line 22.
+ 1 APPPATH\Controllers\Admin.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Admin::$ModelAdmin', 'APPPATH\\Controllers\\Admin.php', 22)
+ 2 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Admin->index()
+ 3 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-30 10:31:39 --> Undefined property: App\Controllers\Admin::$ModelAdmin
+in APPPATH\Controllers\Admin.php on line 22.
+ 1 APPPATH\Controllers\Admin.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Admin::$ModelAdmin', 'APPPATH\\Controllers\\Admin.php', 22)
+ 2 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Admin->index()
+ 3 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')

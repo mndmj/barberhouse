@@ -25,7 +25,7 @@ class FilterUser implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (session()->get('level') == '') {
+        if (session('data_user')) {
             return redirect()->to('/');
         }
     }

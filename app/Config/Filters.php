@@ -2,6 +2,9 @@
 
 namespace Config;
 
+use App\Filters\BioFilter;
+use App\Filters\RegistFilter;
+use App\Filters\TokenFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -24,6 +27,9 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'filteruser'    => \App\Filters\FilterUser::class,
+        'registFilter' => RegistFilter::class,
+        'tokenFilter' => TokenFilter::class,
+        'bioFilter' => BioFilter::class
     ];
 
     /**
@@ -73,5 +79,21 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $filters = [];
+    public $filters = [
+        'registFilter' => [
+            'before' => [
+                'register/token', 'register/token/*', 'register/'
+            ]
+        ],
+        'tokenFilter' => [
+            'before' => [
+                'register/biopemilik', 'register/biopemilik/*'
+            ]
+        ],
+        'bioFilter' => [
+            'before' => [
+                'register/biobb', 'register/biobb/*'
+            ]
+        ]
+    ];
 }

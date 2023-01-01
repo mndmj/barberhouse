@@ -58,7 +58,7 @@
                         <nav class="site-navigation position-relative text-right" role="navigation">
                             <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                                 <li><a href="#home-section" class="nav-link">Home</a></li>
-                                <li><a href="#programs-section" class="nav-link">Programs</a></li>
+                                <li><a href="#how-section" class="nav-link">How to</a></li>
                                 <li><a href="#features-section" class="nav-link">Features</a></li>
                             </ul>
                         </nav>
@@ -154,12 +154,6 @@
                                             <div class="tab-pane fade d-none" id="register" role="tabpanel" aria-labelledby="login-tab">
                                                 <div class="form">
                                                     <div class="form-group mb-3">
-                                                        <input type="text" class="form-control <?= ($validation->hasError('nama_user')) ? 'is-invalid' : '' ?>" name="nama_user" id="nama_user" placeholder="Nama Lengkap" value="<?= old('nama_user') ?>">
-                                                        <div id="nama_userFeedback" class="invalid-feedback">
-                                                            <small><?= $validation->getError('nama_user') ?></small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group mb-3">
                                                         <input type="text" class="form-control <?= ($validation->hasError('username_reg')) ? 'is-invalid' : '' ?>" name="username_reg" placeholder="Username" value="<?= old('username_reg') ?>">
                                                         <div id="usernameFeedback" class="invalid-feedback">
                                                             <small><?= $validation->getError('username_reg') ?></small>
@@ -199,11 +193,11 @@
         </div>
 
 
-        <div class="site-section" id="programs-section">
+        <div class="site-section" id="how-section">
             <div class="container">
                 <div class="row mb-5 justify-content-center">
                     <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-                        <h2 class="section-title">Our Programs</h2>
+                        <h2 class="section-title">How to Join Us</h2>
                     </div>
                 </div>
                 <div class="row mb-5 align-items-center">
@@ -211,23 +205,31 @@
                         <img src="<?= base_url() ?>/assets/images/bb1.jpg" alt="Image" class="img-fluid">
                     </div>
                     <div class="col-lg-4 ms-auto" data-aos="fade-up" data-aos-delay="200">
-                        <h2 class="text-black mb-4">We Are Excellent In Education</h2>
-                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
-
+                        <h2 class="text-black mb-4">Lakukan registrasi pertama</h2>
                         <div class="d-flex align-items-center custom-icon-wrap mb-3">
-                            <span class="custom-icon-inner me-3"><span class="icon icon-graduation-cap"></span></span>
+                            <i class="fa-solid fa-circle custom-icon-inner me-3"></i>
                             <div>
-                                <h3 class="m-0">22,931 Yearly Graduates</h3>
+                                <h3 class="m-0">Masukkan data yang diperlukan pada form register.</h3>
                             </div>
                         </div>
-
-                        <div class="d-flex align-items-center custom-icon-wrap">
-                            <span class="custom-icon-inner me-3"><span class="icon icon-university"></span></span>
+                        <div class="d-flex align-items-center custom-icon-wrap mb-3">
+                            <i class="fa-solid fa-circle custom-icon-inner me-3"></i>
                             <div>
-                                <h3 class="m-0">150 Universities Worldwide</h3>
+                                <h3 class="m-0">Lanjutkan resgitrasi dengan tekan tombol Registrasi.</h3>
                             </div>
                         </div>
-
+                        <div class="d-flex align-items-center custom-icon-wrap mb-3">
+                            <i class="fa-solid fa-circle custom-icon-inner me-3"></i>
+                            <div>
+                                <h3 class="m-0">Anda akan menerima token pada email Anda.</h3>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center custom-icon-wrap mb-3">
+                            <i class="fa-solid fa-circle custom-icon-inner me-3"></i>
+                            <div>
+                                <h3 class="m-0">Masukkan token Anda pada form token untuk memverifikasi akun lalu lanjutkan step.</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -236,104 +238,46 @@
                         <img src="<?= base_url() ?>/assets/images/bb2.jpg" alt="Image" class="img-fluid">
                     </div>
                     <div class="col-lg-4 me-auto order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-                        <h2 class="text-black mb-4">Strive for Excellent</h2>
-                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
-
+                        <h2 class="text-black mb-4">Pendaftaran Biodata Barbershop</h2>
                         <div class="d-flex align-items-center custom-icon-wrap mb-3">
-                            <span class="custom-icon-inner me-3"><span class="icon icon-graduation-cap"></span></span>
+                            <i class="fa-solid fa-circle custom-icon-inner me-3"></i>
                             <div>
-                                <h3 class="m-0">22,931 Yearly Graduates</h3>
+                                <h3 class="m-0">Step selanjutnya mendaftarkan barbershop Anda.</h3>
                             </div>
                         </div>
-
-                        <div class="d-flex align-items-center custom-icon-wrap">
-                            <span class="custom-icon-inner me-3"><span class="icon icon-university"></span></span>
-                            <div>
-                                <h3 class="m-0">150 Universities Worldwide</h3>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="row mb-5 align-items-center">
-                    <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
-                        <img src="<?= base_url() ?>/assets/images/bb3.jpg" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="col-lg-4 ms-auto" data-aos="fade-up" data-aos-delay="200">
-                        <h2 class="text-black mb-4">Education is life</h2>
-                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
-
                         <div class="d-flex align-items-center custom-icon-wrap mb-3">
-                            <span class="custom-icon-inner me-3"><span class="icon icon-graduation-cap"></span></span>
+                            <i class="fa-solid fa-circle custom-icon-inner me-3"></i>
                             <div>
-                                <h3 class="m-0">22,931 Yearly Graduates</h3>
+                                <h3 class="m-0">Isi semua data yang dibutuhkan pada form registrasi barbershop.</h3>
                             </div>
                         </div>
-
-                        <div class="d-flex align-items-center custom-icon-wrap">
-                            <span class="custom-icon-inner me-3"><span class="icon icon-university"></span></span>
+                        <div class="d-flex align-items-center custom-icon-wrap mb-3">
+                            <i class="fa-solid fa-circle custom-icon-inner me-3"></i>
                             <div>
-                                <h3 class="m-0">150 Universities Worldwide</h3>
+                                <h3 class="m-0">Input data sesuai data sesungguhnya.</h3>
                             </div>
                         </div>
-
+                        <div class="d-flex align-items-center custom-icon-wrap mb-3">
+                            <i class="fa-solid fa-circle custom-icon-inner me-3"></i>
+                            <div>
+                                <h3 class="m-0">Titik koordinat(latitude & longitude) bisa didapatkan dengan melihat pada google maps bila Anda tidak mengetahuinya.</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <div class="site-section" id="features-section">
+        <div class="site-section pb-0" id="features-section">
             <div class="container">
-
-                <div class="row mb-5 justify-content-center">
-                    <div class="col-lg-7 mb-5 text-center" data-aos="fade-up" data-aos-delay="">
+                <div class="row mb-0 justify-content-center">
+                    <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
                         <h2 class="section-title">Our Features</h2>
-                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
-                    </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="teacher text-center">
-                            <img src="<?= base_url() ?>/assets/images/person_1.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
-                            <div class="py-2">
-                                <h3 class="text-black">Benjamin Stone</h3>
-                                <p class="position">Physics Teacher</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="teacher text-center">
-                            <img src="<?= base_url() ?>/assets/images/person_2.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
-                            <div class="py-2">
-                                <h3 class="text-black">Katleen Stone</h3>
-                                <p class="position">Physics Teacher</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="teacher text-center">
-                            <img src="<?= base_url() ?>/assets/images/person_3.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
-                            <div class="py-2">
-                                <h3 class="text-black">Sadie White</h3>
-                                <p class="position">Physics Teacher</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
-                            </div>
-                        </div>
+                        <p class="">Barberhouse kami menyediakan layanan untuk mempermudah para pemiliki barbershop untuk melakukan pendataan antrian dan transaksi pembayaran dengan pelanggan, juga membantu para pelanggan untuk mempermudah pesan antrian barbershop tanpa harus datang terlebih dahulu.</p>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="site-section pb-0">
-
             <div class="future-blobs">
                 <div class="blob_2">
                     <img src="<?= base_url() ?>/assets/images/blob_2.svg" alt="Image">
@@ -343,61 +287,7 @@
                 </div>
             </div>
             <div class="container">
-                <div class="row mb-5 justify-content-center" data-aos="fade-up" data-aos-delay="">
-                    <div class="col-lg-7 text-center">
-                        <h2 class="section-title">Why Choose Us</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 ms-auto align-self-start" data-aos="fade-up" data-aos-delay="100">
-
-                        <div class="p-4 rounded bg-white why-choose-us-box">
-
-                            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-                                <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-                                <div>
-                                    <h3 class="m-0">22,931 Yearly Graduates</h3>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-                                <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-university"></span></span></div>
-                                <div>
-                                    <h3 class="m-0">150 Universities Worldwide</h3>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-                                <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-                                <div>
-                                    <h3 class="m-0">Top Professionals in The World</h3>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-                                <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-university"></span></span></div>
-                                <div>
-                                    <h3 class="m-0">Expand Your Knowledge</h3>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-                                <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-                                <div>
-                                    <h3 class="m-0">Best Online Teaching Assistant Courses</h3>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light">
-                                <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-university"></span></span></div>
-                                <div>
-                                    <h3 class="m-0">Best Features</h3>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
+                <div class="row justify-content-end" data-aos="fade-up" data-aos-delay="">
                     <div class="col-lg-7 align-self-end" data-aos="fade-left" data-aos-delay="200">
                         <img src="<?= base_url() ?>/assets/images/person_transparent.png" alt="Image" class="img-fluid">
                     </div>
@@ -421,9 +311,8 @@
                                 <h3 class="text-white">Links</h3>
                                 <ul class="list-unstyled">
                                     <li><a href="#" class="text-white fw-bold">Home</a></li>
-                                    <li><a href="#" class="text-white fw-bold">Programs</a></li>
+                                    <li><a href="#" class="text-white fw-bold">How to</a></li>
                                     <li><a href="#" class="text-white fw-bold">Features</a></li>
-                                    <li><a href="#" class="text-white fw-bold">Sign Up</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -1,0 +1,98 @@
+CRITICAL - 2022-12-27 04:05:19 --> Undefined constant "App\Controllers\CI_VERSION"
+in APPPATH\Controllers\Home.php on line 14.
+ 1 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-27 04:06:05 --> Undefined constant "CI_VERSION"
+in APPPATH\Views\view_home.php on line 3.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1134): CodeIgniter\View\View->render('view_home', [], true)
+ 4 APPPATH\Controllers\Home.php(12): view('view_home')
+ 5 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-27 04:32:37 --> strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+in SYSTEMPATH\Debug\Toolbar.php on line 419.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8192, 'strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated', 'SYSTEMPATH\\Debug\\Toolbar.php', 419)
+ 2 SYSTEMPATH\Debug\Toolbar.php(419): strpos(null, '<head>')
+ 3 SYSTEMPATH\Filters\DebugToolbar.php(40): CodeIgniter\Debug\Toolbar->prepare(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse))
+ 4 SYSTEMPATH\Filters\Filters.php(196): CodeIgniter\Filters\DebugToolbar->after(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse), null)
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\Filters\Filters->run('admin', 'after')
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-27 04:35:05 --> strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+in SYSTEMPATH\Debug\Toolbar.php on line 419.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8192, 'strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated', 'SYSTEMPATH\\Debug\\Toolbar.php', 419)
+ 2 SYSTEMPATH\Debug\Toolbar.php(419): strpos(null, '<head>')
+ 3 SYSTEMPATH\Filters\DebugToolbar.php(40): CodeIgniter\Debug\Toolbar->prepare(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse))
+ 4 SYSTEMPATH\Filters\Filters.php(196): CodeIgniter\Filters\DebugToolbar->after(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse), null)
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\Filters\Filters->run('admin', 'after')
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-27 04:43:00 --> strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+in SYSTEMPATH\Debug\Toolbar.php on line 419.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8192, 'strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated', 'SYSTEMPATH\\Debug\\Toolbar.php', 419)
+ 2 SYSTEMPATH\Debug\Toolbar.php(419): strpos(null, '<head>')
+ 3 SYSTEMPATH\Filters\DebugToolbar.php(40): CodeIgniter\Debug\Toolbar->prepare(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse))
+ 4 SYSTEMPATH\Filters\Filters.php(196): CodeIgniter\Filters\DebugToolbar->after(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse), null)
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\Filters\Filters->run('admin', 'after')
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-27 04:43:10 --> strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+in SYSTEMPATH\Debug\Toolbar.php on line 419.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8192, 'strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated', 'SYSTEMPATH\\Debug\\Toolbar.php', 419)
+ 2 SYSTEMPATH\Debug\Toolbar.php(419): strpos(null, '<head>')
+ 3 SYSTEMPATH\Filters\DebugToolbar.php(40): CodeIgniter\Debug\Toolbar->prepare(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse))
+ 4 SYSTEMPATH\Filters\Filters.php(196): CodeIgniter\Filters\DebugToolbar->after(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse), null)
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\Filters\Filters->run('admin', 'after')
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-27 04:43:11 --> strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+in SYSTEMPATH\Debug\Toolbar.php on line 419.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8192, 'strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated', 'SYSTEMPATH\\Debug\\Toolbar.php', 419)
+ 2 SYSTEMPATH\Debug\Toolbar.php(419): strpos(null, '<head>')
+ 3 SYSTEMPATH\Filters\DebugToolbar.php(40): CodeIgniter\Debug\Toolbar->prepare(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse))
+ 4 SYSTEMPATH\Filters\Filters.php(196): CodeIgniter\Filters\DebugToolbar->after(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse), null)
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\Filters\Filters->run('admin', 'after')
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-27 04:48:44 --> strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+in SYSTEMPATH\Debug\Toolbar.php on line 419.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8192, 'strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated', 'SYSTEMPATH\\Debug\\Toolbar.php', 419)
+ 2 SYSTEMPATH\Debug\Toolbar.php(419): strpos(null, '<head>')
+ 3 SYSTEMPATH\Filters\DebugToolbar.php(40): CodeIgniter\Debug\Toolbar->prepare(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse))
+ 4 SYSTEMPATH\Filters\Filters.php(196): CodeIgniter\Filters\DebugToolbar->after(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse), null)
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\Filters\Filters->run('admin', 'after')
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-27 04:49:47 --> strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+in SYSTEMPATH\Debug\Toolbar.php on line 419.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8192, 'strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated', 'SYSTEMPATH\\Debug\\Toolbar.php', 419)
+ 2 SYSTEMPATH\Debug\Toolbar.php(419): strpos(null, '<head>')
+ 3 SYSTEMPATH\Filters\DebugToolbar.php(40): CodeIgniter\Debug\Toolbar->prepare(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse))
+ 4 SYSTEMPATH\Filters\Filters.php(196): CodeIgniter\Filters\DebugToolbar->after(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse), null)
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\Filters\Filters->run('admin', 'after')
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-27 04:51:03 --> strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+in SYSTEMPATH\Debug\Toolbar.php on line 419.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8192, 'strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated', 'SYSTEMPATH\\Debug\\Toolbar.php', 419)
+ 2 SYSTEMPATH\Debug\Toolbar.php(419): strpos(null, '<head>')
+ 3 SYSTEMPATH\Filters\DebugToolbar.php(40): CodeIgniter\Debug\Toolbar->prepare(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse))
+ 4 SYSTEMPATH\Filters\Filters.php(196): CodeIgniter\Filters\DebugToolbar->after(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\RedirectResponse), null)
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\Filters\Filters->run('admin', 'after')
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')

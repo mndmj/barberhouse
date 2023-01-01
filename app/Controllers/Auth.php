@@ -8,6 +8,7 @@ use Exception;
 
 class Auth extends BaseController
 {
+    private $ModelAuth = null;
     public function __construct()
     {
         $this->ModelAuth = new ModelAuth();
@@ -18,13 +19,6 @@ class Auth extends BaseController
     public function register()
     {
         if ($this->validate([
-            'nama_user' => [
-                'label' => 'Nama Lengkap',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} wajib diisi.',
-                ]
-            ],
             'username_reg' => [
                 'label' => 'Username',
                 'rules' => 'required',
@@ -98,10 +92,13 @@ class Auth extends BaseController
             $username = $this->request->getPost('username');
             $password = $this->request->getPost('password');
             $cek_login = $this->ModelAuth->login($username, $password);
+            $dtUser = $this->ModelAuth->getDataLogin($username, $password);
             if ($cek_login) {
-                session()->set('username', $cek_login['username']);
-                session()->set('password', $cek_login['password']);
-                session()->set('level', 'admin');
+                $dt = [
+                    'id_user' =>  $dtUser['id_user'],
+                    'id_bb' => $dtUser['id_bb'],
+                ];
+                session()->set('data_user', $dt);
                 return redirect()->to(base_url('admin'));
             } else {
                 session()->setFlashdata('peringatan', 'Username atau Password salah..!!');

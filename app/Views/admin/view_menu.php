@@ -128,8 +128,12 @@
                 <?= form_open('menu/editData/' . $value['id_menu']) ?>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>menu</label>
-                        <input name="menu" value="<?= $value['nama_menu'] ?>" class="form-control" placeholder="menu" required>
+                        <label>Nama Menu</label>
+                        <input name="nama_menu" value="<?= $value['nama_menu'] ?>" class="form-control" placeholder="Nama Menu" required>
+                        <label>Jenis Menu</label>
+                        <input name="jenis_menu" value="<?= $value['jenis_menu'] ?>" class="form-control" placeholder="Jenis Menu" required>
+                        <label>Harga Menu</label>
+                        <input name="harga_menu" value="<?= $value['harga_menu'] ?>" class="form-control" placeholder="Harga Menu" required>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -157,7 +161,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Apakah Anda ingin menghapus <b><?= $value['nama_menu'] ?></b>?
+                    Apakah Anda ingin menghapus data <b><?= $value['nama_menu'] ?></b>?
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default btn-sm" data-bs-dismiss="modal">Tutup</button>

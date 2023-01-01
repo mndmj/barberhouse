@@ -28,7 +28,7 @@ class Menu extends BaseController
             'nama_menu' => $this->request->getPost('nama_menu'),
             'jenis_menu' => $this->request->getPost('jenis_menu'),
             'harga_menu' => $this->request->getPost('harga_menu'),
-            'id_bb' => $this->request->getPost('id_bb'),
+            'id_bb' => session('data_user')['id_bb'],
         ];
         $this->ModelMenu->insert($data);
         session()->setFlashdata('tambah', 'Data berhasil ditambahkan..!!');
