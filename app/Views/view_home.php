@@ -89,7 +89,7 @@
                                 <div class="col-lg-6 ms-auto mb-lg-5" data-aos="fade-up" data-aos-delay="500">
                                     <div class="form-box border border-success">
                                         <div class="text-center">
-                                            <img src="<?= base_url('assets/images/logo_bhouse_noBg.png') ?>" class="img-fluid pad mb-4">
+                                            <img src="<?= base_url('assets/images/logo_bhouse_non_bg_cut.png') ?>" class="img-fluid pad mb-4">
                                         </div>
                                         <?php
                                         // $errors = session()->getFlashdata('errors');

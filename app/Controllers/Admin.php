@@ -8,6 +8,9 @@ use App\Models\ModelAdmin;
 
 class Admin extends BaseController
 {
+    private $ModelUser = null;
+    private $ModelAdmin = null;
+
     public function __construct()
     {
         helper('form');
@@ -20,7 +23,7 @@ class Admin extends BaseController
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Dashboard Admin',
-            'menu' => $this->ModelAdmin->totalMenu(),
+            'menu' => $this->ModelAdmin->totalMenu(session('data_user')['id_bb']),
         ];
         return view('admin/view_dashboard', $data);
     }

@@ -25,8 +25,8 @@ class FilterUser implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (session('data_user')) {
-            return redirect()->to('/');
+        if (!session('data_user')) {
+            return redirect()->to(base_url('/'));
         }
     }
 

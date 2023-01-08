@@ -204,29 +204,28 @@ class Register extends BaseController
         $fotoName = $foto->getRandomName();
         $foto->move('assets/images/barber/', $fotoName);
         if ($foto->hasMoved()) {
-            $dtnamapemilik = $this->db->table('tbl_user')->where('email', session('token'))->get()->getResultArray()[0];
+            $dtpemilik = $this->db->table('tbl_user')->join('tbl_detail_pemilik', 'tbl_user.id_user=tbl_detail_pemilik.id_user')->where('email', session('bio'))->get()->getResultArray()[0];
             $dt = [
                 'telepon_bb' => $this->request->getPost('telepon_bb'),
-                // 'pemilik_bb' => $this->request->getPost('pemilik_bb'),
                 'alamat_bb' => $this->request->getPost('alamat_bb'),
                 'longitude' => $this->request->getPost('longitude'),
                 'latitude' => $this->request->getPost('latitude'),
                 'nama_bb' => $this->request->getPost('nama_bb'),
                 'ket_bb' => $this->request->getPost('ket_bb'),
                 'foto_bb' => $fotoName,
-                'pemilik_bb' => $dtnamapemilik['pemilik_bb']
+                'id_detail_pemilik' => $dtpemilik['id_detail_pemilik']
             ];
             $modelBarbershop = new ModelBarbershop();
             if ($modelBarbershop->insert($dt)) {
-                session()->set('bio', session('token'));
                 session()->remove('bio');
+                session()->setFlashdata('success', 'Anda sudah dapat melakukan login.');
                 return redirect()->to(base_url());
             } else {
-                unlink('assets/images/user/' . $fotoName);
-                return redirect()->to(base_url('register/biopemilik'))->withInput();
+                unlink('assets/images/barber/' . $fotoName);
+                return redirect()->to(base_url('register/biobb'))->withInput();
             }
         } else {
-            return redirect()->to(base_url('register/biopemilik'))->withInput();
+            return redirect()->to(base_url('register/biobb'))->withInput();
         }
     }
 

@@ -80,11 +80,10 @@ class Auth extends BaseController
             ],
             'password' => [
                 'label' => 'Password',
-                'rules' => 'required',
-                // 'rules' => 'required|min_length[8]',
+                'rules' => 'required|min_length[8]',
                 'errors' => [
                     'required' => '{field} wajib diisi.',
-                    // 'min_length' => '{field} yang Anda Masukkan harus 8 digit.'
+                    'min_length' => '{field} yang Anda masukkan harus 8 digit.'
                 ]
             ]
         ])) {
@@ -95,8 +94,8 @@ class Auth extends BaseController
             $dtUser = $this->ModelAuth->getDataLogin($username, $password);
             if ($cek_login) {
                 $dt = [
-                    'id_user' =>  $dtUser['id_user'],
-                    'id_bb' => $dtUser['id_bb'],
+                    'id_user' =>  $dtUser[0]['id_user'],
+                    'id_bb' => $dtUser[0]['id_bb'],
                 ];
                 session()->set('data_user', $dt);
                 return redirect()->to(base_url('admin'));
@@ -113,9 +112,7 @@ class Auth extends BaseController
 
     public function logout()
     {
-        session()->remove('username');
-        session()->remove('password');
-        session()->remove('level');
+        session()->remove('data_user');
         session()->setFlashdata('pesan', 'Logout berhasil.');
         return redirect()->to(base_url('/'));
     }

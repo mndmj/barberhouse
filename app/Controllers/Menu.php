@@ -7,9 +7,13 @@ use App\Models\ModelMenu;
 
 class Menu extends BaseController
 {
+    private $ModelMenu = null;
+    private $db = null;
+
     public function __construct()
     {
         $this->ModelMenu = new ModelMenu();
+        $this->db = \config\Database::connect();
         helper('form');
     }
     public function index()
@@ -17,7 +21,7 @@ class Menu extends BaseController
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Menu',
-            'menu' => $this->ModelMenu->findAll(),
+            'menu' => $this->db->table('tbl_menu')->where('id_bb', session('data_user')['id_bb'])->get()->getResultArray(),
         ];
         return view('admin/view_menu', $data);
     }
@@ -41,7 +45,6 @@ class Menu extends BaseController
             'nama_menu' => $this->request->getPost('nama_menu'),
             'jenis_menu' => $this->request->getPost('jenis_menu'),
             'harga_menu' => $this->request->getPost('harga_menu'),
-            'id_bb' => $this->request->getPost('id_bb'),
         ];
         $this->ModelMenu->update($id_menu, $data);
         session()->setFlashdata('edit', 'Data berhasil diedit..!!');

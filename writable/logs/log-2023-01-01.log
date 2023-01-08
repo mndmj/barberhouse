@@ -9,3 +9,171 @@ in SYSTEMPATH\Validation\Validation.php on line 323.
  7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
  9 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2023-01-01 08:31:52 --> Undefined array key 0
+in APPPATH\Controllers\Register.php on line 207.
+ 1 APPPATH\Controllers\Register.php(207): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Register.php', 207)
+ 2 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->savebb()
+ 3 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2023-01-01 08:33:50 --> Undefined array key 0
+in APPPATH\Controllers\Register.php on line 207.
+ 1 APPPATH\Controllers\Register.php(207): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Register.php', 207)
+ 2 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->savebb()
+ 3 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+ERROR - 2023-01-01 08:34:58 --> mysqli_sql_exception: Column 'telepon_bb' cannot be null in C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:292
+Stack trace:
+#0 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\BaseModel.php(749): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Model.php(667): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\barberhouse\app\Controllers\Register.php(219): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(927): App\Controllers\Register->savebb()
+#9 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+#10 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\barberhouse\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2023-01-01 08:34:58 --> Column 'telepon_bb' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `tbl_bb` (`telepon_bb`, `alamat_bb`, `longitude`, `latitude`, `nama_bb`, `ket_bb`, `foto_bb`, `id_detail_pemilik`) VALUES (NULL, \'kj\', \'0.23\', \'0.34\', \'junet\', \'kj\', \'1672583698_7066c8203f68682a25dc.jpg\', \'3\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tbl_bb` (`telepon_bb`, `alamat_bb`, `longitude`, `latitude`, `nama_bb`, `ket_bb`, `foto_bb`, `id_detail_pemilik`) VALUES (NULL, \'kj\', \'0.23\', \'0.34\', \'junet\', \'kj\', \'1672583698_7066c8203f68682a25dc.jpg\', \'3\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tbl_bb` (`telepon_bb`, `alamat_bb`, `longitude`, `latitude`, `nama_bb`, `ket_bb`, `foto_bb`, `id_detail_pemilik`) VALUES (NULL, \'kj\', \'0.23\', \'0.34\', \'junet\', \'kj\', \'1672583698_7066c8203f68682a25dc.jpg\', \'3\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbl_bb` (`telepon_bb`, `alamat_bb`, `longitude`, `latitude`, `nama_bb`, `ket_bb`, `foto_bb`, `id_detail_pemilik`) VALUES (:telepon_bb:, :alamat_bb:, :longitude:, :latitude:, :nama_bb:, :ket_bb:, :foto_bb:, :id_detail_pemilik:)', [...], false)
+ 5 SYSTEMPATH\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(749): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(667): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Register.php(219): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Register->savebb()
+10 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+ERROR - 2023-01-01 08:39:26 --> mysqli_sql_exception: Unknown column 'pemilik_bb' in 'on clause' in C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:292
+Stack trace:
+#0 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\barberhouse\app\Models\ModelAuth.php(21): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\barberhouse\app\Models\ModelAuth.php(26): App\Models\ModelAuth->getDataLogin('jumbleng', 'asdfghjkl')
+#6 C:\xampp\htdocs\barberhouse\app\Controllers\Auth.php(94): App\Models\ModelAuth->login('jumbleng', 'asdfghjkl')
+#7 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(927): App\Controllers\Auth->cek_login()
+#8 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\barberhouse\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2023-01-01 08:39:26 --> Unknown column 'pemilik_bb' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *
+FROM `tbl_user`
+JOIN `tbl_bb` ON `pemilik_bb`=`id_user`
+WHERE `username` = \'jumbleng\'
+AND `password` = \'asdfghjkl\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tbl_user`
+JOIN `tbl_bb` ON `pemilik_bb`=`id_user`
+WHERE `username` = \'jumbleng\'
+AND `password` = \'asdfghjkl\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tbl_user`
+JOIN `tbl_bb` ON `pemilik_bb`=`id_user`
+WHERE `username` = \'jumbleng\'
+AND `password` = \'asdfghjkl\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tbl_user`
+JOIN `tbl_bb` ON `pemilik_bb`=`id_user`
+WHERE `username` = :username:
+AND `password` = :password:', [...], false)
+ 5 APPPATH\Models\ModelAuth.php(21): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Models\ModelAuth.php(26): App\Models\ModelAuth->getDataLogin('jumbleng', 'asdfghjkl')
+ 7 APPPATH\Controllers\Auth.php(94): App\Models\ModelAuth->login('jumbleng', 'asdfghjkl')
+ 8 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Auth->cek_login()
+ 9 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+10 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+ERROR - 2023-01-01 08:44:52 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_detail_pemilik-tbl_detail_pemilik`.`id_detail_pemilik`)
+WHERE `username`...' at line 4 in C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:292
+Stack trace:
+#0 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\barberhouse\app\Models\ModelAuth.php(22): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\barberhouse\app\Models\ModelAuth.php(27): App\Models\ModelAuth->getDataLogin('jumbleng', 'asdfghjkl')
+#6 C:\xampp\htdocs\barberhouse\app\Controllers\Auth.php(94): App\Models\ModelAuth->login('jumbleng', 'asdfghjkl')
+#7 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(927): App\Controllers\Auth->cek_login()
+#8 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\barberhouse\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\barberhouse\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2023-01-01 08:44:52 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`id_detail_pemilik-tbl_detail_pemilik`.`id_detail_pemilik`)
+WHERE `username`...' at line 4
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *
+FROM `tbl_user`
+JOIN `tbl_detail_pemilik` ON `tbl_detail_pemilik`.`id_user`=`tbl_user`.`id_user`
+JOIN `tbl_bb` USING (`tbl_bb`.`id_detail_pemilik-tbl_detail_pemilik`.`id_detail_pemilik`)
+WHERE `username` = \'jumbleng\'
+AND `password` = \'asdfghjkl\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tbl_user`
+JOIN `tbl_detail_pemilik` ON `tbl_detail_pemilik`.`id_user`=`tbl_user`.`id_user`
+JOIN `tbl_bb` USING (`tbl_bb`.`id_detail_pemilik-tbl_detail_pemilik`.`id_detail_pemilik`)
+WHERE `username` = \'jumbleng\'
+AND `password` = \'asdfghjkl\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tbl_user`
+JOIN `tbl_detail_pemilik` ON `tbl_detail_pemilik`.`id_user`=`tbl_user`.`id_user`
+JOIN `tbl_bb` USING (`tbl_bb`.`id_detail_pemilik-tbl_detail_pemilik`.`id_detail_pemilik`)
+WHERE `username` = \'jumbleng\'
+AND `password` = \'asdfghjkl\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tbl_user`
+JOIN `tbl_detail_pemilik` ON `tbl_detail_pemilik`.`id_user`=`tbl_user`.`id_user`
+JOIN `tbl_bb` USING (`tbl_bb`.`id_detail_pemilik-tbl_detail_pemilik`.`id_detail_pemilik`)
+WHERE `username` = :username:
+AND `password` = :password:', [...], false)
+ 5 APPPATH\Models\ModelAuth.php(22): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Models\ModelAuth.php(27): App\Models\ModelAuth->getDataLogin('jumbleng', 'asdfghjkl')
+ 7 APPPATH\Controllers\Auth.php(94): App\Models\ModelAuth->login('jumbleng', 'asdfghjkl')
+ 8 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Auth->cek_login()
+ 9 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+10 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2023-01-01 08:45:10 --> Undefined array key "id_role"
+in APPPATH\Models\ModelAuth.php on line 29.
+ 1 APPPATH\Models\ModelAuth.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_role"', 'APPPATH\\Models\\ModelAuth.php', 29)
+ 2 APPPATH\Controllers\Auth.php(94): App\Models\ModelAuth->login('jumbleng', 'asdfghjkl')
+ 3 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Auth->cek_login()
+ 4 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 5 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2023-01-01 08:48:03 --> Undefined array key "id_user"
+in APPPATH\Controllers\Auth.php on line 98.
+ 1 APPPATH\Controllers\Auth.php(98): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_user"', 'APPPATH\\Controllers\\Auth.php', 98)
+ 2 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Auth->cek_login()
+ 3 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2023-01-01 08:48:41 --> Undefined array key "id_bb"
+in APPPATH\Controllers\Auth.php on line 99.
+ 1 APPPATH\Controllers\Auth.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_bb"', 'APPPATH\\Controllers\\Auth.php', 99)
+ 2 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Auth->cek_login()
+ 3 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')

@@ -15,7 +15,8 @@ class ModelAuth extends Model
     public function getDataLogin($username, $password)
     {
         return    $this->db->table('tbl_user')
-            ->join('tbl_bb', 'pemilik_bb=id_user')
+            ->join('tbl_detail_pemilik', 'tbl_detail_pemilik.id_user=tbl_user.id_user')
+            ->join('tbl_bb', 'tbl_bb.id_detail_pemilik=tbl_detail_pemilik.id_detail_pemilik')
             ->where('username', $username)
             ->where('password', $password)
             ->get()->getResultArray();
@@ -25,7 +26,7 @@ class ModelAuth extends Model
     {
         $dt = $this->getDataLogin($username, $password);
         if (count($dt) == 1) {
-            if ($dt['id_role'] == 1) {
+            if ($dt[0]['id_role'] == 1) {
                 return true;
             }
         }
