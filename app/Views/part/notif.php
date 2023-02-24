@@ -3,7 +3,7 @@
 
 <?php if (session('success')) : ?>
     <script>
-        const Toast = Swal.mixin({
+        var Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
@@ -24,7 +24,7 @@
 
 <?php if (session('warning')) : ?>
     <script>
-        const Toast = Swal.mixin({
+        var Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
@@ -45,7 +45,7 @@
 
 <?php if (session('danger')) : ?>
     <script>
-        const Toast = Swal.mixin({
+        var Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,

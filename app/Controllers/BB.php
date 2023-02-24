@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
-class Antrian extends BaseController
+class BB extends BaseController
 {
     private $db = null;
 
@@ -16,9 +16,8 @@ class Antrian extends BaseController
     {
         $data = [
             'title' => 'Barberhouse',
-            'subtitle' => 'Antrian',
-            'antrian' => $this->db->table('tbl_antrian')->where('id_bb', session('data_user')['id_bb'])->get()->getResultArray(),
+            'subtitle' => 'Informasi',
         ];
-        return view('admin/view_antrian', $data);
+        return view('admin/view_bb', $data);
     }
 }

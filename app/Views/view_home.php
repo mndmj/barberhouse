@@ -83,109 +83,143 @@
                                 <div class="col-lg-6 mb-4">
                                     <h1 data-aos="fade-up" data-aos-delay="100">Ayo, daftarkan barbershop mu disini !</h1>
                                     <p class="mb-4" data-aos="fade-up" data-aos-delay="200">Permudah pelanggan untuk menemukan lokasi dan menjangkau barbershop mu, buatlah mereka antri dengan nyaman.</p>
-                                    <p data-aos="fade-up" data-aos-delay="300"><a href="#register-section" class="btn btn-success py-3 px-5 btn-pill">Register Now</a></p>
+                                    <?php if (!session('data_user')) : ?>
+                                        <p data-aos="fade-up" data-aos-delay="300"><a href="#register-section" class="btn btn-success py-3 px-5 btn-pill">Register Now</a></p>
+                                    <?php endif ?>
                                 </div>
 
-                                <div class="col-lg-6 ms-auto mb-lg-5" data-aos="fade-up" data-aos-delay="500">
-                                    <div class="form-box border border-success">
-                                        <div class="text-center">
-                                            <img src="<?= base_url('assets/images/logo_bhouse_non_bg_cut.png') ?>" class="img-fluid pad mb-4">
+                                <?php if (session('data_user')) :  ?>
+                                    <div class="col-lg-6 ms-auto" data-aos="fade-up" data-aos-delay="500">
+                                        <div class="form-box border border-success">
+                                            <div class="text-center">
+                                                <img src="<?= base_url('assets/images/logo_bhouse_non_bg_cut.png') ?>" class="img-fluid pad mb-4">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6 pe-0">
+                                                    <div class="col-12 btn btn-success rounded-0" onclick="window.location = '<?= base_url('admin') ?>'">Dashboard</div>
+                                                </div>
+                                                <div class="col-6 ps-0">
+                                                    <div class="col-12 btn btn-danger rounded-0" onclick="window.location = '<?= base_url('auth/logout') ?>'">Logout</div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <?php
-                                        // $errors = session()->getFlashdata('errors');
-                                        if (!empty($errors)) { ?>
-                                            <div class="alert alert-danger peringatan" role="alert">
-                                                <ul>
-                                                    <?php foreach ($errors as $error) : ?>
-                                                        <li><?= esc($error) ?></li>
-                                                    <?php endforeach ?>
-                                                </ul>
+                                    </div>
+                                <?php elseif (session('regist') || session('token') || session('bio')) : ?>
+                                    <div class="col-lg-6 ms-auto" data-aos="fade-up" data-aos-delay="500">
+                                        <div class="form-box border border-success">
+                                            <div class="text-center">
+                                                <img src="<?= base_url('assets/images/logo_bhouse_non_bg_cut.png') ?>" class="img-fluid pad mb-4">
+                                                <p class="text-black">Anda masih pada proses pendaftaran akun. Ingin melanjutkan sesi?</p>
                                             </div>
-                                        <?php } ?>
-
-                                        <!-- notif berhasil -->
-                                        <?php if (session()->getFlashdata('pesan')) {
-                                            echo '<div class="alert alert-success" role="alert">';
-                                            echo session()->getFlashdata('pesan');
-                                            echo '</div>';
-                                        } ?>
-
-                                        <!-- start -->
-                                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                            <div class="row w-100 m-0">
-                                                <div class="col-6 p-0">
-                                                    <li class="nav-item text-center" id="target" onclick="tab_menu('login-tab','register-tab','register','login')">
-                                                        <a class="nav-link btn rounded-0 tab_menu_active" id="register-tab" data-toggle="pill" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
-                                                    </li>
+                                            <div class="row">
+                                                <div class="col-6 pe-0">
+                                                    <div class="col-12 btn btn-success rounded-0" onclick="window.location = '<?= base_url('register') ?>'">Lanjutkan</div>
                                                 </div>
-                                                <div class="col-6 p-0">
-                                                    <li class="nav-item text-center" id="base" onclick="tab_menu('register-tab','login-tab','login','register')">
-                                                        <a class="nav-link btn rounded-0 tab_menu_non_active" id="login-tab" data-toggle="pill" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
-                                                    </li>
+                                                <div class="col-6 ps-0">
+                                                    <div class="col-12 btn btn-danger rounded-0" onclick="window.location = '<?= base_url('register/cancel') ?>'">Batal</div>
                                                 </div>
                                             </div>
-                                        </ul>
+                                        </div>
+                                    </div>
+                                <?php else : ?>
+                                    <div class="col-lg-6 ms-auto mb-lg-5" data-aos="fade-up" data-aos-delay="500">
+                                        <div class="form-box border border-success">
+                                            <div class="text-center">
+                                                <img src="<?= base_url('assets/images/logo_bhouse_non_bg_cut.png') ?>" class="img-fluid pad mb-4">
+                                            </div>
+                                            <?php
+                                            // $errors = session()->getFlashdata('errors');
+                                            if (!empty($errors)) { ?>
+                                                <div class="alert alert-danger peringatan" role="alert">
+                                                    <ul>
+                                                        <?php foreach ($errors as $error) : ?>
+                                                            <li><?= esc($error) ?></li>
+                                                        <?php endforeach ?>
+                                                    </ul>
+                                                </div>
+                                            <?php } ?>
 
-                                        <div class="tab-content" id="pills-tabContent">
+                                            <!-- notif berhasil -->
+                                            <?php if (session()->getFlashdata('pesan')) {
+                                                echo '<div class="alert alert-success pesan" role="alert">';
+                                                echo session()->getFlashdata('pesan');
+                                                echo '</div>';
+                                            } ?>
 
-                                            <!-- sign-in -->
-                                            <?= form_open('auth/cek_login') ?>
-                                            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="register-tab">
-                                                <div class="form-group mb-3">
-                                                    <input type="text" class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : '' ?>" name="username" id="username" placeholder="Username">
-                                                    <div id="usernameFeedback" class="invalid-feedback">
-                                                        <small><?= $validation->getError('username') ?></small>
+                                            <!-- start -->
+                                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                <div class="row w-100 m-0">
+                                                    <div class="col-6 p-0">
+                                                        <li class="nav-item text-center" id="target" onclick="tab_menu('login-tab','register-tab','register','login')">
+                                                            <a class="nav-link btn rounded-0 tab_menu_active" id="register-tab" data-toggle="pill" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+                                                        </li>
+                                                    </div>
+                                                    <div class="col-6 p-0">
+                                                        <li class="nav-item text-center" id="base" onclick="tab_menu('register-tab','login-tab','login','register')">
+                                                            <a class="nav-link btn rounded-0 tab_menu_non_active" id="login-tab" data-toggle="pill" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                                                        </li>
                                                     </div>
                                                 </div>
-                                                <div class="form-group mb-4">
-                                                    <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : '' ?>" name="password" id="password" placeholder="Password">
-                                                    <div id="passwordFeedback" class="invalid-feedback">
-                                                        <small><?= $validation->getError('password') ?></small>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group text-end">
-                                                    <input type="submit" class="btn text-white px-5" style="background: #3D8361;" value="Login">
-                                                </div>
-                                            </div>
-                                            <?= form_close() ?>
+                                            </ul>
 
-                                            <!-- sign-up -->
-                                            <?= form_open('auth/register') ?>
-                                            <div class="tab-pane fade d-none" id="register" role="tabpanel" aria-labelledby="login-tab">
-                                                <div class="form">
+                                            <div class="tab-content" id="pills-tabContent">
+
+                                                <!-- sign-in -->
+                                                <?= form_open('auth/cek_login') ?>
+                                                <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="register-tab">
                                                     <div class="form-group mb-3">
-                                                        <input type="text" class="form-control <?= ($validation->hasError('username_reg')) ? 'is-invalid' : '' ?>" name="username_reg" placeholder="Username" value="<?= old('username_reg') ?>">
+                                                        <input type="text" class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : '' ?>" name="username" id="username" placeholder="Username">
                                                         <div id="usernameFeedback" class="invalid-feedback">
-                                                            <small><?= $validation->getError('username_reg') ?></small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group mb-3">
-                                                        <input type="email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : '' ?>" name="email" id="email" placeholder="Alamat Email" value="<?= old('email') ?>">
-                                                        <div id="emailFeedback" class="invalid-feedback">
-                                                            <small><?= $validation->getError('email') ?></small>
+                                                            <small><?= $validation->getError('username') ?></small>
                                                         </div>
                                                     </div>
                                                     <div class="form-group mb-4">
-                                                        <input type="password" class="form-control <?= ($validation->hasError('password_reg')) ? 'is-invalid' : '' ?>" name="password_reg" placeholder="Password">
+                                                        <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : '' ?>" name="password" id="password" placeholder="Password">
                                                         <div id="passwordFeedback" class="invalid-feedback">
-                                                            <small><?= $validation->getError('password_reg') ?></small>
+                                                            <small><?= $validation->getError('password') ?></small>
                                                         </div>
                                                     </div>
                                                     <div class="form-group text-end">
-                                                        <input type="submit" class="btn text-white px-5" style="background: #3D8361;" value="Sign-Up">
+                                                        <input type="submit" class="btn text-white px-5" style="background: #3D8361;" value="Login">
                                                     </div>
                                                 </div>
+                                                <?= form_close() ?>
+
+                                                <!-- sign-up -->
+                                                <?= form_open('auth/register') ?>
+                                                <div class="tab-pane fade d-none" id="register" role="tabpanel" aria-labelledby="login-tab">
+                                                    <div class="form">
+                                                        <div class="form-group mb-3">
+                                                            <input type="text" class="form-control <?= ($validation->hasError('username_reg')) ? 'is-invalid' : '' ?>" name="username_reg" placeholder="Username" value="<?= old('username_reg') ?>">
+                                                            <div id="usernameFeedback" class="invalid-feedback">
+                                                                <small><?= $validation->getError('username_reg') ?></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group mb-3">
+                                                            <input type="email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : '' ?>" name="email" id="email" placeholder="Alamat Email" value="<?= old('email') ?>">
+                                                            <div id="emailFeedback" class="invalid-feedback">
+                                                                <small><?= $validation->getError('email') ?></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group mb-4">
+                                                            <input type="password" class="form-control <?= ($validation->hasError('password_reg')) ? 'is-invalid' : '' ?>" name="password_reg" placeholder="Password">
+                                                            <div id="passwordFeedback" class="invalid-feedback">
+                                                                <small><?= $validation->getError('password_reg') ?></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group text-end">
+                                                            <input type="submit" class="btn text-white px-5" style="background: #3D8361;" value="Sign-Up">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?= form_close() ?>
+
                                             </div>
-                                            <?= form_close() ?>
-
+                                            <!-- End -->
                                         </div>
-
-                                        <!-- End -->
                                     </div>
-                                </div>
+                                <?php endif ?>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -346,6 +380,12 @@
         window.setTimeout(
             function() {
                 $(".peringatan").fadeTo(2000, 0).slideUp(500, function() {
+                    $(this).remove;
+                });
+            }, 1500);
+        window.setTimeout(
+            function() {
+                $(".pesan").fadeTo(2000, 0).slideUp(500, function() {
                     $(this).remove;
                 });
             }, 1500);

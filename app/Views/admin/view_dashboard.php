@@ -18,7 +18,7 @@
         <div class="small-box bg-orange">
             <div class="inner">
                 <h3>Antrian Offline</h3>
-                <p>Jumlah : 12</p>
+                <p>Jumlah : 0</p>
             </div>
             <div class="icon">
                 <i class="fa-solid fa-person-booth"></i>
@@ -30,7 +30,7 @@
         <div class="small-box bg-olive">
             <div class="inner">
                 <h3>Antrian Online</h3>
-                <p>Jumlah : 12</p>
+                <p>Jumlah : 0</p>
             </div>
             <div class="icon">
                 <i class="fa-solid fa-people-arrows"></i>

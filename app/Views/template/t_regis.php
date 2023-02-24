@@ -70,16 +70,18 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    $('#gambar_load').attr('src', e.target.result)
+                    $('.gambar_load').html('<img class="w-100" src="' + e.target.result + '"></img>');
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         };
 
-        $('#preview_gambar').change(function() {
+        $('.foto').change(function() {
             bacaGambar(this);
         });
     </script>
+
+    <?= $this->include('part/dialog_confirm'); ?>
 
 </body>
 

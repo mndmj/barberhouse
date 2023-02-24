@@ -56,8 +56,9 @@
                     <label for="alamat" class="form-label fw-bold">Tentang Barbershop</label>
                     <textarea class="form-control" name="ket_bb" id="ket_bb" rows="3"></textarea>
                 </div>
-                <div class="d-grid gap-2 col-6 mx-auto">
+                <div class="d-grid gap-2 col mx-auto">
                     <button class="btn color-primary text-white btn-submit" type="submit">Simpan</button>
+                    <a onclick="konfirmasi('Tidak ingin melanjutkan registrasi?','<?= base_url('register/cancel') ?>')" class="btn btn-danger center px-0">Cancel</a>
                 </div>
             </form>
         </div>

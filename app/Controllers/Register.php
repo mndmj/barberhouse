@@ -6,10 +6,12 @@ use App\Controllers\BaseController;
 use App\Models\ModelAuth;
 use App\Models\ModelDetailPemilik;
 use App\Models\ModelBarbershop;
+use Exception;
 
 class Register extends BaseController
 {
     private $db = null;
+    private $ModelAuth = null;
     public function __construct()
     {
         $this->ModelAuth = new ModelAuth();
@@ -126,6 +128,7 @@ class Register extends BaseController
                 'foto' => $fotoName,
                 'id_user' => $dtUser['id_user']
             ];
+
             $modelDetailPemilik = new ModelDetailPemilik();
             if ($modelDetailPemilik->insert($dt)) {
                 session()->set('bio', session('token'));
@@ -233,18 +236,24 @@ class Register extends BaseController
     {
         if (session('regist')) {
             $this->db->table('tbl_user')->delete("email='" . session('regist') . "'");
-            session()->remove('regist');
         }
         if (session('token')) {
             $this->db->table('tbl_user')->delete("email='" . session('token') . "'");
-            session()->remove('token');
         }
         if (session('bio')) {
             $dt = $this->db->table('tbl_user')->where('email', session('bio'))->get()->getResultArray()[0];
+            $data_pemilik = $this->db->table('tbl_detail_pemilik')->where('id_user', $dt['id_user'])->get()->getResultArray();
+            try {
+                unlink('assets/images/user/' . $data_pemilik[0]['foto']);
+            } catch (Exception $e) {
+            }
             $this->db->table('tbl_detail_pemilik')->delete('id_user="' . $dt['id_user'] . '"');
             $this->db->table('tbl_user')->delete('id_user="' . $dt['id_user'] . '"');
-            session()->remove('bio');
         }
+        session()->remove('regist');
+        session()->remove('token');
+        session()->remove('bio');
+
         return redirect()->to(base_url());
     }
 }

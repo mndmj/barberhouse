@@ -2,13 +2,13 @@
 <?= $this->section('bio'); ?>
 <div class="row g-0">
     <div class="col-6 d-flex position-relative">
-        <div class="d-flex h-100 w-100 position-absolute" style="z-index: 10; background: rgba(0, 0, 0, 0.4);">
+        <div class="d-flex h-100 w-100 position-absolute rounded-depan" style="z-index: 10; background: rgba(0, 0, 0, 0.4);">
             <div class="m-auto">
                 <h3>Halo, Pendatang Baru</h3>
             </div>
         </div>
         <div class="postion-absolute h-100 w-100 row g-0">
-            <div class="col-4 color-primary rounded-start"></div>
+            <div class="col-4 color-primary rounded-depan"></div>
             <div class="col-4 color-second"></div>
             <div class="col-4 color-third"></div>
         </div>
@@ -53,16 +53,16 @@
                     <label for="foto" class="form-label fw-bold">Foto</label>
                     <input class="form-control" type="file" name="foto" id="foto" accept="image/*" required>
                 </div>
-                <div class="mb-3">
-                    <label for="foto" class="form-label fw-bold">Preview</label><br>
-                    <img src="<?= base_url('assets/images/blank.jpg') ?>">
+                <div class="mb-3 gambar_load">
+                    <!-- <label for="foto" class="form-label fw-bold">Preview</label><br> -->
                 </div>
                 <div class="mb-3">
                     <label for="alamat" class="form-label fw-bold">Alamat</label>
                     <textarea class="form-control" name="alamat" id="alamat" rows="3"></textarea>
                 </div>
-                <div class="d-grid gap-2 col-6 mx-auto">
+                <div class="d-grid gap-2 col mx-auto">
                     <button class="btn color-primary text-white btn-submit" type="submit">Simpan</button>
+                    <a onclick="konfirmasi('Tidak ingin melanjutkan registrasi?','<?= base_url('register/cancel') ?>')" class="btn btn-danger center px-0">Cancel</a>
                 </div>
             </form>
         </div>

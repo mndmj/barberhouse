@@ -40,18 +40,18 @@
     <section class="background-radial-gradient overflow-hidden">
         <style>
             .background-radial-gradient {
-                background-color: hsl(218, 41%, 15%);
+                background-color: hsla(49, 38%, 74%, 1);
                 background-image: radial-gradient(650px circle at 0% 0%,
-                        hsl(218, 41%, 35%) 15%,
-                        hsl(218, 41%, 30%) 35%,
-                        hsl(218, 41%, 20%) 75%,
-                        hsl(218, 41%, 19%) 80%,
+                        hsl(168, 41%, 35%) 15%,
+                        hsl(168, 41%, 30%) 35%,
+                        hsl(168, 41%, 20%) 75%,
+                        hsl(168, 41%, 19%) 80%,
                         transparent 100%),
                     radial-gradient(1250px circle at 100% 100%,
-                        hsl(218, 41%, 45%) 15%,
-                        hsl(218, 41%, 30%) 35%,
-                        hsl(218, 41%, 20%) 75%,
-                        hsl(218, 41%, 19%) 80%,
+                        hsl(168, 41%, 45%) 15%,
+                        hsl(168, 41%, 30%) 35%,
+                        hsl(168, 41%, 20%) 75%,
+                        hsl(168, 41%, 19%) 80%,
                         transparent 100%);
             }
 
@@ -60,7 +60,7 @@
                 width: 220px;
                 top: -60px;
                 left: -130px;
-                background: radial-gradient(#44006b, #ad1fff);
+                background: radial-gradient(#3D8361, #EEF2E6);
                 overflow: hidden;
             }
 
@@ -70,7 +70,7 @@
                 right: -110px;
                 width: 300px;
                 height: 300px;
-                background: radial-gradient(#44006b, #ad1fff);
+                background: radial-gradient(#3D8361, #EEF2E6);
                 overflow: hidden;
             }
 
@@ -78,22 +78,33 @@
                 background-color: rgba(255, 255, 255, 0.7) !important;
                 backdrop-filter: saturate(200%) blur(25px);
             }
+
+            .btn-bunder {
+                width: 100px;
+                background: #1C6758;
+                color: #fff;
+            }
+
+            .btn-bunder:hover {
+                background: #1a6052;
+            }
         </style>
+
+        <div class="d-flex fixed-top">
+            <a href="<?= base_url('register/cancel') ?>" class="btn btn-bunder rounded-0 center px-0">Cancel</a>
+        </div>
 
         <div class="min-vh-100 min-vw-100 d-flex">
             <div class="container text-center text-lg-start d-flex">
                 <div class="mx-5 my-auto">
                     <div class="row gx-lg-5 align-items-center mx-5">
                         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-                            <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-                                The best offer <br />
-                                <span style="color: hsl(218, 81%, 75%)">for your business</span>
+                            <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(168, 81%, 95%)">
+                                Barberhouse <br />
+                                <span style="color: hsla(49, 38%, 74%, 1)">for your business</span>
                             </h1>
-                            <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                Temporibus, expedita iusto veniam atque, magni tempora mollitia
-                                dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-                                ab ipsum nisi dolorem modi. Quos?
+                            <p class="mb-4 opacity-70" style="color: hsla(80, 32%, 93%, 1)">
+                                Sistem telah mengirimkan kode token ke Email yang telah Anda masukkan. Silahkan cek kotak pesan pada Email Anda dan masukkan kode token 6 digit pada kolom tersebut.
                             </p>
                         </div>
 

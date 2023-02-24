@@ -91,7 +91,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('admin') ?>" class="nav-link">
+                            <a href="<?= base_url('bb') ?>" class="nav-link">
                                 <i class="nav-icon fa-solid fa-scissors"></i>
                                 <p>Barbershop</p>
                             </a>
@@ -103,15 +103,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('admin') ?>" class="nav-link">
+                            <a href="<?= base_url('antrian') ?>" class="nav-link">
                                 <i class="nav-icon fa-solid fa-people-arrows"></i>
                                 <p>Antrian</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('admin') ?>" class="nav-link">
-                                <i class="nav-icon fa-solid fa-user"></i>
-                                <p>User</p>
+                                <i class="nav-icon fa-solid fa-file"></i>
+                                <p>Laporan</p>
                             </a>
                         </li>
                 </nav>

@@ -51,20 +51,20 @@
                 </thead>
                 <tbody>
                     <?php $no = 1;
-                    foreach ($menu as $key => $value) { ?>
-                        <tr>
-                            <td><?= $no++ ?></td>
-                            <td><?= $value['nama_menu'] ?></td>
-                            <td><?= $value['jenis_menu'] ?></td>
-                            <td><?= $value['harga_menu'] ?></td>
-                            <td>
-                                <button class="btn btn-sm btn-flat btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $value['id_menu'] ?>">
-                                    <i class="fas fa-pen"></i>
-                                </button>
-                                <button class="btn btn-sm btn-flat btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?= $value['id_menu'] ?>">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
+                    foreach ($antrian as $key => $value) { ?>
+                        <tr></tr>
+                        <td><?= $no++ ?></td>
+                        <td><?= $value['nama_menu'] ?></td>
+                        <td><?= $value['jenis_menu'] ?></td>
+                        <td><?= $value['harga_menu'] ?></td>
+                        <td>
+                            <button class="btn btn-sm btn-flat btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $value['id_menu'] ?>">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button class="btn btn-sm btn-flat btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?= $value['id_menu'] ?>">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -114,7 +114,7 @@
 <!-- /.modal -->
 
 <!-- Modal Edit -->
-<?php foreach ($menu as $key => $value) { ?>
+<?php foreach ($antrian as $key => $value) { ?>
     <div class="modal fade" id="edit<?= $value['id_menu'] ?>">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -152,7 +152,7 @@
 <?php } ?>
 
 <!-- Modal Delete -->
-<?php foreach ($menu as $key => $value) { ?>
+<?php foreach ($antrian as $key => $value) { ?>
     <div class="modal fade" id="delete<?= $value['id_menu'] ?>">
         <div class="modal-dialog">
             <div class="modal-content">
