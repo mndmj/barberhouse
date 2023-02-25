@@ -12,7 +12,7 @@
             <div class="card-body">
                 <?php echo form_open_multipart('admin/savebb') ?>
                 <div class="text-center">
-                    <img id="gambar_load" class="img-fluid pad" src="<?= base_url('images/') ?>" width="250px" height="250px">
+                    <img id="gambar_load" class="img-fluid pad" src="<?= base_url('assets/images/logo_bhouse_non_bg_cut.png') ?>" width="250px" height="250px">
                 </div>
                 <div class="form-group mt-2">
                     <label>Ganti Logo</label>

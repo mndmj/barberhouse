@@ -12,7 +12,7 @@
 
     <style>
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url('assets/images/bb3.jpg') ?>);
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url('assets/images/bg_biopemilik.jpg') ?>);
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -21,9 +21,9 @@
         }
 
         .card_sip {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 30px;
-
+            border: #fff 1px solid;
         }
 
         .rounded-depan {
@@ -43,6 +43,10 @@
             background-color: #D6CDA4;
         }
 
+        .color-transparant {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
         .btn-submit:hover {
             background-color: #3D8361;
         }
@@ -55,7 +59,7 @@
         <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col">
-                    <div class="card card_sip m-5">
+                    <div class="card card_sip m-3">
                         <?= $this->renderSection('bio'); ?>
                     </div>
                 </div>
