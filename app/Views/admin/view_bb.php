@@ -4,7 +4,7 @@
 <div class="row">
     <!-- ubah logo -->
     <div class="col-sm-4">
-        <div class="card card-outline card-primary">
+        <div class="card card-dark">
             <div class="card-header">
                 <h3 class="card-title">Logo</h3>
             </div>
@@ -12,18 +12,41 @@
             <div class="card-body">
                 <?php echo form_open_multipart('admin/savebb') ?>
                 <div class="text-center">
-                    <img id="gambar_load" class="img-fluid pad" src="<?= base_url('assets/images/logo_bhouse_non_bg_cut.png') ?>" width="250px" height="250px">
+                    <img id="gambar_load" class="img-fluid pad" src="<?= base_url('assets/images/barber/') ?>" width="200px" height="200px">
                 </div>
                 <div class="form-group mt-2">
                     <label>Ganti Logo</label>
                     <input id="preview_gambar" name="logo" type="file" class="form-control" accept="image/*">
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+
+        <div class="card card-dark">
+            <div class="card-header">
+                <h3 class="card-title">Waktu operasional</h3>
+                <button type="" class="btn btn-warning btn-sm float-end" data-bs-toggle="modal" data-bs-target="#jamModal">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+            </div>
+            <div class="card-body pt-0">
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label>Jam Buka</label>
+                        <h5>07.00</h5>
+                    </div>
+
+                    <div class="col-6">
+                        <label>Jam Tutup</label>
+                        <h5>07.00</h5>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="col-sm-8">
-        <div class="card card-outline card-primary">
+        <div class="card card-dark">
             <div class="card-header">
                 <h3 class="card-title">Informasi barbershop</h3>
             </div>
@@ -48,49 +71,45 @@
                             <label>Alamat</label>
                             <input name="alamat_bb" value="" class="form-control">
                         </div>
-                        <!-- <div class="form-group">
-                            <label>Kecamatan</label>
-                            <input name="kecamatan" value="" class="form-control">
+                        <div class="form-group">
+                            <label>Latitude</label>
+                            <input name="latitude" value="" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Kab/Kota</label>
-                            <input name="kabupaten" value="" class="form-control">
+                            <label>Longitude</label>
+                            <input name="longitude" value="" class="form-control">
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
                         <div class="form-group">
-                            <label>Provinsi</label>
-                            <input name="provinsi" value="" class="form-control">
-                        </div> -->
+                            <label>Tentang Barbershop</label>
+                            <textarea name="ket_bb" value="" class="form-control"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card card-outline card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Waktu operasional</h3>
-            </div>
-            <div class="card-body pt-0">
+        <div class="row">
+            <div class="col-6 m-auto">
                 <div class="form-group">
-                    <label>Jam Buka</label>
-                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#jamModal">
-                        <i class="fa-solid fa-pen-nib"></i>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Simpan Data <i class="fas fa-save pr-1"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div class="form-group float-end">
-            <button type="submit" class="btn btn-flat btn-primary">
-                <i class="fas fa-save pr-1"></i>
-            </button>
-        </div>
     </div>
 </div>
+
 
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal fade" id="jamModal">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-olive">
+                <div class="modal-header bg-warning">
                     <h4 class="modal-title">Edit waktu</h4>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -98,7 +117,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-
+                        <label>Jam buka</label>
+                        <input type="time" name="jam_buka" value="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Jam tutup</label>
+                        <input type="time" name="jam_buka" value="" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">

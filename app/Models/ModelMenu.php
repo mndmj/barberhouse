@@ -12,7 +12,7 @@ class ModelMenu extends Model
     protected $returnType       = 'array';
     protected $allowedFields    = ['id_menu', 'nama_menu', 'jenis_menu', 'harga_menu', 'id_bb'];
 
-    public function getMenuBB()
+    public function getDataBB()
     {
         return $this->table('tbl_menu')
             ->where(

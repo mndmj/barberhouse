@@ -58,18 +58,21 @@
     function status_layanan() {
         Swal.fire({
             title: 'Apakah Anda ingin menambah item lagi?',
+            icon: 'question',
             showDenyButton: true,
             showCancelButton: true,
             confirmButtonText: 'Tambah item',
+            confirmButtonColor: '#146C94',
             denyButtonText: 'Selesai',
-            // denyButtonColor: '#fff',
-            cancelButtonText: 'Batal'
+            denyButtonColor: '#3D8361',
+            cancelButtonText: 'Batal',
+            cancelButtonColor: '#dc3545',
         }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire('Saved!', '', 'success')
-            } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
-            }
+            // if (result.isConfirmed) {
+            //     Swal.fire('Saved!', '', 'success')
+            // } else if (result.isDenied) {
+            //     Swal.fire('Changes are not saved', '', 'info')
+            // }
         })
     }
 </script>

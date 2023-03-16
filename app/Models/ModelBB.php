@@ -6,37 +6,20 @@ use CodeIgniter\Model;
 
 class ModelBB extends Model
 {
-    protected $DBGroup          = 'default';
-    protected $table            = 'modelbbs';
-    protected $primaryKey       = 'id';
+    protected $table            = 'tbl_bb';
+    protected $primaryKey       = 'id_bb';
     protected $useAutoIncrement = true;
-    protected $insertID         = 0;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id_bb', 'nama_bb', 'telepon_bb', 'foto_bb', 'alamat_bb', 'latitude', 'longitude', 'jam_buka', 'jam_tutup', 'ket_bb', 'id_detail_pemilik'];
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
-
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
-
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    public function getMenuBB()
+    {
+        return $this->table('tbl_bb')
+            ->where(
+                'id_bb',
+                session()->get('id_bb')
+            )
+            ->join('tbl_bb', 'tbl_bb.id_detail_pemilik = tbl_detail_pemilik.id_detail_pemilik', 'left')
+            ->get()->getRowArray();
+    }
 }
