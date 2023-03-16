@@ -109,6 +109,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= base_url('transaksi') ?>" class="nav-link">
+                                <i class="nav-icon fa-solid fa-dollar"></i>
+                                <p>Transaksi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= base_url('admin') ?>" class="nav-link">
                                 <i class="nav-icon fa-solid fa-file"></i>
                                 <p>Laporan</p>

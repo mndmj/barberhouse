@@ -49,9 +49,10 @@
                 </div>
                 <div class="mb-3">
                     <label for="foto" class="form-label fw-bold text-white">Foto</label>
-                    <input class="form-control" type="file" name="foto" id="foto" accept="image/*" required>
+                    <input class="form-control" type="file" name="foto" id="foto" accept="image/*" onchange="bacaGambar(event)" required>
                 </div>
-                <div class="mb-3 gambar_load">
+                <div class="mb-3">
+                    <img src="" alt="" id="gambar_load" width="100px" height="100px" style="object-fit: cover;">
                     <!-- <label for="foto" class="form-label fw-bold">Preview</label><br> -->
                 </div>
                 <div class="mb-3">

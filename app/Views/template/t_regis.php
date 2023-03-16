@@ -9,6 +9,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="<?= base_url('assets') ?>/plugins/jquery/jquery.min.js"></script>
 
     <style>
         body {
@@ -71,16 +72,22 @@
 
     <script>
         function bacaGambar(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('.gambar_load').html('<img class="w-100" src="' + e.target.result + '"></img>');
-                }
-                reader.readAsDataURL(input.files[0]);
+            // if (input.files && input.files[0]) {
+            //     var reader = new FileReader();
+            //     reader.onload = function(e) {
+            //         $('#gambar_load').attr('src', e.target.result)
+            //         // $('#gambar_load').html('<img class="w-100" src="' + e.target.result + '"></img>')
+            //     }
+            //     reader.readAsDataURL(input.files[0]);
+            // }
+            try {
+                $('#gambar_load').attr('src', URL.createObjectURL(input.target.files[0]));
+            } catch (error) {
+
             }
         };
 
-        $('.foto').change(function() {
+        $('#foto').change(function() {
             bacaGambar(this);
         });
     </script>
