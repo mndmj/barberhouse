@@ -30,7 +30,7 @@
                             <td><?= (empty($value['nama'])) ? '<i>Pelanggan Offline</i>' : $value['nama'] ?></td>
                             <td><?= $value['tgl_antrian'] ?></td>
                             <td><?= $value['status_antrian'] ?></td>
-                            <td>
+                            <td class="text-center">
                                 <?php if ($value['status_antrian'] == 'Menunggu') : ?>
                                     <form action="<?= base_url('antrian/ubah_status_antrian') ?>" method="POST" class="d-inline">
                                         <input type="hidden" name="id_antrian" value="<?= $value['id_antrian'] ?>" class="d-none">
@@ -38,11 +38,14 @@
                                     </form>
                                 <?php endif ?>
                                 <?php if ($value['status_antrian'] == 'Diproses') : ?>
-                                    <button type="submit" class="btn btn-sm btn-flat btn-success" onclick="status_layanan()">Selesai</button>
+                                    <button type="submit" class="btn btn-sm btn-flat btn-success" onclick="status_layanan('<?= $value['id_antrian'] ?>')">Selesai</button>
                                 <?php endif ?>
-                                <button class="btn btn-sm btn-flat btn-primary">
-                                    <i class="fas fa-eye"></i>
-                                </button>
+
+                                <form class="d-inline" action="<?= base_url('antrian/detail_keranjang') ?>">
+                                    <button class="btn btn-sm btn-flat btn-primary">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     <?php } ?>
@@ -55,7 +58,7 @@
 <script>
     $('#tbl_antrian').DataTable();
 
-    function status_layanan() {
+    function status_layanan(id_antrian) {
         Swal.fire({
             title: 'Apakah Anda ingin menambah item lagi?',
             icon: 'question',
@@ -68,11 +71,12 @@
             cancelButtonText: 'Batal',
             cancelButtonColor: '#dc3545',
         }).then((result) => {
-            // if (result.isConfirmed) {
-            //     Swal.fire('Saved!', '', 'success')
-            // } else if (result.isDenied) {
-            //     Swal.fire('Changes are not saved', '', 'info')
-            // }
+            if (result.isConfirmed) {
+                // Swal.fire('Saved!', '', 'success')
+                window.location.href = '<?= base_url('antrian/detail_keranjang') ?>/' + id_antrian;
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
         })
     }
 </script>

@@ -29,16 +29,16 @@
                     <i class="fa-solid fa-pen-to-square"></i>
                 </button>
             </div>
-            <div class="card-body pt-0">
-                <div class="form-group row">
-                    <div class="col-6">
+            <div class="card-body p-0">
+                <div class="form-group row text-center m-0 p-0">
+                    <div class="col-6 p-0 bg-green">
                         <label>Jam Buka</label>
-                        <h5>07.00</h5>
+                        <h4 class="text-bold">07.00</h4>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-6 p-0 bg-red">
                         <label>Jam Tutup</label>
-                        <h5>07.00</h5>
+                        <h4 class="text-bold">19.00</h4>
                     </div>
                 </div>
             </div>
@@ -82,10 +82,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-8">
                         <div class="form-group">
                             <label>Tentang Barbershop</label>
                             <textarea name="ket_bb" value="" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="pe-1">Ubah Password</label>
+                            <input type="checkbox" name="" id="" class="">
+                            <input type="password" name="" value="" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -107,7 +114,7 @@
 
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal fade" id="jamModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header bg-warning">
                     <h4 class="modal-title">Edit waktu</h4>
