@@ -72,7 +72,7 @@
                         <?php  ?>
                     </select>
                     <div class="input-group ms-1" style="width: 200px;">
-                        <input class="form-control" type="number" placeholder="Jumlah" name="jumlah_dt">
+                        <input class="form-control" type="number" min="1" placeholder="Jumlah" name="jumlah_dt">
                         <button class="btn btn-primary" style="height:fit-content">
                             <i class="fa-solid fa-plus"></i>
                         </button>

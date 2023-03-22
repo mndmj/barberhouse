@@ -44,7 +44,7 @@
                         <?php } ?>
                     </select>
                     <div class="input-group ms-3" style="width: 200px;">
-                        <input class="form-control" type="number" placeholder="Jumlah" name="jumlah_dt">
+                        <input class="form-control" type="number" min="1" placeholder="Jumlah" name="jumlah_dt">
                         <button class="btn btn-primary" style="height:fit-content">
                             <i class="fa-solid fa-plus"></i>
                         </button>
@@ -104,13 +104,21 @@
                         <?php } ?>
                     </tbody>
                 </table>
+                <div class="d-flex">
+                    <button class="col-sm-6 mt-3 mx-auto btn btn-primary" onclick="konfirmasi('Apakah Anda sudah yakin?','')">Selesai</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    $('#keranjang').DataTable();
+    $('#keranjang').DataTable({
+        bPaginate: false,
+        bInfo: false,
+        bFilter: false
+    });
+
     $(document).ready(function() {
         $("#totalBayar").html("<?= $total ?>")
     });

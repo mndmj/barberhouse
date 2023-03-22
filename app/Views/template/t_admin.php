@@ -158,6 +158,7 @@
     </script>
 
     <?= $this->include('part/notif.php'); ?>
+    <?= $this->include('part/dialog_confirm.php'); ?>
 
 </body>
 

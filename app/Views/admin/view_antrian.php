@@ -38,7 +38,7 @@
                                     </form>
                                 <?php endif ?>
                                 <?php if ($value['status_antrian'] == 'Diproses') : ?>
-                                    <button type="submit" class="btn btn-sm btn-flat btn-success" onclick="status_layanan('<?= $value['id_antrian'] ?>')">Selesai</button>
+                                    <button type="submit" class="btn btn-sm btn-flat btn-success" onclick="window.location.href = '<?= base_url('antrian/detail_keranjang') ?>/<?= $value['id_antrian'] ?>'">Selesai</button>
                                 <?php endif ?>
 
                                 <form class="d-inline" action="<?= base_url('antrian/detail_keranjang') ?>">
@@ -57,28 +57,6 @@
 
 <script>
     $('#tbl_antrian').DataTable();
-
-    function status_layanan(id_antrian) {
-        Swal.fire({
-            title: 'Apakah Anda ingin menambah item lagi?',
-            icon: 'question',
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Tambah item',
-            confirmButtonColor: '#146C94',
-            denyButtonText: 'Selesai',
-            denyButtonColor: '#3D8361',
-            cancelButtonText: 'Batal',
-            cancelButtonColor: '#dc3545',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Swal.fire('Saved!', '', 'success')
-                window.location.href = '<?= base_url('antrian/detail_keranjang') ?>/' + id_antrian;
-            } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
-            }
-        })
-    }
 </script>
 
 <?= $this->endSection() ?>
