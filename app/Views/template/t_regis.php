@@ -82,10 +82,22 @@
             // }
             try {
                 $('#gambar_load').attr('src', URL.createObjectURL(input.target.files[0]));
+                tampilPreview();
             } catch (error) {
 
             }
-        };
+        }
+
+        function tampilPreview() {
+            if ($('#foto').val() == '') {
+                $('#gambar_load').addClass('d-none');
+            } else {
+                $('#gambar_load').removeClass('d-none');
+            }
+            // alert($('#foto').val());
+        }
+
+        tampilPreview();
 
         $('#foto').change(function() {
             bacaGambar(this);

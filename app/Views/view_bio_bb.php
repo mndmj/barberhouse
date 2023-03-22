@@ -40,11 +40,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="foto" class="form-label fw-bold text-white p-0 m-0">Foto Barbershop</label><br>
-                    <small class="fst-italic fw-light">*Foto tampak depan</small>
-                    <input class="form-control mt-1" type="file" name="foto_bb" id="foto" accept="image/*">
+                    <small class="fst-italic text-danger">*Foto tampak depan</small>
+                    <input class="form-control mt-1" type="file" name="foto_bb" id="foto" accept="image/*" onchange="bacaGambar(event)" required>
                 </div>
-                <div class="mb-3 gambar_load">
-                    <!-- <label for="foto" class="form-label fw-bold">Preview</label><br> -->
+                <div class="mb-3">
+                    <img src="" alt="" id="gambar_load" width="100px" height="100px" style="object-fit: contain;">
                 </div>
                 <div class="mb-3">
                     <label for="alamat" class="form-label fw-bold text-white">Alamat</label>
