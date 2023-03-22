@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-6">
                         <div class="float-right bg-danger p-2 rounded">
-                            <h6 class="m-0 p-0">Total Transaksi = Rp. 50.000</h6>
+                            <h6 class="m-0 p-0">Total Transaksi = Rp. <span id="totalBayar"></span></h6>
                         </div>
                     </div>
                 </div>
@@ -84,6 +84,7 @@
                     <tbody>
                         <?php
                         $no = 1;
+                        $total = 0;
                         foreach ($keranjang as $value) { ?>
                             <tr>
                                 <td><?= $no++ ?></td>
@@ -92,14 +93,14 @@
                                 <td><?= $value['jumlah_dt'] ?></td>
                                 <td><?= $value['harga_dt'] * $value['jumlah_dt'] ?></td>
                                 <td>
-                                    <button class="btn btn-sm btn-flat btn-warning" data-bs-toggle="modal" data-bs-target="#edit">
-                                        <i class="fas fa-pen"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-flat btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
+                                    <button class="btn btn-sm btn-flat btn-danger" onclick="window.location.href='<?= base_url('antrian/hapus_keranjang') ?>/<?= $value['id_dt'] ?>'">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>
+                            <?php
+                            $total += $value['harga_dt'] * $value['jumlah_dt'];
+                            ?>
                         <?php } ?>
                     </tbody>
                 </table>
@@ -110,6 +111,9 @@
 
 <script>
     $('#keranjang').DataTable();
+    $(document).ready(function() {
+        $("#totalBayar").html("<?= $total ?>")
+    });
 </script>
 
 <?= $this->endSection(); ?>

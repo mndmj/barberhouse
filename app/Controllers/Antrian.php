@@ -101,7 +101,7 @@ class Antrian extends BaseController
                 ->where('tbl_antrian.id_antrian', $this->request->uri->getSegment('3'))
                 ->get()->getResultArray()[0],
             'bb' => $this->db->table('tbl_bb')->where('id_bb', session('data_user')['id_bb'])->get()->getResultArray()[0],
-            'menu' => $this->ModelMenu->findAll(),
+            'menu' => $this->ModelMenu->where('id_bb', session('data_user')['id_bb'])->findAll(),
             'keranjang' => $this->ModelDetailTransaksi
                 ->join('tbl_menu', 'tbl_menu.id_menu=tbl_detail_transaksi.id_menu')
                 ->join('tbl_transaksi', 'tbl_transaksi.id_transaksi=tbl_detail_transaksi.id_transaksi')
@@ -152,7 +152,6 @@ class Antrian extends BaseController
             }
         }
 
-
         $cek_data_keranjang = $this->ModelDetailTransaksi->where('id_menu', $cek_menu['id_menu'])->where('id_transaksi', $cek_data_transaksi['id_transaksi'])->first();
 
         if (empty($cek_data_keranjang)) {
@@ -171,6 +170,32 @@ class Antrian extends BaseController
             if ($this->ModelDetailTransaksi->update($cek_data_keranjang['id_dt'], $data)) {
                 return redirect()->to(base_url('antrian/detail_keranjang') . '/' . session('id_antrian'))->with('success', 'Data berhasil dimasukkan');
             }
+        }
+    }
+
+    public function hapus_keranjang()
+    {
+        // Chek pengiriman data id detail transaksi melalui url
+        if (!$this->request->uri->getSegment(3)) {
+            return redirect()->to(base_url('antrian/detail_keranjang') . '/' . session('id_antrian'))->with('danger', 'Data tidak valid');
+        }
+        $idAntrian = session('id_antrian');
+        $idKeranjang = $this->request->uri->getSegment(3);
+        // Chek data keranjang
+        $dtKeranjang = $this->ModelDetailTransaksi
+            ->join('tbl_transaksi', 'tbl_transaksi.id_transaksi=tbl_detail_transaksi.id_transaksi')
+            ->join('tbl_antrian', 'tbl_transaksi.id_antrian=tbl_antrian.id_antrian')
+            ->where('tbl_antrian.id_antrian', $idAntrian)
+            ->where('id_dt', $idKeranjang)
+            ->first();
+        if (empty($dtKeranjang)) {
+            return redirect()->to(base_url('antrian/detail_keranjang') . '/' . session('id_antrian'))->with('danger', 'Data tidak valid');
+        }
+        // Hapus data keranjang
+        if ($this->ModelDetailTransaksi->delete($idKeranjang)) {
+            return redirect()->to(base_url('antrian/detail_keranjang') . '/' . session('id_antrian'))->with('success', 'Data berhasil dihapus');
+        } else {
+            return redirect()->to(base_url('antrian/detail_keranjang') . '/' . session('id_antrian'))->with('danger', 'Data gagal dihapus');
         }
     }
 }
