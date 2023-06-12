@@ -219,8 +219,8 @@ class Antrian extends BaseController
             session()->setFlashdata('danger', 'Data antrian tidak valid');
             return $this->redirect();
         }
-        if ($dtAntrian['status_antrian'] != 'Diproses') {
-            session()->setFlashdata('danger', 'Data antrian harus dalam status diproses');
+        if ($dtAntrian['status_antrian'] == 'Selesai') {
+            session()->setFlashdata('danger', 'Tidak bisa membatalkan antrian yang telah selesai');
             return $this->redirect();
         }
         if ($this->ModelAntrian->delete($idAntrian)) {
