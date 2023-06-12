@@ -137,21 +137,26 @@ class Antrian extends BaseController
         ])) {
             return redirect()->to(base_url('antrian/detail_keranjang') . '/' . session('id_antrian'))->with('danger', 'Data tidak sesuai');
         }
-
+        $dtAntrian = $this->ModelAntrian->find(session('id_antrian'));
+        if (empty($dtAntrian)) {
+            session()->setFlashdata('danger', 'Data antrian tidak valid');
+            return $this->redirect();
+        }
+        if ($dtAntrian['status_antrian'] != 'Diproses') {
+            session()->setFlashdata('danger', 'Data harus dalam status diproses');
+            return $this->redirect();
+        }
         $cek_menu = $this->ModelMenu->find($this->request->getPost('pilih_menu'));
         if (empty($cek_menu)) {
             return redirect()->to(base_url('antrian/detail_keranjang') . '/' . session('id_antrian'))->with('danger', 'Data tidak ada');
         }
-
         $cek_data_transaksi = $this->ModelTransaksi->where('id_antrian', session('id_antrian'))->first();
-
         if (empty($cek_data_transaksi)) {
             $data = [
                 'id_antrian' => session('id_antrian'),
                 'id_bb' => session('data_user')['id_bb'],
                 'tanggal_transaksi' => date('Y-m-d H:i:s')
             ];
-
             if ($this->ModelTransaksi->insert($data)) {
                 $cek_data_transaksi = $this->ModelTransaksi->where('id_antrian', session('id_antrian'))->first();
             }
@@ -209,13 +214,49 @@ class Antrian extends BaseController
         $dtAntrian = $this->ModelAntrian->where('id_bb', session('data_user')['id_bb'])->where('id_antrian', $idAntrian)->first();
         if (empty($dtAntrian)) {
             session()->setFlashdata('danger', 'Data antrian tidak valid');
-            return redirect()->back();
+            return $this->redirect();
+        }
+        if ($dtAntrian['status_antrian'] != 'Diproses') {
+            session()->setFlashdata('danger', 'Data antrian harus dalam status diproses');
+            return $this->redirect();
         }
         if ($this->ModelAntrian->delete($idAntrian)) {
             session()->setFlashdata('succes', 'Data antrian ' . $dtAntrian['no_antrian'] . ' berhasil dihapus');
         } else {
             session()->setFlashdata('succes', 'Data antrian ' . $dtAntrian['no_antrian'] . ' berhasil dihapus');
         }
-        return redirect()->back();
+        return $this->redirect();
+    }
+
+    public function Selesai($idAntrian)
+    {
+        $dtAntrian = $this->ModelAntrian->where('id_bb', session('data_user')['id_bb'])->where('id_antrian', $idAntrian)->first();
+        if (empty($dtAntrian)) {
+            session()->setFlashdata('danger', 'Data antrian tidak valid');
+            return $this->redirect();
+        }
+        if ($dtAntrian['status_antrian'] != 'Diproses') {
+            session()->setFlashdata('danger', 'Data antrian harus dalam status diproses');
+            return $this->redirect();
+        }
+        $dtTransaksi = $this->ModelTransaksi->where('id_antrian', $idAntrian)->first();
+        if (empty($dtTransaksi)) {
+            session()->setFlashdata('danger', 'Data transaksi tidak boleh kosong');
+            return $this->redirect();
+        }
+        $dtDetailTransaksi = $this->ModelDetailTransaksi->where('id_transaksi', $dtTransaksi['id_transaksi'])->findAll();
+        if (count($dtDetailTransaksi) == 0) {
+            session()->setFlashdata('danger', 'Data transaksi tidak boleh kosong');
+            return $this->redirect();
+        }
+        $data = [
+            'status_antrian' => 'Selesai'
+        ];
+        if ($this->ModelAntrian->update($idAntrian, $data)) {
+            session()->setFlashdata('success', 'Antrian ' . $dtAntrian['no_antrian'] . ' berhasil diselesaikan');
+        } else {
+            session()->setFlashdata('danger', 'Antrian ' . $dtAntrian['no_antrian'] . ' gagal diselesaikan');
+        }
+        return $this->redirect();
     }
 }

@@ -28,7 +28,9 @@
                         <tr>
 
                             <td class="text-center text-bold fs-5">
-                                <i class="fas fa-times text-danger" style="cursor: pointer;" onclick="konfirmasi('Apakah anda akan membatalkan antrian <?= $value['no_antrian'] ?>','<?= base_url('antrian/batal/' . $value['id_antrian']) ?>')"></i>
+                                <?php if ($value['status_antrian'] != 'Selesai') : ?>
+                                    <i class="fas fa-times text-danger" style="cursor: pointer;" onclick="konfirmasi('Apakah anda akan membatalkan antrian <?= $value['no_antrian'] ?>','<?= base_url('antrian/batal/' . $value['id_antrian']) ?>')"></i>
+                                <?php endif ?>
                                 <?= $value['no_antrian'] ?>
                             </td>
                             <td><?= (empty($value['nama'])) ? '<i>Pelanggan Offline</i>' : $value['nama'] ?></td>

@@ -37,15 +37,17 @@
             <div class="card-body">
                 <label>Daftar Menu</label>
                 <form action="<?= base_url('antrian/tambah_keranjang') ?>" method="post" class="d-flex">
-                    <select class="form-select mb-3" id="" name="pilih_menu">
+                    <select class="form-select mb-3" id="" name="pilih_menu" <?= ($antrian['status_antrian'] == 'Selesai') ? 'disabled readonly' : '' ?>>
                         <option selected>Pilih Menu</option>
-                        <?php foreach ($menu as $value) { ?>
-                            <option value="<?= $value['id_menu'] ?>"><?= $value['nama_menu'] ?></option>
-                        <?php } ?>
+                        <?php if ($antrian['status_antrian'] != 'Selesai') : ?>
+                            <?php foreach ($menu as $value) { ?>
+                                <option value="<?= $value['id_menu'] ?>"><?= $value['nama_menu'] ?></option>
+                            <?php } ?>
+                        <?php endif ?>
                     </select>
                     <div class="input-group ms-3" style="width: 200px;">
-                        <input class="form-control" type="number" min="1" placeholder="Jumlah" name="jumlah_dt">
-                        <button class="btn btn-primary" style="height:fit-content">
+                        <input class="form-control" type="number" min="1" placeholder="Jumlah" name="jumlah_dt" <?= ($antrian['status_antrian'] == 'Selesai') ? 'disabled readonly' : '' ?>>
+                        <button class="btn btn-primary <?= ($antrian['status_antrian'] == 'Selesai') ? 'disabled' : '' ?>" style="height:fit-content" <?= ($antrian['status_antrian'] == 'Selesai') ? 'disabled readonly' : '' ?>>
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -93,9 +95,13 @@
                                 <td><?= $value['jumlah_dt'] ?></td>
                                 <td><?= $value['harga_dt'] * $value['jumlah_dt'] ?></td>
                                 <td>
-                                    <button class="btn btn-sm btn-flat btn-danger" onclick="window.location.href='<?= base_url('antrian/hapus_keranjang') ?>/<?= $value['id_dt'] ?>'">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    <?php if ($antrian['status_antrian'] != 'Selesai') : ?>
+                                        <button class="btn btn-sm btn-flat btn-danger" onclick="window.location.href='<?= base_url('antrian/hapus_keranjang') ?>/<?= $value['id_dt'] ?>'">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    <?php else : ?>
+                                        -
+                                    <?php endif ?>
                                 </td>
                             </tr>
                             <?php
@@ -104,9 +110,11 @@
                         <?php } ?>
                     </tbody>
                 </table>
-                <div class="d-flex">
-                    <button class="col-sm-6 mt-3 mx-auto btn btn-primary" onclick="konfirmasi('Apakah Anda sudah yakin?','')">Selesai</button>
-                </div>
+                <?php if ($antrian['status_antrian'] == 'Diproses') : ?>
+                    <div class="d-flex">
+                        <button class="col-sm-6 mt-3 mx-auto btn btn-primary" onclick="konfirmasi('Apakah Anda sudah yakin?','<?= base_url('antrian/selesai/' . $antrian['id_antrian']) ?>')">Selesai</button>
+                    </div>
+                <?php endif ?>
             </div>
         </div>
     </div>

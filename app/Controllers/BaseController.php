@@ -50,4 +50,9 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
         helper("form");
     }
+
+    protected function redirect()
+    {
+        return "<script>window.history.back();</script>";
+    }
 }
