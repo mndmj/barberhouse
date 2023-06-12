@@ -10,7 +10,7 @@
             <table class="table table-sm" id="tbl_antrian">
                 <thead>
                     <tr>
-                        <th width="100px">Nomor Antrian</th>
+                        <th width="150px">Nomor Antrian</th>
                         <th>Pelanggan</th>
                         <th>Tanggal</th>
                         <th>Total Transaksi</th>
@@ -19,10 +19,10 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="text-center text-bold fs-5">1</td>
+                        <td class="text-bold fs-5"><i class="fa-solid fa-user-clock"></i>&emsp;1</td>
                         <td>Addf</td>
                         <td><?= date('Y-m-d'); ?></td>
-                        <td>Rp<? php; ?>,00</td>
+                        <td>Rp,00</td>
                         <td>
                             <button class="btn btn-sm btn-flat p-0" data-bs-toggle="tooltip" data-bs-title="Melihat detail transaksi" onclick="window.location.href = '<?= base_url('antrian/') ?>'">
                                 <div class=" font-weight-bold text-green h6"><i class="fas fa-angles-right fa-2x"></i>

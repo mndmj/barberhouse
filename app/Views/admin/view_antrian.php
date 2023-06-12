@@ -27,9 +27,9 @@
                     <?php foreach ($antrian as $key => $value) { ?>
                         <tr>
 
-                            <td class="text-center text-bold fs-5">
-                                <i class="fas fa-times text-danger" style="cursor: pointer;" onclick="konfirmasi('Apakah anda akan membatalkan antrian <?= $value['no_antrian'] ?>','<?= base_url('antrian/batal/' . $value['id_antrian']) ?>')"></i>
-                                <?= $value['no_antrian'] ?>
+                            <td class="text-bold fs-5">
+                                <i class="fas fa-times text-danger" style="cursor: pointer;" onclick="konfirmasi('Apakah anda akan membatalkan antrian <?= $value['no_antrian'] ?>','<?= base_url('antrian/batal/' . $value['id_antrian']) ?>')" data-bs-toggle="tooltip" data-bs-title="Hapus antrian"></i>
+                                &emsp;<?= $value['no_antrian'] ?>
                             </td>
                             <td><?= (empty($value['nama'])) ? '<i>Pelanggan Offline</i>' : $value['nama'] ?></td>
                             <td><?= $value['tgl_antrian'] ?></td>
