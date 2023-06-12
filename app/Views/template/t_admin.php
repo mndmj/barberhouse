@@ -120,6 +120,7 @@
                                 <p>Laporan</p>
                             </a>
                         </li>
+                    </ul>
                 </nav>
 
             </div>
@@ -155,6 +156,9 @@
                     $(this).remove;
                 });
             }, 1500);
+
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
     </script>
 
     <?= $this->include('part/notif.php'); ?>

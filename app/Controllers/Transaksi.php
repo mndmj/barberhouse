@@ -31,6 +31,6 @@ class Transaksi extends BaseController
                 ->join('tbl_transaksi', 'tbl_transaksi.id_transaksi=tbl_detail_transaksi.id_transaksi')
                 ->where('id_antrian', session('id_antrian'))->findAll(),
         ];
-        return view('admin/view_transaksi', $data);
+        return view('admin/view_list_pelanggan', $data);
     }
 }
