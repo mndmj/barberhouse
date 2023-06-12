@@ -92,11 +92,14 @@ class Antrian extends BaseController
         }
     }
 
-    public function detail_keranjang()
+    public function detail_keranjang($idAntrian)
     {
-        if (!session('id_antrian')) {
-            session()->set('id_antrian', $this->request->uri->getSegment('3'));
+        $dtAntrian = $this->ModelAntrian->where('id_bb', session('data_user')['id_bb'])->where('id_antrian', $idAntrian)->first();
+        if (empty($dtAntrian)) {
+            session()->setFlashdata('danger', 'Data antrian tidak valid');
+            return $this->redirect();
         }
+        session()->set('id_antrian', $idAntrian);
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Keranjang',
