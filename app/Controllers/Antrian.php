@@ -198,4 +198,19 @@ class Antrian extends BaseController
             return redirect()->to(base_url('antrian/detail_keranjang') . '/' . session('id_antrian'))->with('danger', 'Data gagal dihapus');
         }
     }
+
+    public function Batal($idAntrian)
+    {
+        $dtAntrian = $this->ModelAntrian->where('id_bb', session('data_user')['id_bb'])->where('id_antrian', $idAntrian)->first();
+        if (empty($dtAntrian)) {
+            session()->setFlashdata('danger', 'Data antrian tidak valid');
+            return redirect()->back();
+        }
+        if ($this->ModelAntrian->delete($idAntrian)) {
+            session()->setFlashdata('succes', 'Data antrian ' . $dtAntrian['no_antrian'] . ' berhasil dihapus');
+        } else {
+            session()->setFlashdata('succes', 'Data antrian ' . $dtAntrian['no_antrian'] . ' berhasil dihapus');
+        }
+        return redirect()->back();
+    }
 }
