@@ -30,8 +30,9 @@
                             <td class="text-center text-bold fs-5">
                                 <?php if ($value['status_antrian'] != 'Selesai') : ?>
                                     <i class="fas fa-times text-danger" style="cursor: pointer;" onclick="konfirmasi('Apakah anda akan membatalkan antrian <?= $value['no_antrian'] ?>','<?= base_url('antrian/batal/' . $value['id_antrian']) ?>')" data-bs-toggle="tooltip" data-bs-title="Hapus antrian"></i>
-                                    &emsp;<?= $value['no_antrian'] ?>
+                                    &emsp;
                                 <?php endif ?>
+                                <?= $value['no_antrian'] ?>
                             </td>
                             <td><?= (empty($value['nama'])) ? '<i>Pelanggan Offline</i>' : $value['nama'] ?></td>
                             <td><?= $value['tgl_antrian'] ?></td>
