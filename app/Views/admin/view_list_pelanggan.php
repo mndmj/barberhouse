@@ -7,7 +7,7 @@
             <h3 class="card-title">Daftar <?= $subtitle ?> Pelanggan</h3>
         </div>
         <div class="card-body">
-            <table class="table table-sm" id="tbl_antrian">
+            <table class="table table-sm" id="tbl_list">
                 <thead>
                     <tr>
                         <th width="150px">Nomor Antrian</th>
@@ -35,5 +35,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    function batal(id) {
+
+    }
+    $('#tbl_list').DataTable();
+</script>
 
 <?= $this->endSection() ?>
