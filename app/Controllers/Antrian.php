@@ -42,13 +42,18 @@ class Antrian extends BaseController
 
     public function tambah_antrian()
     {
-        // ambil seluruh data per hari
+        // ambil data terbaru
         $data_antrian = $this->ModelAntrian->where('id_bb', session('data_user')['id_bb'])
+            ->orderBy('id_antrian', 'desc')
             ->having('date(tgl_antrian)', date('Y-m-d'))
-            ->findAll();
+            ->first();
 
-        // hitung seluruh data & tambah antrian baru
-        $antrian_baru = count($data_antrian) + 1;
+        // Tambah no antrian baru
+        if (empty($data_antrian)) {
+            $antrian_baru = 1;
+        } else {
+            $antrian_baru = $data_antrian['no_antrian'] + 1;
+        }
 
         $data = [
             'id_bb' => session('data_user')['id_bb'],
