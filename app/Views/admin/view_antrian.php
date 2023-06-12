@@ -41,7 +41,7 @@
                                     <button type="submit" class="btn btn-sm btn-flat btn-success" onclick="window.location.href = '<?= base_url('antrian/detail_keranjang') ?>/<?= $value['id_antrian'] ?>'">Selesai</button>
                                 <?php endif ?>
 
-                                <form class="d-inline" action="<?= base_url('antrian/detail_keranjang') ?>">
+                                <form class="d-inline" action="<?= base_url('antrian/detail_keranjang/' . $value['id_antrian']) ?>">
                                     <button class="btn btn-sm btn-flat btn-primary">
                                         <i class="fas fa-eye"></i>
                                     </button>
