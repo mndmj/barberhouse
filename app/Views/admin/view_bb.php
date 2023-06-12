@@ -10,13 +10,13 @@
             </div>
 
             <div class="card-body">
-                <?php echo form_open_multipart('admin/savebb') ?>
+                <?php echo form_open_multipart('bb/updateInfo') ?>
                 <div class="text-center">
-                    <img id="gambar_load" class="img-fluid pad" src="<?= base_url('assets/images/barber/') ?>" width="200px" height="200px">
+                    <img id="foto" class="img-fluid pad" src="<?= base_url('assets/images/barber/') ?>" width="300px">
                 </div>
                 <div class="form-group mt-2">
                     <label>Ganti Logo</label>
-                    <input id="preview_gambar" name="logo" type="file" class="form-control" accept="image/*">
+                    <input id="gambar_load" name="logo" type="file" class="form-control" accept="image/*" onchange="bacaGambar(event)">
                 </div>
                 <?= form_close() ?>
             </div>

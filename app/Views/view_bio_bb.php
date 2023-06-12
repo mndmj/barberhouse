@@ -47,7 +47,7 @@
                     <img src="" alt="" id="gambar_load" width="100px" height="100px" style="object-fit: contain;">
                 </div>
                 <div class="mb-3">
-                    <label for="alamat" class="form-label fw-bold text-white">Alamat</label>
+                    <label for="alamat_bb" class="form-label fw-bold text-white">Alamat</label>
                     <textarea class="form-control" name="alamat_bb" id="alamat_bb" rows="3"></textarea>
                 </div>
                 <div class="mb-3">

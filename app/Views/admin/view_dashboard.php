@@ -18,7 +18,7 @@
         <div class="small-box bg-orange">
             <div class="inner">
                 <h3>Antrian Offline</h3>
-                <p>Jumlah : 0</p>
+                <p>Jumlah : <?= $antriOff ?></p>
             </div>
             <div class="icon">
                 <i class="fa-solid fa-person-booth"></i>
