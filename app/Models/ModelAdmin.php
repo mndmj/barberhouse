@@ -11,9 +11,9 @@ class ModelAdmin extends Model
         return $this->db->table('tbl_menu')->where('id_bb', $id_bb)->countAllResults();
     }
 
-    public function totalAntriOff()
+    public function totalAntriOff($id_bb)
     {
-        // return $this->db->table('tbl_antrian')->where('id_user', null)->countAllResults();
+        return $this->db->table('tbl_antrian')->where('id_bb', $id_bb)->where('status_antrian', 'Menunggu')->countAllResults();
     }
     public function totalAntriOn()
     {

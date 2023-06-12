@@ -221,9 +221,9 @@ class Antrian extends BaseController
             return $this->redirect();
         }
         if ($this->ModelAntrian->delete($idAntrian)) {
-            session()->setFlashdata('succes', 'Data antrian ' . $dtAntrian['no_antrian'] . ' berhasil dihapus');
+            session()->setFlashdata('success', 'Data antrian ' . $dtAntrian['no_antrian'] . ' berhasil dihapus');
         } else {
-            session()->setFlashdata('succes', 'Data antrian ' . $dtAntrian['no_antrian'] . ' berhasil dihapus');
+            session()->setFlashdata('success', 'Data antrian ' . $dtAntrian['no_antrian'] . ' berhasil dihapus');
         }
         return $this->redirect();
     }

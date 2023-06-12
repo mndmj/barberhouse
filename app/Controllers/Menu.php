@@ -35,8 +35,7 @@ class Menu extends BaseController
             'id_bb' => session('data_user')['id_bb'],
         ];
         $this->ModelMenu->insert($data);
-        session()->setFlashdata('tambah', 'Data berhasil ditambahkan..!!');
-        return redirect()->to('menu');
+        return redirect()->to('menu')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function editData($id_menu)
@@ -47,8 +46,7 @@ class Menu extends BaseController
             'harga_menu' => $this->request->getPost('harga_menu'),
         ];
         $this->ModelMenu->update($id_menu, $data);
-        session()->setFlashdata('edit', 'Data berhasil diedit..!!');
-        return redirect()->to('menu');
+        return redirect()->to('menu')->with('warning', 'Data berhasil diedit');
     }
 
     public function deleteData($id_menu)
@@ -57,7 +55,6 @@ class Menu extends BaseController
             'id_menu' => $id_menu,
         ];
         $this->ModelMenu->delete($data);
-        session()->setFlashdata('delete', 'Data berhasil dihapus..!!');
-        return redirect()->to('menu');
+        return redirect()->to('menu')->with('danger', 'Data berhasil diedit');
     }
 }
