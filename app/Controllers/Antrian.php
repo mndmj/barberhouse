@@ -110,7 +110,7 @@ class Antrian extends BaseController
             'keranjang' => $this->ModelDetailTransaksi
                 ->join('tbl_menu', 'tbl_menu.id_menu=tbl_detail_transaksi.id_menu')
                 ->join('tbl_transaksi', 'tbl_transaksi.id_transaksi=tbl_detail_transaksi.id_transaksi')
-                ->where('id_antrian', session('id_antrian'))->findAll(),
+                ->where('id_antrian', $this->request->uri->getSegment('3'))->findAll(),
         ];
         return view('admin/view_detail_antrian', $data);
     }
