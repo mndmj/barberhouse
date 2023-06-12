@@ -14,7 +14,7 @@
                         <th>Pelanggan</th>
                         <th>Tanggal</th>
                         <th>Total Transaksi</th>
-                        <th width="150px"></th>
+                        <th width="150px">Action</th>
                     </tr>
                 </thead>
                 <tbody>

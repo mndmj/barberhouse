@@ -109,13 +109,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= base_url('beliItem') ?>" class="nav-link">
+                                <i class="nav-icon fa-solid fa-spray-can-sparkles"></i>
+                                <p>Beli Item</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= base_url('transaksi') ?>" class="nav-link">
                                 <i class="nav-icon fa-solid fa-sack-dollar"></i>
                                 <p>Transaksi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('admin') ?>" class="nav-link">
+                            <a href="<?= base_url('laporan') ?>" class="nav-link">
                                 <i class="nav-icon fa-solid fa-file"></i>
                                 <p>Laporan</p>
                             </a>
