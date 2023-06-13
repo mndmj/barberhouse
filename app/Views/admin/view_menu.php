@@ -13,32 +13,6 @@
             </div>
         </div>
         <div class="card-body">
-            <?php
-            if (session()->getFlashdata('tambah')) {
-                echo '<div class="alert alert-success alert-dismissible peringatan">
-                <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true">&times;</button>
-                <h6><i class="icon fas fa-check"></i>';
-                echo session()->getFlashdata('tambah');
-                echo '</h6></div>';
-            }
-
-            if (session()->getFlashdata('edit')) {
-                echo '<div class="alert alert-warning alert-dismissible peringatan">
-                <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true">&times;</button>
-                <h6><i class="icon fas fa-check"></i>';
-                echo session()->getFlashdata('edit');
-                echo '</h6></div>';
-            }
-
-            if (session()->getFlashdata('delete')) {
-                echo '<div class="alert alert-danger alert-dismissible peringatan">
-                <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true">&times;</button>
-                <h6><i class="icon fas fa-check"></i>';
-                echo session()->getFlashdata('delete');
-                echo '</h6></div>';
-            }
-            ?>
-
             <table class="table table-sm" id="tbl_menu">
                 <thead>
                     <tr>

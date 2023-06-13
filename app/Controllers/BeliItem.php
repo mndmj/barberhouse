@@ -29,4 +29,13 @@ class BeliItem extends BaseController
         ];
         return view('admin/view_transaksi', $data);
     }
+
+    public function keranjang()
+    {
+        $data = [
+            'title' => 'Barberhouse',
+            'subtitle' => 'Keranjang',
+        ];
+        return view('admin/view_beli', $data);
+    }
 }

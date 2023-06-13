@@ -5,6 +5,11 @@
     <div class="card card-dark">
         <div class="card-header">
             <h3 class="card-title"><?= $subtitle ?> Pelanggan</h3>
+            <div class="card-tools" data-bs-toggle="tooltip" data-bs-title="Tambah Item" onclick="window.location.href = '<?= base_url('beliitem/keranjang') ?>'">
+                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add">
+                    <i class="fas fa-cart-plus"></i>&emsp;Add
+                </button>
+            </div>
         </div>
         <div class="card-body">
             <table class="table table-sm" id="tbl_list">
@@ -24,9 +29,9 @@
                         <td>0</td>
                         <td>Rp,00</td>
                         <td>
-                            <button class="btn btn-sm btn-flat p-0" data-bs-toggle="tooltip" data-bs-title="Tambah Item" onclick="window.location.href = '<?= base_url('') ?>'">
-                                <div class=" font-weight-bold text-green h6">
-                                    <i class="fas fa-cart-plus fa-2x"></i>
+                            <button class="btn btn-sm btn-flat p-0">
+                                <div class=" font-weight-bold btn btn-info py-1 h6">
+                                    <i class="fas fa-cart-shopping"></i>
                                 </div>
                             </button>
                         </td>
