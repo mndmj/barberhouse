@@ -23,19 +23,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><?= date('Y-m-d'); ?></td>
-                        <td>0</td>
-                        <td>Rp,00</td>
-                        <td>
-                            <button class="btn btn-sm btn-flat p-0">
-                                <div class=" font-weight-bold btn btn-info py-1 h6">
-                                    <i class="fas fa-cart-shopping"></i>
-                                </div>
-                            </button>
-                        </td>
-                    </tr>
+                    <?php $no = 1 ?>
+                    <?php foreach ($dtTransaksi as $dt) : ?>
+                        <tr>
+                            <td><?= $no ?></td>
+                            <td><?= date($dt['tanggal_transaksi']); ?></td>
+                            <td><?= $dt['totalItem'] ?></td>
+                            <td>Rp <?= $dt['totalHarga'] ?>,00</td>
+                            <td>
+                                <button class="btn btn-sm btn-flat p-0">
+                                    <div class=" font-weight-bold btn btn-info py-1 h6">
+                                        <i class="fas fa-cart-shopping"></i>
+                                    </div>
+                                </button>
+                            </td>
+                        </tr>
+                        <?php $no++; ?>
+                    <?php endforeach ?>
                 </tbody>
             </table>
         </div>

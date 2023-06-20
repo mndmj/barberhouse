@@ -10,5 +10,5 @@ class ModelTransaksi extends Model
     protected $primaryKey       = 'id_transaksi';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_antrian', 'id_bb', 'id_user', 'waktu_antrian'];
+    protected $allowedFields    = ['id_antrian', 'id_bb', 'id_user', 'tanggal_transaksi'];
 }
