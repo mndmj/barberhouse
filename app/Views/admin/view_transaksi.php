@@ -31,10 +31,8 @@
                             <td><?= $dt['totalItem'] ?></td>
                             <td>Rp <?= $dt['totalHarga'] ?>,00</td>
                             <td>
-                                <button class="btn btn-sm btn-flat p-0">
-                                    <div class=" font-weight-bold btn btn-info py-1 h6">
-                                        <i class="fas fa-cart-shopping"></i>
-                                    </div>
+                                <button class="btn btn-sm btn btn-info h6" onclick="window.location.href='<?= base_url('beliitem/keranjang/' . $dt['id_transaksi']) ?>'">
+                                    <i class="fas fa-cart-shopping"></i>
                                 </button>
                             </td>
                         </tr>
