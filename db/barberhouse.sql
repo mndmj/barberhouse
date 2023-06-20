@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Mar 2023 pada 19.43
+-- Waktu pembuatan: 20 Jun 2023 pada 20.11
 -- Versi server: 10.4.22-MariaDB
--- Versi PHP: 8.1.2
+-- Versi PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,7 +50,11 @@ INSERT INTO `tbl_antrian` (`id_antrian`, `id_user`, `id_bb`, `no_antrian`, `stat
 (7, NULL, 4, 1, 'Diproses', '2023-03-20 23:49:46'),
 (8, NULL, 4, 1, 'Diproses', '2023-03-21 00:02:49'),
 (9, NULL, 4, 2, 'Menunggu', '2023-03-21 00:02:50'),
-(10, NULL, 5, 1, 'Diproses', '2023-03-22 13:02:06');
+(10, NULL, 5, 1, 'Diproses', '2023-03-22 13:02:06'),
+(11, NULL, 4, 1, 'Diproses', '2023-03-22 13:53:01'),
+(22, NULL, 5, 1, 'Selesai', '2023-06-12 04:13:17'),
+(26, NULL, 5, 4, 'Menunggu', '2023-06-12 04:15:03'),
+(28, NULL, 5, 5, 'Menunggu', '2023-06-12 05:52:37');
 
 -- --------------------------------------------------------
 
@@ -138,9 +142,15 @@ CREATE TABLE `tbl_detail_transaksi` (
 --
 
 INSERT INTO `tbl_detail_transaksi` (`id_dt`, `id_transaksi`, `id_menu`, `jumlah_dt`, `harga_dt`) VALUES
-(2, 1, 2, 2, '25000'),
 (3, 7, 1, 4, '15000'),
-(4, 7, 3, 4, '25000');
+(4, 7, 3, 4, '25000'),
+(10, 8, 2, 3, '25000'),
+(11, 9, 4, 1, '20000'),
+(12, 10, 6, 3, '15000'),
+(13, 10, 5, 2, '15000'),
+(14, 11, 6, 3, '15000'),
+(15, 11, 5, 2, '15000'),
+(16, 12, 5, 2, '15000');
 
 -- --------------------------------------------------------
 
@@ -178,7 +188,10 @@ CREATE TABLE `tbl_menu` (
 INSERT INTO `tbl_menu` (`id_menu`, `id_bb`, `nama_menu`, `jenis_menu`, `harga_menu`) VALUES
 (1, 4, 'Cepmek', 'Haircut', '15000'),
 (2, 4, 'Haircut Dewasa', 'Haircut', '25000'),
-(3, 4, 'Mohawk', 'Haircut', '25000');
+(3, 4, 'Mohawk', 'Haircut', '25000'),
+(4, 5, 'Bold', 'Haircut', '20000'),
+(5, 5, 'Vitamin', 'Haircare', '15000'),
+(6, 5, 'Hair Tonic', 'Haircare', '15000');
 
 -- --------------------------------------------------------
 
@@ -209,7 +222,7 @@ CREATE TABLE `tbl_transaksi` (
   `id_transaksi` int(11) NOT NULL,
   `id_antrian` int(11) DEFAULT NULL,
   `id_bb` int(11) NOT NULL,
-  `tanggal_transaksi` int(11) NOT NULL
+  `tanggal_transaksi` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -217,13 +230,18 @@ CREATE TABLE `tbl_transaksi` (
 --
 
 INSERT INTO `tbl_transaksi` (`id_transaksi`, `id_antrian`, `id_bb`, `tanggal_transaksi`) VALUES
-(1, NULL, 4, 0),
-(2, NULL, 4, 0),
-(3, NULL, 4, 0),
-(4, NULL, 4, 0),
-(5, NULL, 4, 0),
-(6, NULL, 4, 0),
-(7, 8, 4, 0);
+(1, NULL, 4, '0000-00-00 00:00:00'),
+(2, NULL, 4, '0000-00-00 00:00:00'),
+(3, NULL, 4, '0000-00-00 00:00:00'),
+(4, NULL, 4, '0000-00-00 00:00:00'),
+(5, NULL, 4, '0000-00-00 00:00:00'),
+(6, NULL, 4, '0000-00-00 00:00:00'),
+(7, 8, 4, '0000-00-00 00:00:00'),
+(8, 10, 4, '0000-00-00 00:00:00'),
+(9, 22, 5, '0000-00-00 00:00:00'),
+(10, NULL, 5, '0000-00-00 00:00:00'),
+(11, NULL, 5, '2023-06-20 13:03:40'),
+(12, NULL, 5, '2023-06-20 13:07:46');
 
 -- --------------------------------------------------------
 
@@ -336,7 +354,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT untuk tabel `tbl_antrian`
 --
 ALTER TABLE `tbl_antrian`
-  MODIFY `id_antrian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_antrian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_bb`
@@ -360,7 +378,7 @@ ALTER TABLE `tbl_detail_pemilik`
 -- AUTO_INCREMENT untuk tabel `tbl_detail_transaksi`
 --
 ALTER TABLE `tbl_detail_transaksi`
-  MODIFY `id_dt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_dt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_detail_user`
@@ -372,7 +390,7 @@ ALTER TABLE `tbl_detail_user`
 -- AUTO_INCREMENT untuk tabel `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_role`
@@ -384,7 +402,7 @@ ALTER TABLE `tbl_role`
 -- AUTO_INCREMENT untuk tabel `tbl_transaksi`
 --
 ALTER TABLE `tbl_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_user`
@@ -444,8 +462,8 @@ ALTER TABLE `tbl_menu`
 -- Ketidakleluasaan untuk tabel `tbl_transaksi`
 --
 ALTER TABLE `tbl_transaksi`
-  ADD CONSTRAINT `tbl_transaksi_ibfk_1` FOREIGN KEY (`id_antrian`) REFERENCES `tbl_antrian` (`id_antrian`),
-  ADD CONSTRAINT `tbl_transaksi_ibfk_2` FOREIGN KEY (`id_bb`) REFERENCES `tbl_bb` (`id_bb`);
+  ADD CONSTRAINT `tbl_transaksi_ibfk_1` FOREIGN KEY (`id_antrian`) REFERENCES `tbl_antrian` (`id_antrian`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_transaksi_ibfk_2` FOREIGN KEY (`id_bb`) REFERENCES `tbl_bb` (`id_bb`) ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tbl_user`

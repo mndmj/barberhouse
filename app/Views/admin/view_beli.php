@@ -31,10 +31,12 @@
             <h5 class="card-header">Daftar Menu</h5>
             <div class="card-body pb-0">
                 <label>Daftar Menu</label>
-                <form action="<?= base_url('antrian/tambah_keranjang') ?>" method="post" class="d-flex">
+                <form action="<?= base_url('beliitem/additem') ?>" method="post" class="d-flex">
                     <select class="form-select mb-3" id="" name="pilih_menu">
                         <option selected>Pilih Menu</option>
-                        <option value=""></option>
+                        <?php foreach ($dtMenu as $dt) : ?>
+                            <option value="<?= $dt['id_menu'] ?>"><?= $dt['nama_menu'] ?></option>
+                        <?php endforeach ?>
                     </select>
                     <div class="input-group ms-3" style="width: 200px;">
                         <input class="form-control" type="number" min="1" placeholder="Jumlah" name="jumlah_dt">
@@ -57,7 +59,7 @@
                     </div>
                     <div class="col-6">
                         <div class="float-right bg-danger p-2 rounded">
-                            <h6 class="m-0 p-0">Total Transaksi = </h6>
+                            <h6 class="m-0 p-0">Total Transaksi = Rp <span id="totalHarga"></span></h6>
                         </div>
                     </div>
                 </div>
@@ -77,34 +79,46 @@
                     <tbody>
                         <?php
                         $no = 1;
-                        // foreach ($keranjang as $value) { 
+                        $totalHarga = 0;
+                        foreach ($keranjang as $value) :
                         ?>
-                        <tr>
-                            <td><?= $no++ ?></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button class="btn btn-sm btn-flat btn-danger" data-bs-toggle="modal" data-bs-target="#delete">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td><?= $value['nama'] ?></td>
+                                <td>Rp <?= $value['harga'] ?></td>
+                                <td><?= $value['jumlah_dt'] ?></td>
+                                <td>Rp <?= $value['jumlah_dt'] * $value['harga'] ?></td>
+                                <td>
+                                    <button class="btn btn-sm btn-flat btn-danger" onclick="window.location.href='<?= base_url('beliitem/deleteitem/' . $value['pilih_menu']) ?>'">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php
+                            $totalHarga += $value['jumlah_dt'] * $value['harga'];
+                        endforeach
+                        ?>
                     </tbody>
                 </table>
+                <div class="mt-3">
+                    <button class="btn btn-primary <?= (!session('keranjangItem')) ? 'disabled' : '' ?>" onclick="window.location.href='<?= base_url('beliitem/finish/') ?>'" <?= (!session('keranjangItem')) ? 'disabled' : '' ?>>Selesai</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    $('#keranjang').DataTable();
-    // $(document).ready(function() {
-    //     $('#keranjang_filter').empty();
-    //     let btn_add = $('<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add"></button>').append('<i class="fas fa-plus"></i> Add');
-    //     $('#keranjang_filter').append(btn_add);
-    // });
+    const dtMenu = <?= json_encode($dtMenu) ?>;
+    $('#keranjang').DataTable({});
+    $('#keranjang_filter').empty();
+    let btn_add = $('<button class="btn btn-sm btn-danger"></button>');
+    btn_add.html('Reset');
+    btn_add.attr('onclick', 'window.location.href="<?= base_url('beliitem/reset') ?>"');
+    $('#keranjang_filter').append(btn_add);
+    $(document).ready(function() {
+        $("#totalHarga").html('<?= $totalHarga ?>');
+    });
 </script>
 
 <?= $this->endSection(); ?>
