@@ -50,21 +50,42 @@ class BeliItem extends BaseController
         return view('admin/view_transaksi', $data);
     }
 
-    public function keranjang()
+    public function keranjang($idTransaksi = null)
     {
-        // dd(session('keranjangItem'));
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Keranjang',
             'dtBarber' => $this->ModelBarber->find(session('data_user')['id_bb']),
             'dtMenu' => $this->ModelMenu->where('id_bb', session('data_user')['id_bb'])->where('jenis_menu', 'Haircare')->findAll(),
-            'keranjang' => (session('keranjangItem')) ? session('keranjangItem') : []
+            'keranjang' => (session('keranjangItem')) ? session('keranjangItem') : [],
+            'isFinished' => false
         ];
+        session()->remove('isFinished');
+        if (!is_null($idTransaksi)) {
+            $dtTransaksi = $this->ModelTransaksi->find($idTransaksi);
+            if (empty($dtTransaksi)) {
+                session()->setFlashdata('danger', 'Data transaksi tidak ditemukan');
+                return $this->redirect();
+            }
+            session()->set('isFinished', true);
+            session()->remove('keranjangItem');
+            $dtDetailTransaksi = $this->ModelDetailTransaksi->select('nama_menu as nama, harga_dt as harga, jumlah_dt, tbl_menu.id_menu as pilih_menu')
+                ->join('tbl_menu', 'tbl_menu.id_menu = tbl_detail_transaksi.id_menu')
+                ->where('id_transaksi', $idTransaksi)->findAll();
+            unset($data['dtMenu']);
+            $data['keranjang'] = $dtDetailTransaksi;
+            $data['dtTransaksi'] = $dtTransaksi;
+            $data['isFinished'] = true;
+        }
         return view('admin/view_beli', $data);
     }
 
     public function addItem()
     {
+        if (session('isFinished')) {
+            session()->setFlashdata('danger', 'Akses ditolak');
+            return $this->redirect();
+        }
         if (!session('keranjangItem')) {
             session()->set('keranjangItem', []);
             $keranjang = [];
@@ -145,6 +166,10 @@ class BeliItem extends BaseController
 
     public function deleteItem($idMenu)
     {
+        if (session('isFinished')) {
+            session()->setFlashdata('danger', 'Akses ditolak');
+            return $this->redirect();
+        }
         if (!session('keranjangItem')) {
             session()->setFlashdata('danger', 'Data keranjang masih kosong');
             return $this->redirect();
@@ -171,6 +196,10 @@ class BeliItem extends BaseController
 
     public function finish()
     {
+        if (session('isFinished')) {
+            session()->setFlashdata('danger', 'Akses ditolak');
+            return $this->redirect();
+        }
         if (!session('keranjangItem')) {
             session()->setFlashdata('danger', 'Data keranjang masih kosong');
             return $this->redirect();
