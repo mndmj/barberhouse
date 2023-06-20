@@ -15,7 +15,7 @@
             <table class="table table-sm" id="tbl_list">
                 <thead>
                     <tr>
-                        <th width="100px">#</th>
+                        <th>#</th>
                         <th>Tanggal</th>
                         <th>Total Item</th>
                         <th>Total Beli</th>
@@ -29,10 +29,8 @@
                         <td>0</td>
                         <td>Rp,00</td>
                         <td>
-                            <button class="btn btn-sm btn-flat p-0">
-                                <div class=" font-weight-bold btn btn-info py-1 h6">
-                                    <i class="fas fa-cart-shopping"></i>
-                                </div>
+                            <button class="btn btn-sm btn-info h6">
+                                <i class="fas fa-cart-shopping"></i>
                             </button>
                         </td>
                     </tr>

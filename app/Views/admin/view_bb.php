@@ -12,11 +12,11 @@
             <div class="card-body">
                 <?php echo form_open_multipart('bb/updateInfo') ?>
                 <div class="text-center">
-                    <img id="foto" class="img-fluid pad" src="<?= base_url('assets/images/barber/') ?>" width="300px">
+                    <img id="gambar_load" class="img-fluid pad" src="<?= base_url('assets/images/barber/') ?>" width="300px">
                 </div>
                 <div class="form-group mt-2">
                     <label>Ganti Logo</label>
-                    <input id="gambar_load" name="logo" type="file" class="form-control" accept="image/*" onchange="bacaGambar(event)">
+                    <input id="foto" name="logo" type="file" class="form-control" accept="image/*" onchange="bacaGambar(event)">
                 </div>
                 <?= form_close() ?>
             </div>
@@ -140,5 +140,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    function bacaGambar(input) {
+        try {
+            $('#gambar_load').attr('src', URL.createObjectURL(input.target.files[0]));
+            tampilPreview();
+        } catch (error) {
+
+        }
+    }
+
+    function tampilPreview() {
+        if ($('#foto').val() == '') {
+            $('#gambar_load').addClass('d-none');
+        } else {
+            $('#gambar_load').removeClass('d-none');
+        }
+    }
+
+    tampilPreview();
+
+    $('#foto').change(function() {
+        bacaGambar(this);
+    });
+</script>
 
 <?= $this->endsection() ?>
