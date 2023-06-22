@@ -9,14 +9,20 @@
                 <h3 class="card-title">Logo</h3>
             </div>
 
-            <div class="card-body">
-                <?php echo form_open_multipart('bb/updateInfo') ?>
-                <div class="text-center">
-                    <img id="gambar_load" class="img-fluid pad" src="<?= base_url('assets/images/barber/') ?>" width="300px">
-                </div>
-                <div class="form-group mt-2">
-                    <label>Ganti Logo</label>
-                    <input id="foto" name="logo" type="file" class="form-control" accept="image/*" onchange="bacaGambar(event)">
+            <div class="card-body p-0">
+                <?= form_open_multipart('bb/updateInfo') ?>
+                <?php if ($dtBB['foto_bb'] == '') { ?>
+                    <div class="text-center">
+                        <img id="gambar_load" class="img-fluid pad" src="<?= base_url('assets/images/barber/default_bb.jpg') ?>">
+                    </div>
+                <?php } else { ?>
+                    <div class="text-center p-3">
+                        <img id="gambar_load" class="img-fluid pad" src="<?= base_url('assets/images/barber/' . $dtBB['foto_bb']) ?>" width="300px">
+                    </div>
+                <?php } ?>
+                <div class="form-group mt-2 mb-0">
+                    <label for="foto" class="btn btn-warning btn-flat w-100 m-0 px-3 py-2">Ubah Logo</label>
+                    <input id="foto" name="logo" type="file" class="form-control d-none" accept="image/*" onchange="bacaGambar(event)">
                 </div>
                 <?= form_close() ?>
             </div>
@@ -55,29 +61,29 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Nama barbershop</label>
-                            <input name="nama_bb" value="" class="form-control">
+                            <input name="nama_bb" value="<?= $dtBB['nama_bb'] ?>" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input name="email" value="" class="form-control">
+                            <input name="email" value="<?= $dtUser['email'] ?>" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Telepon</label>
-                            <input name="telepon" value="" class="form-control">
+                            <input name="telepon" value="<?= $dtPemilik['telepon'] ?>" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Alamat</label>
-                            <input name="alamat_bb" value="" class="form-control">
+                            <input name="alamat_bb" value="<?= $dtBB['alamat_bb'] ?>" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Latitude</label>
-                            <input name="latitude" value="" class="form-control">
+                            <input name="latitude" value="<?= $dtBB['latitude'] ?>" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Longitude</label>
-                            <input name="longitude" value="" class="form-control">
+                            <input name="longitude" value="<?= $dtBB['longitude'] ?>" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -85,7 +91,7 @@
                     <div class="col-sm-8">
                         <div class="form-group">
                             <label>Tentang Barbershop</label>
-                            <textarea name="ket_bb" value="" class="form-control"></textarea>
+                            <textarea name="ket_bb" class="form-control"><?= $dtBB['ket_bb'] ?></textarea>
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -103,7 +109,7 @@
             <div class="col-6 m-auto">
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">
-                        Simpan Data <i class="fas fa-save pr-1"></i>
+                        Simpan Data
                     </button>
                 </div>
             </div>
@@ -145,21 +151,21 @@
     function bacaGambar(input) {
         try {
             $('#gambar_load').attr('src', URL.createObjectURL(input.target.files[0]));
-            tampilPreview();
+            // tampilPreview();
         } catch (error) {
 
         }
     }
 
-    function tampilPreview() {
-        if ($('#foto').val() == '') {
-            $('#gambar_load').addClass('d-none');
-        } else {
-            $('#gambar_load').removeClass('d-none');
-        }
-    }
+    // function tampilPreview() {
+    //     if ($('#foto').val() == '') {
+    //         $('#gambar_load').addClass('d-none');
+    //     } else {
+    //         $('#gambar_load').removeClass('d-none');
+    //     }
+    // }
 
-    tampilPreview();
+    // tampilPreview();
 
     $('#foto').change(function() {
         bacaGambar(this);

@@ -4,16 +4,22 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ModelBB;
+use App\Models\ModelDetailPemilik;
+use App\Models\ModelUser;
 
 class BB extends BaseController
 {
     private $db = null;
     private $ModelBB = null;
+    private $ModelDetailPemilik = null;
+    private $ModelUser = null;
 
     function __construct()
     {
         $this->db = \config\Database::connect();
         $this->ModelBB = new ModelBB();
+        $this->ModelDetailPemilik = new ModelDetailPemilik();
+        $this->ModelUser = new ModelUser();
         helper('form');
     }
     public function index()
@@ -21,6 +27,9 @@ class BB extends BaseController
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Informasi Barbershop',
+            'dtBB' => $this->ModelBB->where('id_bb', session('data_user')['id_bb'])->get()->getResultArray()[0],
+            'dtPemilik' => $this->ModelDetailPemilik->where('id_user', session('data_user')['id_user'])->get()->getResultArray()[0],
+            'dtUser' => $this->ModelUser->where('id_user', session('data_user')['id_user'])->get()->getResultArray()[0]
         ];
         return view('admin/view_bb', $data);
     }
