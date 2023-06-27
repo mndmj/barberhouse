@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\ModelBB;
 use App\Models\ModelDetailPemilik;
 use App\Models\ModelUser;
+use Exception;
 
 class BB extends BaseController
 {
@@ -36,26 +37,53 @@ class BB extends BaseController
 
     public function updateInfo()
     {
-        if ($this->ModelBB['foto_bb'] != '') {
-            unlink('assets/images/barber/' . $this->ModelBB['foto_bb']);
+        $dtUser = $this->ModelUser->find(session('data_user')['id_user']);
+        if ($dtUser['password'] != $this->request->getPost('passwordLama')) {
+            session()->setFlashdata('danger', 'Password Anda salah');
+            return redirect()->to('bb');
         }
-        $foto_bb = $this->request->getFile('foto_bb');
-        $fotoName = $foto_bb->getRandomName();
+        if ($this->validate([
+            'foto_bb' => 'uploaded[foto_bb]|max_size[foto_bb, 10240]|mime_in[foto_bb,image/jpeg,image/png]|ext_in[foto_bb,png,jpg,jpeg]'
+        ])) {
+            try {
+                unlink('assets/images/barber/' . $this->request->getFile('foto_bb'));
+            } catch (Exception $e) {
+            }
+
+            $foto_bb = $this->request->getFile('foto_bb');
+            $fotoName = $foto_bb->getRandomName();
+            $foto_bb->move("assets/images/barber/", $fotoName);
+        }
         $data = [
-            'id_bb' => session('data_user')['id_bb'],
             'nama_bb' => $this->request->getPost('nama_bb'),
-            'foto_bb' => $fotoName,
-            'telepon_bb' => $this->request->getPost('telepon_bb'),
+            'telepon_bb' => $this->request->getPost('telepon'),
             'alamat_bb' => $this->request->getPost('alamat_bb'),
             'latitude' => $this->request->getPost('latitude'),
             'longitude' => $this->request->getPost('longitude'),
-            'jam_buka' => $this->request->getPost('jam_buka'),
-            'jam_tutup' => $this->request->getPost('jam_tutup'),
             'ket_bb' => $this->request->getPost('ket_bb'),
-            'id_detail_pemilik' => $this->ModelBB->getPemilikBB(),
         ];
-        $this->ModelBB->where(session('data_user')['id_bb'])->update($data);
-        session()->with('success', 'Data berhasil diubah !!');
+        if ($this->request->getPost('jam_buka')) {
+            $data['jam_buka'] = $this->request->getPost('jam_buka');
+        }
+        if ($this->request->getPost('jam_tutup')) {
+            $data['jam_tutup'] = $this->request->getPost('jam_tutup');
+        }
+        if (isset($fotoName)) {
+            $data['foto_bb'] = $fotoName;
+        }
+        $dtPemilik = $this->ModelDetailPemilik->where('id_user', session('data_user')['id_bb'])->first();
+        $this->ModelBB->update(session('data_user')['id_bb'], $data);
+        $data = [];
+        if ($this->request->getPost('username')) {
+            $data['username'] = $this->request->getPost('username');
+        }
+        if ($this->request->getPost('password')) {
+            $data['password'] = $this->request->getPost('password');
+        }
+        if (count($data) != 0) {
+            $this->ModelUser->update(session('data_user')['id_user'], $data);
+        }
+        session()->setFlashdata('success', 'Data berhasil diubah');
         return redirect()->to('bb');
     }
 }

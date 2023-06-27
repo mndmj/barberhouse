@@ -115,8 +115,8 @@
                     </tbody>
                 </table>
                 <?php if (!$isFinished) : ?>
-                    <div class="mt-3">
-                        <button class="btn btn-primary <?= (!session('keranjangItem')) ? 'disabled' : '' ?>" onclick="window.location.href='<?= base_url('beliitem/finish/') ?>'" <?= (!session('keranjangItem')) ? 'disabled' : '' ?>>Selesai</button>
+                    <div class="d-flex mt-3">
+                        <button class="col-sm-6 mt-3 mx-auto btn btn-primary <?= (!session('keranjangItem')) ? 'disabled' : '' ?>" onclick="window.location.href='<?= base_url('beliitem/finish/') ?>'" <?= (!session('keranjangItem')) ? 'disabled' : '' ?>>Selesai</button>
                     </div>
                 <?php endif ?>
             </div>
