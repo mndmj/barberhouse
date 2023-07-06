@@ -14,7 +14,7 @@ class BeliItem extends BaseController
     private $db = null;
     private $ModelTransaksi = null;
     private $ModelDetailTransaksi = null;
-    private $ModelBarber = null;
+    private $ModelBB = null;
     private $ModelMenu = null;
 
     function __construct()
@@ -22,7 +22,7 @@ class BeliItem extends BaseController
         $this->db = \config\Database::connect();
         $this->ModelTransaksi = new ModelTransaksi();
         $this->ModelDetailTransaksi = new ModelDetailTransaksi();
-        $this->ModelBarber = new ModelBB();
+        $this->ModelBB = new ModelBB();
         $this->ModelMenu = new ModelMenu();
     }
 
@@ -55,7 +55,7 @@ class BeliItem extends BaseController
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Keranjang',
-            'dtBarber' => $this->ModelBarber->find(session('data_user')['id_bb']),
+            'dtBarber' => $this->ModelBB->find(session('data_user')['id_bb']),
             'dtMenu' => $this->ModelMenu->where('id_bb', session('data_user')['id_bb'])->where('jenis_menu', 'Haircare')->findAll(),
             'keranjang' => (session('keranjangItem')) ? session('keranjangItem') : [],
             'isFinished' => false

@@ -91,9 +91,17 @@
                             <tr>
                                 <td><?= $no++ ?></td>
                                 <td><?= $value['nama_menu'] ?></td>
-                                <td><?= $value['harga_dt'] ?></td>
+                                <td id="uang<?= $no ?>">
+                                    <script>
+                                        setRupiah("#uang<?= $no ?>", "<?= $value['harga_dt'] ?>")
+                                    </script>
+                                </td>
                                 <td><?= $value['jumlah_dt'] ?></td>
-                                <td><?= $value['harga_dt'] * $value['jumlah_dt'] ?></td>
+                                <td id="uang_sub<?= $no ?>">
+                                    <script>
+                                        setRupiah("#uang_sub<?= $no ?>", "<?= $value['harga_dt'] * $value['jumlah_dt'] ?>")
+                                    </script>
+                                </td>
                                 <td>
                                     <?php if ($antrian['status_antrian'] != 'Selesai') : ?>
                                         <button class="btn btn-sm btn-flat btn-danger" onclick="window.location.href='<?= base_url('antrian/hapus_keranjang') ?>/<?= $value['id_dt'] ?>'">

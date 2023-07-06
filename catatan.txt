@@ -1,7 +1,0 @@
-Yang butuh konsep ribuannya yudi
--Menu harga
--antrian > keranjang > bagian daftar belanja
--beliItem harga
--beliItem > keranjang > bagian daftar keranjang
-
-Button selesai keranjang beliitem blm di percantik

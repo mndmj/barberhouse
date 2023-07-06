@@ -10,6 +10,7 @@
             <table class="table table-sm" id="tbl_list">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th width="150px">Nomor Antrian</th>
                         <th>Pelanggan</th>
                         <th>Tanggal</th>
@@ -18,18 +19,55 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-bold fs-5"><i class="fa-solid fa-user-clock"></i>&emsp;1</td>
-                        <td>Addf</td>
-                        <td><?= date('Y-m-d'); ?></td>
-                        <td>Rp,00</td>
-                        <td>
-                            <button class="btn btn-sm btn-flat p-0" data-bs-toggle="tooltip" data-bs-title="Melihat detail transaksi" onclick="window.location.href = '<?= base_url('antrian/') ?>'">
-                                <div class=" font-weight-bold text-green h6"><i class="fas fa-angles-right fa-2x"></i>
-                                </div>
-                            </button>
-                        </td>
-                    </tr>
+                    <?php $no = 1;
+                    foreach ($transaksi as $value) { ?>
+                        <?php if (!is_null($value['id_antrian'])) {
+                            if ($value['status_antrian'] == "Selesai") { ?>
+                                <tr>
+                                    <td><?= $no++; ?></td>
+                                    <td class="text-bold fs-5"><i class="fa-solid fa-user-clock"></i>&emsp;<?= $value['no_antrian'] ?></td>
+                                    <td><?php if (is_null($value['id_antrian'])) {
+                                            echo '<i>Pelanggan Offline</i>';
+                                        } else {
+                                            echo (is_null($value['id_user']) ? '<i>Pelanggan Offline</i>' : $value['nama']);
+                                        } ?></td>
+                                    <td><?= date('Y-m-d H:i:s', strtotime($value['tanggal_transaksi'])); ?></td>
+                                    <td id="uang<?= $no ?>">
+                                        <script>
+                                            setRupiah("#uang<?= $no ?>", "<?= $value['total_bayar'] ?>")
+                                        </script>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-title="Melihat detail transaksi" onclick="window.location.href = '<?= base_url('antrian/detail_keranjang/' . $value['id_antrian']) ?>'">
+                                            <i class="fas fa-th-list"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                        } else { ?>
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td class="text-bold fs-5"><i class="fa-solid fa-user-clock"></i>&emsp;-</td>
+                                <td><?php if (is_null($value['id_antrian'])) {
+                                        echo '<i>Pelanggan Offline</i>';
+                                    } else {
+                                        echo (is_null($value['id_user']) ? '<i>Pelanggan Offline</i>' : $value['nama']);
+                                    } ?></td>
+                                <td><?= date('Y-m-d', strtotime($value['tanggal_transaksi'])); ?></td>
+                                <td id="uang<?= $no ?>">
+                                    <script>
+                                        setRupiah("#uang<?= $no ?>", "<?= $value['total_bayar'] ?>")
+                                    </script>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-title="Melihat detail transaksi" onclick="window.location.href = '<?= base_url('beliitem/keranjang/' . $value['id_transaksi']) ?>'">
+                                        <i class="fas fa-th-list"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

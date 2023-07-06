@@ -3,12 +3,13 @@
 namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
+use Exception;
 
 class APIAuth extends ResourceController
 {
     public function index()
     {
-        if ($this->validate([
+        $valid = $this->validate([
             'username' => [
                 'label' => 'Username',
                 'rules' => 'required',
@@ -24,7 +25,25 @@ class APIAuth extends ResourceController
                     'min_length' => '{field} yang Anda masukkan harus 8 digit.'
                 ]
             ]
-        ])) {
+        ]);
+
+        if (!$valid) {
+            $data = [
+                'id_user' => 0,
+                'success' => false,
+                'du_nama' => null,
+                'msg' => "Data tidak sesuai"
+            ];
+        } else {
+            try {
+            } catch (Exception $e) {
+                $dt = [
+                    'us_id' => 0,
+                    'success' => false,
+                    'du_nama' => null,
+                    'msg' => "Sistem masih dalam perbaikan" . $e
+                ];
+            }
         }
     }
 }

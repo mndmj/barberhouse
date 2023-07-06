@@ -4,11 +4,14 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ModelAuth;
-use Exception;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class Auth extends BaseController
 {
     private $ModelAuth = null;
+    private $validation;
     public function __construct()
     {
         $this->ModelAuth = new ModelAuth();
@@ -44,16 +47,33 @@ class Auth extends BaseController
             ],
         ])) {
             $token = random_string('alnum', 6);
-            // $mail = new PHPMailer(true);
+            $mail = new PHPMailer(true);
             $data = [
                 'username' => $this->request->getPost('username_reg'),
-                'password' => $this->request->getPost('password_reg'),
+                'password' =>  md5((string)$this->request->getPost('password_reg')),
                 'email' => $this->request->getPost('email'),
                 'id_role' => '1',
                 'token' => $token,
             ];
             try {
                 $this->ModelAuth->insert($data);
+                //mengirim token ke email pengguna
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'sportcakra5@gmail.com'; // alamat email
+                $mail->Password   = 'amqqairiqqfkdiph'; // pw email
+                $mail->SMTPSecure = 'ssl';
+                $mail->Port       = 465;
+                $mail->setFrom('sportcakra5@gmail.com', 'BARBERHOUSE'); // ubah dengan alamat email Anda
+                $mail->addAddress($this->request->getPost('email'));
+                $mail->addReplyTo('sportcakra5@gmail.com', 'BARBERHOUSE'); // ubah dengan alamat email Anda
+
+                // Isi Email
+                $mail->isHTML(true);
+                $mail->Subject = 'Token Rahasia Barberhouse';
+                $mail->Body    = 'Token pendaftaran ini digunakan untuk dapat login pada website Barberhouse sebagai Pemilik Barbershop <br> <b>' . $token . '</b>';
+                $mail->send();
                 session()->set('regist', $this->request->getPost('email'));
                 session()->setFlashdata('success', 'Berhasil melakukan registrasi');
                 return redirect()->to(base_url('register'));
@@ -100,7 +120,7 @@ class Auth extends BaseController
                 session()->set('data_user', $dt);
                 return redirect()->to(base_url('admin'));
             } else {
-                session()->setFlashdata('peringatan', 'Username atau Password salah..!!');
+                session()->setFlashdata('danger', 'Username atau Password salah..!!');
                 return redirect()->to(base_url('/'));
             }
         } else {

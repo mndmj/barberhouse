@@ -97,9 +97,17 @@
                             <tr>
                                 <td><?= $no++ ?></td>
                                 <td><?= $value['nama'] ?></td>
-                                <td>Rp <?= $value['harga'] ?></td>
+                                <td id="uang<?= $no ?>">
+                                    <script>
+                                        setRupiah("#uang<?= $no ?>", "<?= $value['harga'] ?>")
+                                    </script>
+                                </td>
                                 <td><?= $value['jumlah_dt'] ?></td>
-                                <td>Rp <?= $value['jumlah_dt'] * $value['harga'] ?></td>
+                                <td id="uang_sub<?= $no ?>">
+                                    <script>
+                                        setRupiah("#uang_sub<?= $no ?>", "<?= $value['jumlah_dt'] * $value['harga'] ?>")
+                                    </script>
+                                </td>
                                 <?php if (!$isFinished) : ?>
                                     <td>
                                         <button class="btn btn-sm btn-flat btn-danger" onclick="window.location.href='<?= base_url('beliitem/deleteitem/' . $value['pilih_menu']) ?>'">

@@ -18,7 +18,7 @@ class ModelAuth extends Model
             ->join('tbl_detail_pemilik', 'tbl_detail_pemilik.id_user=tbl_user.id_user')
             ->join('tbl_bb', 'tbl_bb.id_detail_pemilik=tbl_detail_pemilik.id_detail_pemilik')
             ->where('username', $username)
-            ->where('password', $password)
+            ->where('password', md5($password))
             ->get()->getResultArray();
     }
 

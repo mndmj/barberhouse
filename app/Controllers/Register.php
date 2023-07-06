@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ModelAuth;
 use App\Models\ModelDetailPemilik;
-use App\Models\ModelBarbershop;
+use App\Models\ModelBB;
 use Exception;
 
 class Register extends BaseController
@@ -43,7 +43,6 @@ class Register extends BaseController
         ])) {
             $token = $this->request->getPost('token');
             // $cek_token = $this->ModelAuth->token($token);
-            // dd();
             if ($this->ModelAuth->token($token, session('regist'))) {
                 session()->set('token', session('regist'));
                 session()->remove('regist');
@@ -97,13 +96,13 @@ class Register extends BaseController
                     'in_list' => '{field} tidak tersedia.',
                 ],
             ],
-            // 'foto' => [
-            //     'label' => 'Foto',
-            //     'rules' => 'max_size[foto,1024]',
-            //     'errors' => [
-            //         'max_size' => 'Ukuran {field} max 1 Mb.',
-            //     ],
-            // ],
+            'foto' => [
+                'label' => 'Foto',
+                'rules' => 'max_size[foto,10240]|mime_in[foto,image/jpeg,image/png]|ext_in[foto,png,jpg,jpeg]',
+                'errors' => [
+                    'max_size' => 'Ukuran {field} max 1 Mb.',
+                ],
+            ],
             'alamat' => [
                 'label' => 'Alamat',
                 'rules' => 'required',
@@ -177,13 +176,13 @@ class Register extends BaseController
                     'errors' => '{field} wajib diisi.',
                 ]
             ],
-            // 'foto_bb' => [
-            //     'label' => 'Foto',
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'errors' => '{field} wajib diisi.',
-            //     ]
-            // ],
+            'foto_bb' => [
+                'label' => 'Foto',
+                'rules' => 'required',
+                'errors' => [
+                    'errors' => '{field} wajib diisi.',
+                ]
+            ],
             'alamat_bb' => [
                 'label' => 'Alamat',
                 'rules' => 'required',
@@ -218,8 +217,8 @@ class Register extends BaseController
                 'foto_bb' => $fotoName,
                 'id_detail_pemilik' => $dtpemilik['id_detail_pemilik']
             ];
-            $modelBarbershop = new ModelBarbershop();
-            if ($modelBarbershop->insert($dt)) {
+            $ModelBB = new ModelBB();
+            if ($ModelBB->insert($dt)) {
                 session()->remove('bio');
                 session()->setFlashdata('success', 'Anda sudah dapat melakukan login.');
                 return redirect()->to(base_url());

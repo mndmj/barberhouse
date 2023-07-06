@@ -41,15 +41,15 @@
                                 <?php if ($value['status_antrian'] == 'Menunggu') : ?>
                                     <form action="<?= base_url('antrian/ubah_status_antrian') ?>" method="POST" class="d-inline">
                                         <input type="hidden" name="id_antrian" value="<?= $value['id_antrian'] ?>" class="d-none">
-                                        <button type="submit" class="btn btn-sm btn-flat btn-success">Melayani</button>
+                                        <button type="submit" class="btn btn-sm btn-success">Melayani</button>
                                     </form>
                                 <?php endif ?>
                                 <?php if ($value['status_antrian'] == 'Diproses') : ?>
-                                    <button type="submit" class="btn btn-sm btn-flat btn-success" onclick="window.location.href = '<?= base_url('antrian/detail_keranjang') ?>/<?= $value['id_antrian'] ?>'">Selesai</button>
+                                    <button type="submit" class="btn btn-sm btn-success" onclick="window.location.href = '<?= base_url('antrian/detail_keranjang') ?>/<?= $value['id_antrian'] ?>'">Selesai</button>
                                 <?php endif ?>
 
                                 <form class="d-inline" action="<?= base_url('antrian/detail_keranjang/' . $value['id_antrian']) ?>">
-                                    <button class="btn btn-sm btn-flat btn-primary">
+                                    <button class="btn btn-sm btn-primary">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </form>

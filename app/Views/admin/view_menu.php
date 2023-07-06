@@ -30,12 +30,16 @@
                             <td><?= $no++ ?></td>
                             <td><?= $value['nama_menu'] ?></td>
                             <td><?= $value['jenis_menu'] ?></td>
-                            <td><?= $value['harga_menu'] ?></td>
+                            <td id="uang<?= $no ?>">
+                                <script>
+                                    setRupiah("#uang<?= $no ?>", "<?= $value['harga_menu'] ?>")
+                                </script>
+                            </td>
                             <td>
-                                <button class="btn btn-sm btn-flat btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $value['id_menu'] ?>">
+                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $value['id_menu'] ?>">
                                     <i class="fas fa-pen"></i>
                                 </button>
-                                <button class="btn btn-sm btn-flat btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?= $value['id_menu'] ?>">
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?= $value['id_menu'] ?>">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </td>

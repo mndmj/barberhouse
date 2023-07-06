@@ -29,9 +29,13 @@
                             <td><?= $no ?></td>
                             <td><?= date($dt['tanggal_transaksi']); ?></td>
                             <td><?= $dt['totalItem'] ?></td>
-                            <td>Rp <?= $dt['totalHarga'] ?>,00</td>
+                            <td id="uang<?= $no ?>">
+                                <script>
+                                    setRupiah("#uang<?= $no ?>", "<?= $dt['totalHarga'] ?>")
+                                </script>
+                            </td>
                             <td>
-                                <button class="btn btn-sm btn btn-info h6" onclick="window.location.href='<?= base_url('beliitem/keranjang/' . $dt['id_transaksi']) ?>'">
+                                <button class="btn btn-sm btn-info h6" onclick="window.location.href='<?= base_url('beliitem/keranjang/' . $dt['id_transaksi']) ?>'" data-bs-toggle="tooltip" data-bs-title="Cek Detail">
                                     <i class="fas fa-cart-shopping"></i>
                                 </button>
                             </td>

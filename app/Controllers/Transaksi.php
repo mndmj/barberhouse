@@ -3,18 +3,24 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ModelBB;
 use App\Models\ModelDetailTransaksi;
+use App\Models\ModelMenu;
 use App\Models\ModelTransaksi;
 
 class Transaksi extends BaseController
 {
     private $ModelDetailTransaksi = null;
+    private $ModelMenu = null;
     private $ModelTransaksi = null;
+    private $ModelBB = null;
     private $db = null;
 
     public function __construct()
     {
         $this->ModelTransaksi = new ModelTransaksi();
+        $this->ModelMenu = new ModelMenu();
+        $this->ModelBB = new ModelBB();
         $this->ModelDetailTransaksi = new ModelDetailTransaksi();
         $this->db = \config\Database::connect();
         helper('form');
@@ -22,14 +28,28 @@ class Transaksi extends BaseController
 
     public function index()
     {
+        $dt_transaksi = $this->ModelTransaksi
+            ->join('tbl_antrian', 'tbl_antrian.id_antrian = tbl_transaksi.id_antrian', 'left')
+            ->join('tbl_user', 'tbl_user.id_user = tbl_antrian.id_user', 'left')
+            ->join('tbl_detail_pelanggan', 'tbl_detail_pelanggan.id_user = tbl_user.id_user', 'left')
+            ->join('tbl_bb', 'tbl_bb.id_bb = tbl_transaksi.id_bb')
+            ->where('tbl_transaksi.id_bb', session('data_user')['id_bb'])
+            ->findAll();
+        $i = 0;
+        foreach ($dt_transaksi as $dt) {
+            $detail = $this->ModelDetailTransaksi->where('id_transaksi', $dt['id_transaksi'])->findAll();
+            $total = 0;
+            foreach ($detail as $value) {
+                $total += $value['harga_dt'] * $value['jumlah_dt'];
+            }
+            $dt_transaksi[$i]['total_bayar'] = $total;
+            $i++;
+        }
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Transaksi',
             'bb' => $this->db->table('tbl_bb')->where('id_bb', session('data_user')['id_bb'])->get()->getResultArray()[0],
-            'keranjang' => $this->ModelDetailTransaksi
-                ->join('tbl_menu', 'tbl_menu.id_menu=tbl_detail_transaksi.id_menu')
-                ->join('tbl_transaksi', 'tbl_transaksi.id_transaksi=tbl_detail_transaksi.id_transaksi')
-                ->where('id_antrian', session('id_antrian'))->findAll(),
+            'transaksi' => $dt_transaksi,
         ];
         return view('admin/view_list_pelanggan', $data);
     }
