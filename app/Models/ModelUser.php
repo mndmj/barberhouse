@@ -10,5 +10,7 @@ class ModelUser extends Model
     protected $primaryKey       = 'id_user';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_user', 'username', 'password', 'email', 'id_role'];
+    protected $deletedField     = 'delete_at';
+    protected $useSoftDeletes   = true;
+    protected $allowedFields    = ['id_user', 'username', 'password', 'email', 'id_role', 'delete_at'];
 }

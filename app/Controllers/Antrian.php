@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ModelAntrian;
+use App\Models\ModelBB;
 use App\Models\ModelDetailTransaksi;
 use App\Models\ModelMenu;
 use App\Models\ModelTransaksi;
@@ -15,6 +16,7 @@ class Antrian extends BaseController
     private $ModelAntrian = null;
     private $ModelMenu = null;
     private $ModelTransaksi = null;
+    private $ModelBB = null;
     private $ModelDetailTransaksi = null;
 
     function __construct()
@@ -22,6 +24,7 @@ class Antrian extends BaseController
         $this->db = \config\Database::connect();
         $this->ModelAntrian = new ModelAntrian();
         $this->ModelMenu = new ModelMenu();
+        $this->ModelBB = new ModelBB();
         $this->ModelTransaksi = new ModelTransaksi();
         $this->ModelDetailTransaksi = new ModelDetailTransaksi();
     }
@@ -31,11 +34,11 @@ class Antrian extends BaseController
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Antrian',
-            'antrian' => $this->db->table('tbl_antrian')
+            'antrian' => $this->ModelAntrian
                 ->join('tbl_user', 'tbl_antrian.id_user = tbl_user.id_user', 'left')
                 ->join('tbl_detail_pelanggan', 'tbl_antrian.id_user = tbl_detail_pelanggan.id_user', 'left')
                 ->where('id_bb', session('data_user')['id_bb'])
-                ->having('date(tgl_antrian)', date('Y-m-d'))->get()->getResultArray(),
+                ->having('date(tgl_antrian)', date('Y-m-d'))->findAll(),
         ];
         return view('admin/view_antrian', $data);
     }
@@ -103,12 +106,12 @@ class Antrian extends BaseController
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Keranjang',
-            'antrian' => $this->db->table('tbl_antrian')
+            'antrian' => $this->ModelAntrian
                 // ->join('tbl_antrian', 'tbl_antrian.id_antrian = tbl_transaksi.id_antrian')
                 ->join('tbl_detail_pelanggan', 'tbl_detail_pelanggan.id_user = tbl_antrian.id_user', 'left')
                 ->where('tbl_antrian.id_antrian', $this->request->uri->getSegment('3'))
                 ->get()->getResultArray()[0],
-            'bb' => $this->db->table('tbl_bb')->where('id_bb', session('data_user')['id_bb'])->get()->getResultArray()[0],
+            'bb' => $this->ModelBB->where('id_bb', session('data_user')['id_bb'])->first(),
             'menu' => $this->ModelMenu->where('id_bb', session('data_user')['id_bb'])->findAll(),
             'keranjang' => $this->ModelDetailTransaksi
                 ->join('tbl_menu', 'tbl_menu.id_menu=tbl_detail_transaksi.id_menu')

@@ -6,16 +6,20 @@ use App\Controllers\BaseController;
 use App\Models\ModelAuth;
 use App\Models\ModelDetailPemilik;
 use App\Models\ModelBB;
+use App\Models\ModelUser;
 use Exception;
 
 class Register extends BaseController
 {
-    private $db = null;
     private $ModelAuth = null;
+    private $ModelUser = null;
+    private $ModelDetailPemilik = null;
+
     public function __construct()
     {
         $this->ModelAuth = new ModelAuth();
-        $this->db = \Config\Database::connect();
+        $this->ModelUser = new ModelUser();
+        $this->ModelDetailPemilik = new ModelDetailPemilik();
         helper('form');
         helper('text');
     }
@@ -118,7 +122,7 @@ class Register extends BaseController
         $fotoName = $foto->getRandomName();
         $foto->move('assets/images/user/', $fotoName);
         if ($foto->hasMoved()) {
-            $dtUser = $this->db->table('tbl_user')->where('email', session('token'))->get()->getResultArray()[0];
+            $dtUser = $this->ModelUser->where('email', session('token'))->first();
             $dt = [
                 'nama_lengkap' => $this->request->getPost('nama_lengkap'),
                 'telepon' => $this->request->getPost('telepon'),
@@ -206,7 +210,7 @@ class Register extends BaseController
         $fotoName = $foto->getRandomName();
         $foto->move('assets/images/barber/', $fotoName);
         if ($foto->hasMoved()) {
-            $dtpemilik = $this->db->table('tbl_user')->join('tbl_detail_pemilik', 'tbl_user.id_user=tbl_detail_pemilik.id_user')->where('email', session('bio'))->get()->getResultArray()[0];
+            $dtpemilik = $this->ModelUser->join('tbl_detail_pemilik', 'tbl_user.id_user=tbl_detail_pemilik.id_user')->where('email', session('bio'))->first();
             $dt = [
                 'telepon_bb' => $this->request->getPost('telepon_bb'),
                 'alamat_bb' => $this->request->getPost('alamat_bb'),
@@ -234,20 +238,20 @@ class Register extends BaseController
     public function cancel()
     {
         if (session('regist')) {
-            $this->db->table('tbl_user')->delete("email='" . session('regist') . "'");
+            $this->ModelUser->delete("email='" . session('regist') . "'");
         }
         if (session('token')) {
-            $this->db->table('tbl_user')->delete("email='" . session('token') . "'");
+            $this->ModelUser->delete("email='" . session('token') . "'");
         }
         if (session('bio')) {
-            $dt = $this->db->table('tbl_user')->where('email', session('bio'))->get()->getResultArray()[0];
-            $data_pemilik = $this->db->table('tbl_detail_pemilik')->where('id_user', $dt['id_user'])->get()->getResultArray();
+            $dt = $this->ModelUser->where('email', session('bio'))->first();
+            $data_pemilik = $this->ModelDetailPemilik->where('id_user', $dt['id_user'])->findAll();
             try {
                 unlink('assets/images/user/' . $data_pemilik[0]['foto']);
             } catch (Exception $e) {
             }
-            $this->db->table('tbl_detail_pemilik')->delete('id_user="' . $dt['id_user'] . '"');
-            $this->db->table('tbl_user')->delete('id_user="' . $dt['id_user'] . '"');
+            $this->ModelDetailPemilik->delete('id_user="' . $dt['id_user'] . '"');
+            $this->ModelUser->delete('id_user="' . $dt['id_user'] . '"');
         }
         session()->remove('regist');
         session()->remove('token');

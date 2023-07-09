@@ -10,7 +10,9 @@ class ModelMenu extends Model
     protected $primaryKey       = 'id_menu';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_menu', 'nama_menu', 'jenis_menu', 'harga_menu', 'id_bb'];
+    protected $deletedField     = 'delete_at';
+    protected $useSoftDeletes   = true;
+    protected $allowedFields    = ['id_menu', 'nama_menu', 'jenis_menu', 'harga_menu', 'id_bb', 'delete_at'];
 
     public function getDataBB()
     {

@@ -14,7 +14,6 @@ class Transaksi extends BaseController
     private $ModelMenu = null;
     private $ModelTransaksi = null;
     private $ModelBB = null;
-    private $db = null;
 
     public function __construct()
     {
@@ -22,7 +21,6 @@ class Transaksi extends BaseController
         $this->ModelMenu = new ModelMenu();
         $this->ModelBB = new ModelBB();
         $this->ModelDetailTransaksi = new ModelDetailTransaksi();
-        $this->db = \config\Database::connect();
         helper('form');
     }
 
@@ -48,7 +46,7 @@ class Transaksi extends BaseController
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Transaksi',
-            'bb' => $this->db->table('tbl_bb')->where('id_bb', session('data_user')['id_bb'])->get()->getResultArray()[0],
+            'bb' => $this->ModelBB->where('id_bb', session('data_user')['id_bb'])->first(),
             'transaksi' => $dt_transaksi,
         ];
         return view('admin/view_list_pelanggan', $data);

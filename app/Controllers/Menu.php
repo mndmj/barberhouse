@@ -21,7 +21,7 @@ class Menu extends BaseController
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Menu',
-            'menu' => $this->db->table('tbl_menu')->where('id_bb', session('data_user')['id_bb'])->get()->getResultArray(),
+            'menu' => $this->ModelMenu->where('id_bb', session('data_user')['id_bb'])->findAll(),
         ];
         return view('admin/view_menu', $data);
     }
