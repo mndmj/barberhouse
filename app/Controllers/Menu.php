@@ -55,6 +55,6 @@ class Menu extends BaseController
             'id_menu' => $id_menu,
         ];
         $this->ModelMenu->delete($data);
-        return redirect()->to('menu')->with('danger', 'Data berhasil diedit');
+        return redirect()->to('menu')->with('danger', 'Data berhasil dihapus');
     }
 }
