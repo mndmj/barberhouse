@@ -25,6 +25,7 @@ class Admin extends BaseController
             'subtitle' => 'Dashboard Admin',
             'menu' => $this->ModelAdmin->totalMenu(session('data_user')['id_bb']),
             'antriOff' => $this->ModelAdmin->totalAntriOff(session('data_user')['id_bb']),
+            'antriOn' => $this->ModelAdmin->totalAntriOn(session('data_user')['id_bb']),
         ];
         return view('admin/view_dashboard', $data);
     }

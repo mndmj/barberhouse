@@ -2,3 +2,5 @@ Notifikasi ketika ada pelanggan online
 Masuk data ketika ada yang antrian onlline di dashboard
 
 Map Reigstrasi barbershop
+
+tbl_user->status belum difungsikan

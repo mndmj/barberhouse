@@ -30,7 +30,7 @@
         <div class="small-box bg-olive">
             <div class="inner">
                 <h3>Antrian Online</h3>
-                <p>Jumlah : 0</p>
+                <p>Jumlah : <?= $antriOn ?></p>
             </div>
             <div class="icon">
                 <i class="fa-solid fa-people-arrows"></i>
