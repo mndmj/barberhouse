@@ -152,7 +152,7 @@ class Antrian extends BaseController
             session()->setFlashdata('danger', 'Data harus dalam status diproses');
             return $this->redirect();
         }
-        $cek_menu = $this->ModelMenu->find($this->request->getPost('pilih_menu'));
+        $cek_menu = $this->ModelMenu->where('id_menu', $this->request->getPost('pilih_menu'))->where('id_bb', session('data_user')['id_bb'])->first();
         if (empty($cek_menu)) {
             return redirect()->to(base_url('antrian/detail_keranjang') . '/' . session('id_antrian'))->with('danger', 'Data tidak ada');
         }

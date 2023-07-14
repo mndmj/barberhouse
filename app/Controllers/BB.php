@@ -28,9 +28,9 @@ class BB extends BaseController
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Informasi Barbershop',
-            'dtBB' => $this->ModelBB->where('id_bb', session('data_user')['id_bb'])->get()->getResultArray()[0],
-            'dtPemilik' => $this->ModelDetailPemilik->where('id_user', session('data_user')['id_user'])->get()->getResultArray()[0],
-            'dtUser' => $this->ModelUser->where('id_user', session('data_user')['id_user'])->get()->getResultArray()[0]
+            'dtBB' => $this->ModelBB->where('id_bb', session('data_user')['id_bb'])->first(),
+            'dtPemilik' => $this->ModelDetailPemilik->where('id_user', session('data_user')['id_user'])->first(),
+            'dtUser' => $this->ModelUser->where('id_user', session('data_user')['id_user'])->first()
         ];
         return view('admin/view_bb', $data);
     }

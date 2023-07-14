@@ -29,13 +29,18 @@
                     <p class="fw-bold text-white">Titik Koordinat</p>
                     <div class="col-6">
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude">
+                            <input type="text" class="form-control disabled" name="latitude" id="txtlatitude" placeholder="Latitude" readonly>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Longitude">
+                            <input type="text" class="form-control disabled" name="longitude" id="txtlongitude" placeholder="Longitude" readonly>
                         </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div id="map" style="height: 200px;"></div>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -62,4 +67,72 @@
         </div>
     </div>
 </div>
+
+<!-- Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" defer></script>
+<script>
+    let newLatLng = {
+        lat: -7.594611098027863,
+        lng: 110.93992829532729
+    };
+
+    function initMap() {
+        const myLatLng = {
+            lat: -7.594611098027863,
+            lng: 110.93992829532729
+        };
+
+        <?php if (old('txtlatitude') && old('txtlongitude')) : ?>
+            const newLocation = {
+                lat: <?= old('txtlatitude') ?>,
+                lng: <?= old('txtlongitude') ?>
+            }
+        <?php endif ?>
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 16,
+            center: myLatLng,
+        });
+
+        <?php if (old('txtlatitude') && old('txtlongitude')) : ?>
+            var infoWindow = new google.maps.InfoWindow({
+                content: "Lokasi baru Barbershop Anda",
+                position: newLocation,
+            });
+        <?php else : ?>
+            var infoWindow = new google.maps.InfoWindow({
+                content: "Pilih lokasi Barbershop baru",
+                position: myLatLng,
+            });
+        <?php endif ?>
+
+        new google.maps.Marker({
+            position: myLatLng,
+            map,
+            title: 'Kabupaten Karanganyar',
+        });
+
+        infoWindow.open(map);
+        // Configure the click listener.
+        map.addListener("click", (mapsMouseEvent) => {
+            // Close the current InfoWindow.
+            infoWindow.close();
+            // Create a new InfoWindow.
+            infoWindow = new google.maps.InfoWindow({
+                position: mapsMouseEvent.latLng,
+            });
+            infoWindow.setContent(
+                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+            );
+            infoWindow.open(map);
+            $("#txtlatitude").val(mapsMouseEvent.latLng.toJSON()['lat']);
+            $("#txtlongitude").val(mapsMouseEvent.latLng.toJSON()['lng']);
+            newLatLng.lat = mapsMouseEvent.latLng.toJSON()['lat'];
+            newLatLng.lng = mapsMouseEvent.latLng.toJSON()['lng'];
+        });
+        $("#txtlatitude").val(myLatLng.lat);
+        $("#txtlongitude").val(myLatLng.lng);
+    }
+    window.initMap = initMap;
+</script>
 <?= $this->endSection(); ?>

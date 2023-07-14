@@ -13,12 +13,14 @@ class Register extends BaseController
 {
     private $ModelAuth = null;
     private $ModelUser = null;
+    private $ModelBB = null;
     private $ModelDetailPemilik = null;
 
     public function __construct()
     {
         $this->ModelAuth = new ModelAuth();
         $this->ModelUser = new ModelUser();
+        $this->ModelBB = new ModelBB();
         $this->ModelDetailPemilik = new ModelDetailPemilik();
         helper('form');
         helper('text');
@@ -151,7 +153,7 @@ class Register extends BaseController
         $data = [
             'title' => 'Barberhouse',
             'subtitle' => 'Bio Barbershop',
-            'validation' => (session('errors')) ? session('errors') : \Config\Services::validation()
+            'validation' => (session('errors')) ? session('errors') : \Config\Services::validation(),
         ];
         return view('view_bio_bb', $data);
     }
@@ -175,13 +177,6 @@ class Register extends BaseController
             ],
             'longitude' => [
                 'label' => 'Longitude',
-                'rules' => 'required',
-                'errors' => [
-                    'errors' => '{field} wajib diisi.',
-                ]
-            ],
-            'foto_bb' => [
-                'label' => 'Foto',
                 'rules' => 'required',
                 'errors' => [
                     'errors' => '{field} wajib diisi.',
