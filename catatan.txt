@@ -1,6 +1,17 @@
 Notifikasi ketika ada pelanggan online
 Masuk data ketika ada yang antrian onlline di dashboard
 
-Map Reigstrasi barbershop
 
 tbl_user->status belum difungsikan
+
+
+Login -> POST(username, password)
+Registrasi -> POST(tbl_user, tbl_detail_pengguna, token SMTP)
+Validasi token -> POST(token)
+Home -> GET(data barber)
+Antrian sekarang & terakhir -> POST()
+Antrian Anda -> POST()
+Cek status antrian -> POST()
+Transaksi -> POST()
+Data User -> POST()
+Ubah Profile -> POST()

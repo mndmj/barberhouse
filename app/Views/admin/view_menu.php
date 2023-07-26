@@ -72,6 +72,7 @@
                     <select class="form-select" name="jenis_menu" aria-label="Default select example">
                         <option value="Haircut">Haircut</option>
                         <option value="Haircare">Haircare</option>
+                        <option value="Lain-lain">Lain-lain</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -111,6 +112,7 @@
                         <select class="form-select" name="jenis_menu" value="<?= $value['jenis_menu'] ?>" aria-label="Default select example">
                             <option value="Haircut">Haircut</option>
                             <option value="Haircare">Haircare</option>
+                            <option value="Lain-lain">Lain-lain</option>
                         </select>
                         <label>Harga Menu</label>
                         <input name="harga_menu" value="<?= $value['harga_menu'] ?>" class="form-control" placeholder="Harga Menu" required>
