@@ -47,9 +47,7 @@ class Filters extends BaseConfig
                     'auth', 'auth/*',
                     'home', 'home/*',
                     'register', 'register/*',
-                    'apiaccount', 'apiaccount/*',
-                    'apibb', 'apibb/*',
-                    'apitransaksi', 'apitransaksi/*',
+                    'api*',
                 ]
             ]
         ],
