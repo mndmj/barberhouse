@@ -31,14 +31,69 @@ class APIAccount extends ResourceController
         if (!$this->validate([
             'id_user' => 'required|is_natural_no_zero',
         ])) {
-            $data = null;
+            $dt = [
+                'success' => false,
+                'msg' => "Data tidak valid",
+                'data' => null
+            ];
         } else {
             $data = $this->ModelUser->select('username, email, nama, jk, no_telp')
                 ->join('tbl_detail_pelanggan', 'tbl_user.id_user = tbl_detail_pelanggan.id_user')
                 ->where('tbl_user.id_user', $this->request->getPost('id_user'))
                 ->first();
+            if (empty($data)) {
+                $dt = [
+                    'success' => false,
+                    'msg' => "Data tidak ditemukan",
+                    'data' => null
+                ];
+            } else {
+                $dt = [
+                    'success' => true,
+                    'msg' => "Data berhasil ditemukan",
+                    'data' => $data
+                ];
+            }
         }
-        return $this->respond($data);
+        return $this->respond($dt);
+    }
+
+    public function getbylogin()
+    {
+        if (!$this->validate([
+            'username' => [
+                'label' => 'Username',
+                'rules' => 'required',
+            ],
+            'password' => [
+                'label' => 'Password',
+                'rules' => 'required',
+            ]
+        ])) {
+            $dt = [
+                'success' => false,
+                'msg' => "Data tidak valid"
+            ];
+        } else {
+            $data = $this->ModelUser->select('tbl_user.id_user as id_user, username, email, nama, jk, no_telp')
+                ->join('tbl_detail_pelanggan', 'tbl_user.id_user = tbl_detail_pelanggan.id_user')
+                ->where('username', $this->request->getPost('username'))
+                ->where('password', md5((string)$this->request->getPost('password')))
+                ->first();
+            if (empty($data)) {
+                $dt = [
+                    'success' => false,
+                    'msg' => "Data akun tidak ditemukan"
+                ];
+            } else {
+                $dt = [
+                    'success' => true,
+                    'msg' => "Data berhasil ditemukan",
+                    'data' => $data
+                ];
+            }
+        }
+        return $this->respond($dt);
     }
 
     public function editProfile()
@@ -107,8 +162,8 @@ class APIAccount extends ResourceController
                     $dtUser = $dtUser[0];
                     $detailUser = $this->ModelDetailPelanggan;
                     $detailUser->where('id_user', $dtUser['id_user']);
-                    $detailUser = $detailUser->findAll();
-                    if (count($detailUser) != 1) {
+                    $detailUser = $detailUser->first();
+                    if (empty($detailUser)) {
                         $dt = [
                             'id_user' => 0,
                             'success' => false,
@@ -116,7 +171,6 @@ class APIAccount extends ResourceController
                             'msg' => "Ada masalah dengan data Anda"
                         ];
                     } else {
-                        $detailUser = $detailUser[0];
                         $dt = [
                             'id_user' => $dtUser['id_user'],
                             'success' => true,
@@ -151,7 +205,7 @@ class APIAccount extends ResourceController
         if ($this->ModelUser->insert($dtUser)) {
             $detailUser = [
                 'nama' => $this->request->getPost('nama'),
-                'no_telp' => $this->request->getPost('no_telp'),
+                'telepon' => $this->request->getPost('telepon'),
                 'jk' => $this->request->getPost('jk'),
                 'id_user' => $this->ModelUser->orderBy('id_user', 'desc')->first()['id_user'],
             ];
@@ -184,7 +238,7 @@ class APIAccount extends ResourceController
         return $this->respond($data);
     }
 
-    public function validasiToken()
+    public function validasitoken()
     {
         $valid = $this->validate([
             'token' => [
