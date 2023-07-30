@@ -107,10 +107,9 @@ class Antrian extends BaseController
             'title' => 'Barberhouse',
             'subtitle' => 'Keranjang',
             'antrian' => $this->ModelAntrian
-                // ->join('tbl_antrian', 'tbl_antrian.id_antrian = tbl_transaksi.id_antrian')
                 ->join('tbl_detail_pelanggan', 'tbl_detail_pelanggan.id_user = tbl_antrian.id_user', 'left')
                 ->where('tbl_antrian.id_antrian', $this->request->uri->getSegment('3'))
-                ->get()->getResultArray()[0],
+                ->findAll(),
             'bb' => $this->ModelBB->where('id_bb', session('data_user')['id_bb'])->first(),
             'menu' => $this->ModelMenu->where('id_bb', session('data_user')['id_bb'])->findAll(),
             'keranjang' => $this->ModelDetailTransaksi
