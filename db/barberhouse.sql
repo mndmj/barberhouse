@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Jun 2023 pada 20.11
+-- Waktu pembuatan: 12 Agu 2023 pada 09.57
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.1.12
 
@@ -73,16 +73,17 @@ CREATE TABLE `tbl_bb` (
   `jam_buka` time NOT NULL,
   `jam_tutup` time NOT NULL,
   `ket_bb` varchar(255) NOT NULL,
-  `id_detail_pemilik` int(11) NOT NULL
+  `id_detail_pemilik` int(11) NOT NULL,
+  `delete_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tbl_bb`
 --
 
-INSERT INTO `tbl_bb` (`id_bb`, `nama_bb`, `telepon_bb`, `foto_bb`, `alamat_bb`, `latitude`, `longitude`, `jam_buka`, `jam_tutup`, `ket_bb`, `id_detail_pemilik`) VALUES
-(4, 'hj', '90888', '1677311257_bcf7a52cd9f3d0c7856f.jpg', 'hjhjh', '-908', '-8989', '00:00:00', '00:00:00', 'hjhjhj', 1),
-(5, 'Soetarmo Barbershop', '09786435768', '1679508096_43a3fb96d1e3b131af78.jpg', 'Sewurejo', '-7.0979679', '110.09690', '00:00:00', '00:00:00', 'Bagus Efisien', 2);
+INSERT INTO `tbl_bb` (`id_bb`, `nama_bb`, `telepon_bb`, `foto_bb`, `alamat_bb`, `latitude`, `longitude`, `jam_buka`, `jam_tutup`, `ket_bb`, `id_detail_pemilik`, `delete_at`) VALUES
+(4, 'hj', '90888', '1677311257_bcf7a52cd9f3d0c7856f.jpg', 'hjhjh', '-908', '-8989', '00:00:00', '00:00:00', 'hjhjhj', 1, NULL),
+(5, 'Soetarmo Barbershop', '09786435768', '1679508096_43a3fb96d1e3b131af78.jpg', 'Sewurejo', '-7.0979679', '110.09690', '00:00:00', '00:00:00', 'Bagus Efisien', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -98,6 +99,13 @@ CREATE TABLE `tbl_detail_pelanggan` (
   `no_telp` varchar(15) NOT NULL,
   `foto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_detail_pelanggan`
+--
+
+INSERT INTO `tbl_detail_pelanggan` (`id_detail_pelanggan`, `id_user`, `nama`, `jk`, `no_telp`, `foto`) VALUES
+(1, 6, 'arul ', 'Laki-laki', '', '');
 
 -- --------------------------------------------------------
 
@@ -178,20 +186,21 @@ CREATE TABLE `tbl_menu` (
   `id_bb` int(11) NOT NULL,
   `nama_menu` varchar(255) DEFAULT NULL,
   `jenis_menu` enum('Haircut','Haircare') DEFAULT NULL,
-  `harga_menu` varchar(255) DEFAULT NULL
+  `harga_menu` varchar(255) DEFAULT NULL,
+  `delete_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tbl_menu`
 --
 
-INSERT INTO `tbl_menu` (`id_menu`, `id_bb`, `nama_menu`, `jenis_menu`, `harga_menu`) VALUES
-(1, 4, 'Cepmek', 'Haircut', '15000'),
-(2, 4, 'Haircut Dewasa', 'Haircut', '25000'),
-(3, 4, 'Mohawk', 'Haircut', '25000'),
-(4, 5, 'Bold', 'Haircut', '20000'),
-(5, 5, 'Vitamin', 'Haircare', '15000'),
-(6, 5, 'Hair Tonic', 'Haircare', '15000');
+INSERT INTO `tbl_menu` (`id_menu`, `id_bb`, `nama_menu`, `jenis_menu`, `harga_menu`, `delete_at`) VALUES
+(1, 4, 'Cepmek', 'Haircut', '15000', NULL),
+(2, 4, 'Haircut Dewasa', 'Haircut', '25000', NULL),
+(3, 4, 'Mohawk', 'Haircut', '25000', NULL),
+(4, 5, 'Bold', 'Haircut', '20000', NULL),
+(5, 5, 'Vitamin', 'Haircare', '15000', NULL),
+(6, 5, 'Hair Tonic', 'Haircare', '15000', NULL);
 
 -- --------------------------------------------------------
 
@@ -256,18 +265,20 @@ CREATE TABLE `tbl_user` (
   `email` varchar(255) NOT NULL,
   `token` varchar(6) NOT NULL,
   `status` enum('0','1') NOT NULL,
-  `id_role` int(11) NOT NULL
+  `id_role` int(11) NOT NULL,
+  `delete_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `email`, `token`, `status`, `id_role`) VALUES
-(2, 'hg', 'hjhjhjhj', 'hg@g.g', 'wmykje', '0', 1),
-(3, 'aji', '12345678', 'aj@g.c', 'zrYAQm', '0', 1),
-(4, 'Babayo', '`12345678', 'b@g.v', 'V3k0bx', '0', 1),
-(5, 'Agus', '12345678', 'agus@gmail.com', '6KAn1Z', '0', 1);
+INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `email`, `token`, `status`, `id_role`, `delete_at`) VALUES
+(2, 'hg', 'hjhjhjhj', 'hg@g.g', 'wmykje', '0', 1, NULL),
+(3, 'aji', '12345678', 'aj@g.c', 'zrYAQm', '0', 1, NULL),
+(4, 'Babayo', '`12345678', 'b@g.v', 'V3k0bx', '0', 1, NULL),
+(5, 'Agus', '25d55ad283aa400af464c76d713c07ad', 'agus@gmail.com', '6KAn1Z', '0', 1, NULL),
+(6, 'arul', '25d55ad283aa400af464c76d713c07ad', 'ff@gmaio.com', '', '0', 2, NULL);
 
 --
 -- Indexes for dumped tables
@@ -366,7 +377,7 @@ ALTER TABLE `tbl_bb`
 -- AUTO_INCREMENT untuk tabel `tbl_detail_pelanggan`
 --
 ALTER TABLE `tbl_detail_pelanggan`
-  MODIFY `id_detail_pelanggan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detail_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_detail_pemilik`
@@ -408,7 +419,7 @@ ALTER TABLE `tbl_transaksi`
 -- AUTO_INCREMENT untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
