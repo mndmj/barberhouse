@@ -177,7 +177,10 @@ class BeliItem extends BaseController
         $keranjang = session('keranjangItem');
         $tmpCount = count($keranjang);
         $i = 0;
-        foreach ($keranjang as $dt) {
+        foreach ($keranjang as $key => $dt) {
+            if ($i == 0) {
+                $i = $key;
+            }
             if ($dt['pilih_menu'] == $idMenu) {
                 unset($keranjang[$i]);
                 break;

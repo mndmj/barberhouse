@@ -38,7 +38,7 @@ class BB extends BaseController
     public function updateInfo()
     {
         $dtUser = $this->ModelUser->find(session('data_user')['id_user']);
-        if ($dtUser['password'] != $this->request->getPost('passwordLama')) {
+        if ($dtUser['password'] != md5((string)$this->request->getPost('passwordLama'))) {
             session()->setFlashdata('danger', 'Password Anda salah');
             return redirect()->to('bb');
         }
