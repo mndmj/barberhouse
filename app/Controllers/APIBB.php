@@ -34,6 +34,23 @@ class APIBB extends ResourceController
         );
     }
 
+    public function get()
+    {
+        if (!$this->validate([
+            'id_bb' => 'required|is_natural_no_zero'
+        ])) {
+            return $this->fail("Data tidak valid");
+        }
+        $dtBB = $this->ModelBB->select('id_bb, nama_bb, foto_bb, alamat_bb, telepon_bb, latitude, longitude, jam_buka, jam_tutup, ket_bb')
+            ->find($this->request->getPost('id_bb'));
+        if (empty($dtBB)) {
+            return $this->fail("Data barber tidak ditemukan");
+        }
+        $dtBB['jam_buka'] = date("H:i", strtotime($dtBB['jam_buka']));
+        $dtBB['jam_tutup'] = date("H:i", strtotime($dtBB['jam_tutup']));
+        return $this->respond($dtBB);
+    }
+
     public function antrian()
     {
         $id_bb = $this->request->getPost('id_bb');

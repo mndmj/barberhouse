@@ -110,4 +110,9 @@ class ResourceController extends BaseResource
             $this->format = $format;
         }
     }
+
+    protected function setError(string $msg)
+    {
+        return $this->fail($msg, 400, null, $msg);
+    }
 }
