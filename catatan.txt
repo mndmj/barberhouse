@@ -1,5 +1,6 @@
 Notifikasi ketika ada pelanggan online
-Masuk data ketika ada yang antrian onlline di dashboard
+Masuk data ketika ada yang antrian online di dashboard
+Perapian validasi data pelanggan & bb masuk ke model semua (Yudi belum)
 
 
 tbl_user->status belum difungsikan
