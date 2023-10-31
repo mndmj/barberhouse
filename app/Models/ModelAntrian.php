@@ -32,7 +32,12 @@ class ModelAntrian extends Model
             if (empty($dtAntrianSelesai)) {
                 $dtAntrianNow = 0;
             } else {
-                $dtAntrianNow = $dtAntrianSelesai['no_antrian'];
+                $tmp = $this->select("no_antrian")
+                    ->where('id_bb', $id_bb)
+                    ->where('date(tgl_antrian)', date("Y-m-d"))
+                    ->orderBy('id_antrian', 'desc')
+                    ->first();
+                $dtAntrianNow = $tmp['no_antrian'];
             }
         } else {
             $dtAntrianNow = $dtAntrianNow['no_antrian'];
@@ -51,5 +56,17 @@ class ModelAntrian extends Model
             'antrian_sekarang' => $dtAntrianNow,
             'antrian_total' => $dtLastAntran
         ];
+    }
+
+    public function isOnQueue($id_user): bool
+    {
+        $dtAntrian = $this->where('id_user', $id_user)
+            ->where('date(tgl_antrian)', date("Y-m-d"))
+            ->where('status_antrian != "Selesai"')
+            ->first();
+        if (empty($dtAntrian)) {
+            return false;
+        }
+        return true;
     }
 }
