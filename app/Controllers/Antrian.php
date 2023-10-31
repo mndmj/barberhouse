@@ -109,7 +109,7 @@ class Antrian extends BaseController
             'antrian' => $this->ModelAntrian
                 ->join('tbl_detail_pelanggan', 'tbl_detail_pelanggan.id_user = tbl_antrian.id_user', 'left')
                 ->where('tbl_antrian.id_antrian', $this->request->uri->getSegment('3'))
-                ->findAll(),
+                ->first(),
             'bb' => $this->ModelBB->where('id_bb', session('data_user')['id_bb'])->first(),
             'menu' => $this->ModelMenu->where('id_bb', session('data_user')['id_bb'])->findAll(),
             'keranjang' => $this->ModelDetailTransaksi
