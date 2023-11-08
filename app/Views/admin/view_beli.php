@@ -47,7 +47,7 @@
                         <div class="input-group ms-3" style="width: 200px;">
                             <input class="form-control <?= ($isFinished) ? 'disabled' : '' ?>" type="number" min="1" placeholder="Jumlah" name="jumlah_dt" <?= ($isFinished) ? 'disabled' : '' ?>>
                             <button class="btn btn-primary <?= ($isFinished) ? 'disabled' : '' ?>" style="height:fit-content" <?= ($isFinished) ? 'disabled' : '' ?>>
-                                <i class="fa-solid fa-plus"></i>
+                                <i class="fa-solid fa-paper-plane"></i>
                             </button>
                         </div>
                         <?php if (!$isFinished) : ?>

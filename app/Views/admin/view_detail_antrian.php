@@ -48,7 +48,7 @@
                     <div class="input-group ms-3" style="width: 200px;">
                         <input class="form-control" type="number" min="1" placeholder="Jumlah" name="jumlah_dt" <?= ($antrian['status_antrian'] == 'Selesai') ? 'disabled readonly' : '' ?>>
                         <button class="btn btn-primary <?= ($antrian['status_antrian'] == 'Selesai') ? 'disabled' : '' ?>" style="height:fit-content" <?= ($antrian['status_antrian'] == 'Selesai') ? 'disabled readonly' : '' ?>>
-                            <i class="fa-solid fa-plus"></i>
+                            <i class="fa-solid fa-paper-plane"></i>
                         </button>
                     </div>
                 </form>
