@@ -1,6 +1,7 @@
 Notifikasi ketika ada pelanggan online
 Masuk data ketika ada yang antrian online di dashboard
 Perapian validasi data pelanggan & bb masuk ke model semua (Yudi belum)
+PHP Mailer belum
 
 
 tbl_user->status belum difungsikan
