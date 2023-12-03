@@ -61,13 +61,13 @@ class Auth extends BaseController
                 $mail->isSMTP();
                 $mail->Host       = 'smtp.gmail.com';
                 $mail->SMTPAuth   = true;
-                $mail->Username   = 'sportcakra5@gmail.com'; // alamat email
-                $mail->Password   = 'amqqairiqqfkdiph'; // pw email
+                $mail->Username   = 'udinkamarullah@gmail.com'; // alamat email
+                $mail->Password   = 'udinudin'; // pw email
                 $mail->SMTPSecure = 'ssl';
                 $mail->Port       = 465;
-                $mail->setFrom('sportcakra5@gmail.com', 'BARBERHOUSE'); // ubah dengan alamat email Anda
+                $mail->setFrom('udinkamarullah@gmail.com', 'BARBERHOUSE'); // ubah dengan alamat email Anda
                 $mail->addAddress($this->request->getPost('email'));
-                $mail->addReplyTo('sportcakra5@gmail.com', 'BARBERHOUSE'); // ubah dengan alamat email Anda
+                $mail->addReplyTo('udinkamarullah@gmail.com', 'BARBERHOUSE'); // ubah dengan alamat email Anda
 
                 // Isi Email
                 $mail->isHTML(true);
