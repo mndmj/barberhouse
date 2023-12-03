@@ -74,7 +74,7 @@ class APIAntrian extends ResourceController
             return $this->setError("Data pelanggan tidak valid");
         }
         $dtPelanggan = $this->ModelUser->where('id_user', $this->request->getPost('id_user'))
-            ->where('role', '2')->where('token is null')->first();
+            ->where('id_role', '2')->where('token is null')->first();
         if (empty($dtPelanggan)) {
             return $this->setError("Data pengguna tidak ditemukan");
         }
