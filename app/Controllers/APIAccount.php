@@ -292,4 +292,59 @@ class APIAccount extends ResourceController
         }
         return $this->respond($dt);
     }
+
+    public function editprofil()
+    {
+        if (!$this->validate([
+            'id_user' => 'required|is_natural_no_zero',
+            'username' => 'required',
+            'email' => 'required|valid_email',
+            'nama' => 'required',
+            'telepon' => 'required|numeric',
+            'jk' => 'required|in_list[Laki-laki,Perempuan]',
+        ])) {
+            return $this->setError('Data tidak valid');
+        }
+        $dtUser = $this->ModelUser
+            ->join('tbl_detail_pelanggan', 'tbl_user.id_user=tbl_detail_pelanggan.id_user')
+            ->where('tbl_user.id_user', $this->request->getPost('id_user'))
+            ->first();
+        if (empty($dtUser)) {
+            return $this->setError('Data akun tidak ditemukan');
+        }
+        $data = [
+            'email' => $this->request->getPost('email'),
+            'username' => $this->request->getPost('username'),
+        ];
+        if ($this->validate(['password' => 'required|max_length(16)'])) {
+            $data['password'] = md5((string)$this->request->getPost('password'));
+        }
+        $this->ModelUser->update($dtUser['id_user'], $data);
+        $afterUser = $this->ModelUser;
+        foreach ($data as $key => $val) {
+            $afterUser->where($key, $val);
+        }
+        $afterUser = $afterUser->first();
+        if (empty($dtUser)) {
+            return $this->setError('Data akun gagal di update');
+        }
+        $data = [
+            'nama' => $this->request->getPost('nama'),
+            'no_telp' => $this->request->getPost('telepon'),
+            'jk' => $this->request->getPost('jk'),
+        ];
+        $this->ModelDetailPelanggan->update($dtUser['id_detail_pelanggan'], $data);
+        $afterPelanggan = $this->ModelDetailPelanggan;
+        foreach ($data as $key => $val) {
+            $afterPelanggan->where($key, $val);
+        }
+        $afterPelanggan = $afterPelanggan->first();
+        if (empty($afterPelanggan)) {
+            return $this->setError('Data pelanggan gagal di update');
+        }
+        return $this->respond([
+            'success' => true,
+            'msg' => 'Data anda berhasil diubah'
+        ]);
+    }
 }
