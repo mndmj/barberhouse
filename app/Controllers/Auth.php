@@ -4,9 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ModelAuth;
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\PHPMailer;
+use Exception;
 
 class Auth extends BaseController
 {
@@ -47,7 +45,7 @@ class Auth extends BaseController
             ],
         ])) {
             $token = random_string('alnum', 6);
-            $mail = new PHPMailer(true);
+            $email = \Config\Services::email();
             $data = [
                 'username' => $this->request->getPost('username_reg'),
                 'password' =>  md5((string)$this->request->getPost('password_reg')),
@@ -55,25 +53,28 @@ class Auth extends BaseController
                 'id_role' => '1',
                 'token' => $token,
             ];
+
             try {
                 $this->ModelAuth->insert($data);
-                //mengirim token ke email pengguna
-                $mail->isSMTP();
-                $mail->Host       = 'smtp.gmail.com';
-                $mail->SMTPAuth   = true;
-                $mail->Username   = 'udinkamarullah@gmail.com'; // alamat email
-                $mail->Password   = 'udinudin'; // pw email
-                $mail->SMTPSecure = 'ssl';
-                $mail->Port       = 465;
-                $mail->setFrom('udinkamarullah@gmail.com', 'BARBERHOUSE'); // ubah dengan alamat email Anda
-                $mail->addAddress($this->request->getPost('email'));
-                $mail->addReplyTo('udinkamarullah@gmail.com', 'BARBERHOUSE'); // ubah dengan alamat email Anda
 
-                // Isi Email
-                $mail->isHTML(true);
-                $mail->Subject = 'Token Rahasia Barberhouse';
-                $mail->Body    = 'Token pendaftaran ini digunakan untuk dapat login pada website Barberhouse sebagai Pemilik Barbershop <br> <b>' . $token . '</b>';
-                $mail->send();
+                $config['SMTPHost']  = 'smtp.gmail.com';
+                $config['protocol'] = 'smtp';
+                $config['SMTPUser']  = 'udinkamarullah@gmail.com';
+                $config['SMTPPass']  = 'iqphbmppcylwcpzn';
+                $config['SMTPPort']  = 465;
+                $config['SMTPCrypto'] = 'ssl';
+                $config['mailType'] = 'html';
+
+                $email->initialize($config);
+
+                $email->setFrom('udinkamarullah@gmail.com', 'BARBERHOUSE');
+                $email->setTo($this->request->getPost('email'));
+
+                $email->setSubject('Token Rahasia Barberhouse');
+                $email->setMessage('<div style="font-size:16pt;">Token pendaftaran ini digunakan untuk dapat login pada website Barberhouse sebagai Pemilik Barbershop <br> <b style="font-size:24pt;">' . $token . '</b></div>');
+
+                $email->send();
+
                 session()->set('regist', $this->request->getPost('email'));
                 session()->setFlashdata('success', 'Berhasil melakukan registrasi');
                 return redirect()->to(base_url('register'));
