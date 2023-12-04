@@ -8,7 +8,7 @@ use App\Models\ModelDetailPemilik;
 use App\Models\ModelUser;
 use Exception;
 
-class BB extends BaseController
+class Bb extends BaseController
 {
     private $db = null;
     private $ModelBB = null;
