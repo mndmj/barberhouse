@@ -47,30 +47,46 @@
             <div class="site-mobile-menu-body"></div>
         </div>
 
-
         <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <div class="site-logo me-auto w-25"><a href="<?= base_url() ?>">BarberHouse</a></div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end bg-black" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header bg-white text-black">
+                            <h5 class="offcanvas-title fw-bolder" id="offcanvasNavbarLabel">BarberHouse</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body site-navigation">
 
-            <div class="container-fluid">
-                <div class="d-flex align-items-center">
-                    <div class="site-logo me-auto w-25"><a href="<?= base_url('') ?>">BarberHouse</a></div>
+                            <!-- <div class="ms-auto">
+                                <nav class="site-navigation position-relative text-right" role="navigation">
+                                    <ul class="site-menu main-menu js-clone-nav navbar-nav mx-auto d-none d-lg-block m-0 p-0">
+                                        <li class="nav-item"><a href="#home-section" class="nav-link">Home</a></li>
+                                        <li class="nav-item"><a href="#how-section" class="nav-link">How to</a></li>
+                                        <li class="nav-item"><a href="#features-section" class="nav-link">Features</a></li>
+                                    </ul>
+                                </nav>
+                            </div> -->
 
-                    <div class="ms-auto">
-                        <nav class="site-navigation position-relative text-right" role="navigation">
-                            <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-                                <li><a href="#home-section" class="nav-link">Home</a></li>
-                                <li><a href="#how-section" class="nav-link">How to</a></li>
-                                <li><a href="#features-section" class="nav-link">Features</a></li>
+                            <ul class="site-menu main-menu js-clone-nav navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item py-2">
+                                    <a class="nav-link" aria-current="page" href="#home-section">Home</a>
+                                </li>
+                                <li class="nav-item py-2">
+                                    <a class="nav-link" href="#how-section">How to</a>
+                                </li>
+                                <li class="nav-item py-2">
+                                    <a class="nav-link" href="#features-section">Features</a>
+                                </li>
                             </ul>
-                        </nav>
-                    </div>
-                    <!-- <nav class="site-navigation position-relative text-right" role="navigation">
-                        <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
-                            <li class="cta"><a href="#register-section" class="nav-link"><span>Sign Up</span></a></li>
-                        </ul>
-                    </nav> -->
-                </div>
-            </div>
 
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
 
         <div class="intro-section" id="home-section">
@@ -370,7 +386,6 @@
     <script src="<?= base_url() ?>/assets/js/aos.js"></script>
     <script src="<?= base_url() ?>/assets/js/jquery.fancybox.min.js"></script>
     <script src="<?= base_url() ?>/assets/js/jquery.sticky.js"></script>
-
     <script src="<?= base_url() ?>/assets/js/main.js"></script>
 
 
