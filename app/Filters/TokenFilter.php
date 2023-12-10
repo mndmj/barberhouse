@@ -25,8 +25,14 @@ class TokenFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (!session('token')) {
-            return redirect()->to(base_url('register/token'));
+        if (!session('token') && !session('regist') && !session('bio')) {
+            return redirect()->to(base_url());
+        } else {
+            if (session('regist')) {
+                return redirect()->to(base_url('register'));
+            } elseif (session('bio')) {
+                return redirect()->to(base_url('register/biobb'));
+            }
         }
     }
 

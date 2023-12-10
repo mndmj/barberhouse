@@ -25,8 +25,12 @@ class RegistFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (!session('regist')) {
+        if (!session('regist') && !session('token') && !session('bio')) {
             return redirect()->to(base_url());
+        } else {
+            if (session('token')) {
+                return redirect()->to(base_url('register/biopemilik'));
+            }
         }
     }
 

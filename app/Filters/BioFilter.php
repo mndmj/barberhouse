@@ -25,8 +25,12 @@ class BioFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (!session('bio')) {
-            return redirect()->to(base_url('register/biopemilik'));
+        if (!session('bio') && !session('token') && !session('regist')) {
+            return redirect()->to(base_url());
+        } else {
+            if (!session('bio')) {
+                return redirect()->to(base_url('register/biopemilik'));
+            }
         }
     }
 
