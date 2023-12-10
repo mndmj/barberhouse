@@ -69,7 +69,7 @@
 </div>
 
 <!-- Map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6gqY4h363DppJBbXF1o8_4Y6t0hw3xVw&callback=initMap&v=weekly" defer></script>
 <script>
     let newLatLng = {
         lat: -7.594611098027863,
