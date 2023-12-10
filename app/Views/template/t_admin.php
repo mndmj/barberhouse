@@ -115,7 +115,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('beliItem') ?>" class="nav-link">
+                            <a href="<?= base_url('beliitem') ?>" class="nav-link">
                                 <i class="nav-icon fa-solid fa-spray-can-sparkles"></i>
                                 <p>Beli Item</p>
                             </a>

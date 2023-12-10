@@ -28,7 +28,7 @@ class BeliItem extends BaseController
 
     public function index()
     {
-        $dtTransaksi = $this->ModelTransaksi->orderBy('id_transaksi', 'desc')->where('id_antrian is null')->findAll();
+        $dtTransaksi = $this->ModelTransaksi->orderBy('id_transaksi', 'desc')->where('id_antrian is null')->where('id_bb', session('data_user')['id_bb'])->findAll();
         $i = 0;
         foreach ($dtTransaksi as $dt) {
             $tmpDetail = $this->ModelDetailTransaksi->where('id_transaksi', $dt['id_transaksi'])->findAll();
