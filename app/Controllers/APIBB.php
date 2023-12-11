@@ -51,6 +51,18 @@ class APIBB extends ResourceController
         return $this->respond($dtBB);
     }
 
+    public function search()
+    {
+        if (!$this->validate([
+            'keyword' => 'required'
+        ])) {
+            return $this->fail("Data tidak valid");
+        }
+        $dtBarberByNama = $this->ModelBB->like('nama_bb', $this->request->getPost('keyword'))->findAll();
+        $dtBarberByLoc = $this->ModelBB->like('alamat_bb', $this->request->getPost('keyword'))->findAll();
+        return $this->respond(array_merge($dtBarberByNama, $dtBarberByLoc));
+    }
+
     public function antrian()
     {
         $id_bb = $this->request->getPost('id_bb');
