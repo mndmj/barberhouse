@@ -42,6 +42,11 @@ class ModelAuth extends Model
             ->where('email', $email)
             ->findAll();
         if (count($dt) == 1) {
+            $data = [
+                'token' => null,
+                'status' => '1'
+            ];
+            $model_user->update($dt['id_user'], $data);
             return true;
         }
         return false;

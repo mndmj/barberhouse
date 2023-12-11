@@ -233,25 +233,36 @@ class Register extends BaseController
     public function cancel()
     {
         if (session('regist')) {
-            $this->ModelUser->delete("email='" . session('regist') . "'");
+            $dtUser = $this->ModelUser->where("email", session('regist'))->first();
+            if (!empty($dtUser)) {
+                $this->ModelUser->setSoftDelete(false);
+                $this->ModelUser->delete($dtUser['id_user']);
+            }
         }
         if (session('token')) {
-            $this->ModelUser->delete("email='" . session('token') . "'");
+            $dtUser = $this->ModelUser->where("email", session('token'))->first();
+            if (!empty($dtUser)) {
+                $this->ModelUser->setSoftDelete(false);
+                $this->ModelUser->delete($dtUser['id_user']);
+            }
         }
         if (session('bio')) {
             $dt = $this->ModelUser->where('email', session('bio'))->first();
-            $data_pemilik = $this->ModelDetailPemilik->where('id_user', $dt['id_user'])->findAll();
-            try {
-                unlink('assets/images/user/' . $data_pemilik[0]['foto']);
-            } catch (Exception $e) {
+            if (!empty($dt)) {
+                $data_pemilik = $this->ModelDetailPemilik->where('id_user', $dt['id_user'])->first();
+                if (!empty($data_pemilik)) {
+                    $this->ModelDetailPemilik->delete($data_pemilik['id_detail_pemilik']);
+                    try {
+                        unlink('assets/images/user/' . $data_pemilik['foto']);
+                    } catch (Exception $e) {
+                    }
+                }
+                $this->ModelUser->delete($dt['id_user']);
             }
-            $this->ModelDetailPemilik->delete('id_user="' . $dt['id_user'] . '"');
-            $this->ModelUser->delete('id_user="' . $dt['id_user'] . '"');
         }
         session()->remove('regist');
         session()->remove('token');
         session()->remove('bio');
-
         return redirect()->to(base_url());
     }
 }

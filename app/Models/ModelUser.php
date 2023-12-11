@@ -13,4 +13,9 @@ class ModelUser extends Model
     protected $deletedField     = 'delete_at';
     protected $useSoftDeletes   = true;
     protected $allowedFields    = ['id_user', 'username', 'password', 'email', 'token', 'id_role', 'delete_at'];
+
+    public function setSoftDelete(bool $status)
+    {
+        $this->useSoftDeletes = $status;
+    }
 }
