@@ -38,16 +38,17 @@ class ModelAuth extends Model
     {
         $model_user = new ModelUser();
         $dt = $model_user
-            ->where('token', $token)
             ->where('email', $email)
-            ->findAll();
-        if (count($dt) == 1) {
-            $data = [
-                'token' => null,
-                'status' => '1'
-            ];
-            $model_user->update($dt['id_user'], $data);
-            return true;
+            ->first();
+        if (!empty($dt)) {
+            if ($dt['token'] == $token) {
+                $data = [
+                    'token' => null,
+                    'status' => '1'
+                ];
+                $model_user->update($dt['id_user'], $data);
+                return true;
+            }
         }
         return false;
     }

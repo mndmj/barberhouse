@@ -257,6 +257,7 @@ class Register extends BaseController
                     } catch (Exception $e) {
                     }
                 }
+                $this->ModelUser->setSoftDelete(false);
                 $this->ModelUser->delete($dt['id_user']);
             }
         }
