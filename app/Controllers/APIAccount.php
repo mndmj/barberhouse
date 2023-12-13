@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ModelAuth;
 use App\Models\ModelDetailPelanggan;
 use App\Models\ModelUser;
 use CodeIgniter\RESTful\ResourceController;
@@ -12,10 +13,12 @@ class APIAccount extends ResourceController
 {
     private $ModelUser = null;
     private $ModelDetailPelanggan = null;
+    private $ModelAuth = null;
 
     public function __construct()
     {
         $this->ModelUser = new ModelUser();
+        $this->ModelAuth = new ModelAuth();
         $this->ModelDetailPelanggan = new ModelDetailPelanggan();
         helper('text');
         helper('form');
@@ -194,7 +197,7 @@ class APIAccount extends ResourceController
     public function register()
     {
         $token = random_string('alnum', 6);
-        $mail = new PHPMailer(true);
+        $email = \Config\Services::email();
         $dtUser = [
             'username' => $this->request->getPost('username'),
             'password' =>  md5((string)$this->request->getPost('password')),
@@ -217,22 +220,25 @@ class APIAccount extends ResourceController
             }
         }
         try {
-            $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com';
-            $mail->SMTPAuth   = true;
-            $mail->Username   = 'sportcakra5@gmail.com'; // ubah dengan alamat email Anda
-            $mail->Password   = 'amqqairiqqfkdiph'; // ubah dengan password email Anda
-            $mail->SMTPSecure = 'ssl';
-            $mail->Port       = 465;
-            $mail->setFrom('sportcakra5@gmail.com', 'BARBERHOUSE'); // ubah dengan alamat email Anda
-            $mail->addAddress($this->request->getPost('email'));
-            $mail->addReplyTo('sportcakra5@gmail.com', 'BARBERHOUSE'); // ubah dengan alamat email Anda
+            $this->ModelAuth->insert($data);
 
-            // Isi Email
-            $mail->isHTML(true);
-            $mail->Subject = 'Token Rahasia Barberhouse';
-            $mail->Body    = 'Token pendaftaran ini digunakan untuk dapat login pada website Barberhouse sebagai Pemilik Barbershop <br> <b>' . $token . '</b>';
-            $mail->send();
+            $config['SMTPHost']  = 'smtp.gmail.com';
+            $config['protocol'] = 'smtp';
+            $config['SMTPUser']  = 'udinkamarullah@gmail.com';
+            $config['SMTPPass']  = 'iqphbmppcylwcpzn';
+            $config['SMTPPort']  = 465;
+            $config['SMTPCrypto'] = 'ssl';
+            $config['mailType'] = 'html';
+
+            $email->initialize($config);
+
+            $email->setFrom('udinkamarullah@gmail.com', 'BARBERHOUSE');
+            $email->setTo($this->request->getPost('email'));
+
+            $email->setSubject('Token Rahasia Barberhouse');
+            $email->setMessage('<div style="font-size:16pt;">Token pendaftaran ini digunakan untuk dapat login pada Aplikasi Barberhouse sebagai Pelanggan Barbershop <br> <b style="font-size:24pt;">' . $token . '</b></div>');
+
+            $email->send();
         } catch (Exception $e) {
         }
         return $this->respond($data);
@@ -269,7 +275,8 @@ class APIAccount extends ResourceController
                 } else {
                     $dtUser = $dtUser[0];
                     $data = [
-                        'token' => null
+                        'token' => null,
+                        'status' => '1'
                     ];
                     if ($this->ModelUser->update($dtUser['id_user'], $data)) {
                         $dt = [
