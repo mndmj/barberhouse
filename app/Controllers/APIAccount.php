@@ -193,6 +193,28 @@ class APIAccount extends ResourceController
 
     public function register()
     {
+        if (!$this->validate([
+            'username' => 'required',
+            'password' => 'required|min_length[8]|max_length[16]',
+            'email' => 'required|valid_email',
+            'nama' => 'required|max_length[100]',
+            'telepon' => 'required|numeric|min_length[9]|max_length[15]',
+            'jk' => 'required|in_list[Laki-laki,Perempuan]'
+        ])) {
+            return $this->setError('Data tidak valid');
+        }
+        $cekUsername = $this->ModelUser->where('username', $this->request->getPost('username'))->first();
+        if (!empty($cekUsername)) {
+            return $this->setError('Username telah digunakan akun lain');
+        }
+        // $cekEmail = $this->ModelUser->where('email', $this->request->getPost('email'))->first();
+        // if (!empty($cekEmail)) {
+        //     return $this->setError('Email telah digunakan akun lain');
+        // }
+        $cekTelepon = $this->ModelDetailPelanggan->where('telepon', $this->request->getPost('telepon'))->first();
+        if (!empty($cekTelepon)) {
+            return $this->setError('Telepon telah digunakan akun lain');
+        }
         $token = random_string('alnum', 6);
         $mail = new PHPMailer(true);
         $dtUser = [
@@ -234,6 +256,16 @@ class APIAccount extends ResourceController
             $mail->Body    = 'Token pendaftaran ini digunakan untuk dapat login pada website Barberhouse sebagai Pemilik Barbershop <br> <b>' . $token . '</b>';
             $mail->send();
         } catch (Exception $e) {
+            $dtUser = $this->ModelUser->where('username', $this->request->getPost('username'))->first();
+            if (!empty($dtUser)) {
+                $dtPelanggan = $this->ModelDetailPelanggan->where('id_user', $dtUser['id_user'])->first();
+                if (!empty($dtPelanggan)) {
+                    $this->ModelDetailPelanggan->delete($dtPelanggan['id_detail_pelanggan']);
+                }
+                $this->ModelUser->setSoftDelete(false);
+                $this->ModelUser->delete($dtUser['id_user']);
+            }
+            return $this->setError('Eror OTP : ' . $e->getMessage());
         }
         return $this->respond($data);
     }
