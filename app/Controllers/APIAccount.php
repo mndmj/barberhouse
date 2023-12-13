@@ -40,7 +40,7 @@ class APIAccount extends ResourceController
                 'data' => null
             ];
         } else {
-            $data = $this->ModelUser->select('username, email, nama, jk, no_telp')
+            $data = $this->ModelUser->select('username, email, nama, jk, telepon')
                 ->join('tbl_detail_pelanggan', 'tbl_user.id_user = tbl_detail_pelanggan.id_user')
                 ->where('tbl_user.id_user', $this->request->getPost('id_user'))
                 ->first();
@@ -78,7 +78,7 @@ class APIAccount extends ResourceController
                 'msg' => "Data tidak valid"
             ];
         } else {
-            $data = $this->ModelUser->select('tbl_user.id_user as id_user, username, email, nama, jk, no_telp')
+            $data = $this->ModelUser->select('tbl_user.id_user as id_user, username, email, nama, jk, telepon')
                 ->join('tbl_detail_pelanggan', 'tbl_user.id_user = tbl_detail_pelanggan.id_user')
                 ->where('username', $this->request->getPost('username'))
                 ->where('password', md5((string)$this->request->getPost('password')))
@@ -107,7 +107,7 @@ class APIAccount extends ResourceController
             'username' => $this->request->getPost('username'),
             'email' => $this->request->getPost('email'),
             'nama' => $this->request->getPost('nama'),
-            'no_telp' => $this->request->getPost('no_telp'),
+            'telepon' => $this->request->getPost('telepon'),
             'jk' => $this->request->getPost('jk'),
         ];
         // if ($this->validate([
@@ -242,8 +242,6 @@ class APIAccount extends ResourceController
             }
         }
         try {
-            $this->ModelAuth->insert($data);
-
             $config['SMTPHost']  = 'smtp.gmail.com';
             $config['protocol'] = 'smtp';
             $config['SMTPUser']  = 'udinkamarullah@gmail.com';
@@ -271,7 +269,7 @@ class APIAccount extends ResourceController
                 $this->ModelUser->setSoftDelete(false);
                 $this->ModelUser->delete($dtUser['id_user']);
             }
-            return $this->setError('Eror OTP : ' . $e->getMessage());
+            return $this->setError('Eror OTP : ' . $this->request->getPost('email'));
         }
         return $this->respond($data);
     }
@@ -369,7 +367,7 @@ class APIAccount extends ResourceController
         }
         $data = [
             'nama' => $this->request->getPost('nama'),
-            'no_telp' => $this->request->getPost('telepon'),
+            'telepon' => $this->request->getPost('telepon'),
             'jk' => $this->request->getPost('jk'),
         ];
         $this->ModelDetailPelanggan->update($dtUser['id_detail_pelanggan'], $data);
