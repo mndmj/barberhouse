@@ -10,5 +10,5 @@ class ModelDetailPelanggan extends Model
     protected $primaryKey       = 'id_detail_pelanggan';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $allowedFields    = ['nama', 'no_telp', 'jk', 'id_user'];
+    protected $allowedFields    = ['nama', 'telepon', 'jk', 'id_user'];
 }
