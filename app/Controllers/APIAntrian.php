@@ -78,7 +78,9 @@ class APIAntrian extends ResourceController
         if (empty($dtPelanggan)) {
             return $this->setError("Data pengguna tidak ditemukan");
         }
-        $dtAntrian = $this->ModelAntrian->where('id_user', $this->request->getPost('id_user'))
+        $dtAntrian = $this->ModelAntrian
+            ->join('tbl_bb', 'tbl_bb.id_bb = tbl_antrian.id_bb')
+            ->where('id_user', $this->request->getPost('id_user'))
             ->where('date(tgl_antrian)', date("Y-m-d"))
             ->where('status_antrian != "Selesai"')
             ->first();
@@ -89,7 +91,8 @@ class APIAntrian extends ResourceController
         return $this->respond([
             'antrian_sekarang' => $dtAntrianByBB['antrian_sekarang'],
             'antrian_saya' => $dtAntrian['no_antrian'],
-            'status_antrian' => $dtAntrian['status_antrian']
+            'status_antrian' => $dtAntrian['status_antrian'],
+            'namaBB' => $dtAntrian['nama_bb']
         ]);
     }
 

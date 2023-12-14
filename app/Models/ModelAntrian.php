@@ -32,12 +32,7 @@ class ModelAntrian extends Model
             if (empty($dtAntrianSelesai)) {
                 $dtAntrianNow = 0;
             } else {
-                $tmp = $this->select("no_antrian")
-                    ->where('id_bb', $id_bb)
-                    ->where('date(tgl_antrian)', date("Y-m-d"))
-                    ->orderBy('id_antrian', 'desc')
-                    ->first();
-                $dtAntrianNow = $tmp['no_antrian'];
+                $dtAntrianNow = $dtAntrianSelesai['no_antrian'];
             }
         } else {
             $dtAntrianNow = $dtAntrianNow['no_antrian'];

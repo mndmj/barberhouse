@@ -45,10 +45,11 @@ class APITransaksi extends ResourceController
         }
         // Get data transaksi by id user on table antrian
         return $this->respond($this->ModelTransaksi
-            ->select('tbl_transaksi.id_transaksi, tbl_antrian.id_antrian as id_antrian, nama_user as nama, no_antrian, date(tanggal_transaksi) as tanggal_transaksi')
+            ->select('tbl_transaksi.id_transaksi, tbl_antrian.id_antrian as id_antrian,nama, no_antrian, date(tanggal_transaksi) as tanggal_transaksi, nama_bb as namaBB')
             ->join('tbl_antrian', 'tbl_transaksi.id_antrian=tbl_antrian.id_antrian')
             ->join('tbl_user', 'tbl_antrian.id_user = tbl_user.id_user')
-            ->join('tbl_detail_user', 'tbl_user.id_user = tbl_detail_user.id_user')
+            ->join('tbl_detail_pelanggan', 'tbl_user.id_user = tbl_detail_pelanggan.id_user')
+            ->join('tbl_bb', 'tbl_transaksi.id_bb = tbl_bb.id_bb')
             ->where('tbl_antrian.id_user', $this->request->getPost('id_user'))
             ->findAll());
     }

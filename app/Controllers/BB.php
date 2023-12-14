@@ -71,14 +71,21 @@ class Bb extends BaseController
         if (isset($fotoName)) {
             $data['foto_bb'] = $fotoName;
         }
-        $dtPemilik = $this->ModelDetailPemilik->where('id_user', session('data_user')['id_bb'])->first();
+        $dtBB = $this->ModelBB->where('id_bb', session('data_user')['id_bb'])->first();
+        if (!empty($dtBB)) {
+            $dtPemilik =  $this->ModelDetailPemilik->find($dtBB['id_detail_pemilik']);
+            $dataPemilik = [
+                'email' => $this->request->getPost('email')
+            ];
+            $this->ModelUser->update($dtPemilik['id_user'], $dataPemilik);
+        }
         $this->ModelBB->update(session('data_user')['id_bb'], $data);
         $data = [];
         if ($this->request->getPost('username')) {
             $data['username'] = $this->request->getPost('username');
         }
         if ($this->request->getPost('password')) {
-            $data['password'] = $this->request->getPost('password');
+            $data['password'] = md5((string)$this->request->getPost('password'));
         }
         if (count($data) != 0) {
             $this->ModelUser->update(session('data_user')['id_user'], $data);

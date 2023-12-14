@@ -39,6 +39,7 @@ class ModelAuth extends Model
         $model_user = new ModelUser();
         $dt = $model_user
             ->where('email', $email)
+            ->orderBy('id_user', 'desc')
             ->first();
         if (!empty($dt)) {
             if ($dt['token'] == $token) {

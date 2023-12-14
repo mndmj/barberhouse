@@ -233,21 +233,25 @@ class Register extends BaseController
     public function cancel()
     {
         if (session('regist')) {
-            $dtUser = $this->ModelUser->where("email", session('regist'))->first();
+            $dtUser = $this->ModelUser->where("email", session('regist'))->orderBy('id_user', 'desc')->first();
             if (!empty($dtUser)) {
                 $this->ModelUser->setSoftDelete(false);
                 $this->ModelUser->delete($dtUser['id_user']);
             }
         }
         if (session('token')) {
-            $dtUser = $this->ModelUser->where("email", session('token'))->first();
+            $dtUser = $this->ModelUser->where("email", session('token'))->orderBy('id_user', 'desc')->first();
             if (!empty($dtUser)) {
+                $dtPemilik = $this->ModelDetailPemilik->where('id_user', $dtUser['id_user'])->orderBy('id_user', 'desc')->first();
+                if (!empty($dtPemilik)) {
+                    $this->ModelDetailPemilik->delete($dtPemilik['id_detail_pemilik']);
+                }
                 $this->ModelUser->setSoftDelete(false);
                 $this->ModelUser->delete($dtUser['id_user']);
             }
         }
         if (session('bio')) {
-            $dt = $this->ModelUser->where('email', session('bio'))->first();
+            $dt = $this->ModelUser->where('email', session('bio'))->orderBy('id_user', 'desc')->first();
             if (!empty($dt)) {
                 $data_pemilik = $this->ModelDetailPemilik->where('id_user', $dt['id_user'])->first();
                 if (!empty($data_pemilik)) {

@@ -82,7 +82,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Telepon</label>
-                                <input name="telepon" id="txttelepon" value="<?= $dtPemilik['telepon'] ?>" class="form-control" disabled>
+                                <input name="telepon" id="txttelepon" value="<?= $dtBB['telepon_bb'] ?>" class="form-control" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Longitude</label>
